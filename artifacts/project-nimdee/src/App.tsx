@@ -9,6 +9,7 @@ import Resources from "@/pages/Resources";
 import Support from "@/pages/Support";
 import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
+import Science10 from "@/pages/Science10";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/resources/science-10" component={Science10} />
       <Route path="/resources" component={Resources} />
       <Route path="/support" component={Support} />
       <Route path="/services" component={Services} />
