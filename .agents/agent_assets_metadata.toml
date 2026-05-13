@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "nYcm3jNXhHap2gQ5oIN2j"
+uri = "file://artifacts/project-nimdee/public/images/hannah-classroom.png"
+type = "image"
+title = "Warm abstract educational illustration"

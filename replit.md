@@ -1,44 +1,59 @@
-# [Project name]
+# Project Nimdeɛ
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A responsive multi-page educational website for Hannah Terkper's STEM education initiative, Project Nimdeɛ — rooted in the Twi word for knowledge and wisdom.
 
 ## Run & Operate
 
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/project-nimdee run dev` — run the website locally
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
 
 ## Stack
 
 - pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Frontend: React + Vite, Tailwind CSS v4, shadcn/ui, framer-motion, wouter
+- Fonts: Fraunces (serif headings) + Plus Jakarta Sans (body)
+- API: Express 5 (minimal, health check only)
+- No database — this is a static frontend-only site
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/project-nimdee/` — main website
+- `artifacts/project-nimdee/src/pages/` — Home, About, Resources, Support, Services, Contact
+- `artifacts/project-nimdee/src/components/Layout.tsx` — shared Navbar + Footer
+- `artifacts/project-nimdee/src/index.css` — theme variables (Fraunces/Plus Jakarta Sans fonts, amber+teal palette)
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Presentation-first React app — no backend API calls needed; contact form is client-only
+- All CSS custom properties are properly set with a warm amber/teal educational palette (no placeholder red values remain)
+- framer-motion used for scroll-triggered staggered animations on all section cards
+- wouter used for client-side routing across 6 pages
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Six-page educational website:
+- **Home** — Hero section, 4 feature cards, "Explore Learning Areas" section
+- **About** — Hannah's bio, credentials cards, The Vision section
+- **Resources** — Filterable resource cards by subject (Math, Science, CS, Robotics)
+- **Support the Mission** — Vision statement, future goals cards, support notice
+- **Additional Services** — Tutoring, STEM support, study coaching, piano lessons, consulting
+- **Contact** — Full form with react-hook-form + zod validation, 7 subject categories
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Website for Project Nimdeɛ — Hannah Terkper's STEM education initiative
+- Warm, modern, professional, welcoming, education-focused aesthetic
+- Amber and deep teal color palette
+- Fraunces serif for headings, Plus Jakarta Sans for body text
+- Fully mobile responsive with smooth animations
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Google Fonts @import must stay as the VERY FIRST line of index.css
+- When adding framer-motion ease values in Variants, use `"easeOut" as const` to satisfy TypeScript
+- No backend/database needed — contact form is UI-only for now
 
 ## Pointers
 

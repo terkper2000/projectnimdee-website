@@ -1,0 +1,201 @@
+Build a responsive educational website for my new project called Project Nimdeɛ.
+
+Project Nimdeɛ comes from a Ghanaian word connected to knowledge and wisdom. The website should feel warm, modern, professional, welcoming, and education-focused. It should combine my work as a STEM educator with my long-term vision of building an education-focused initiative that supports students, creates accessible learning tools, and may eventually grow into a nonprofit or full-time educational organization.
+
+The website should have a clean and modern aesthetic with:
+- soft neutral colors
+- rounded cards
+- subtle shadows
+- smooth hover animations
+- strong readability
+- a professional but welcoming tone
+
+Use HTML, CSS, and JavaScript only. Organize everything into separate files:
+index.html
+about.html
+resources.html
+support.html
+services.html
+contact.html
+style.css
+script.js
+
+Create a reusable navbar across all pages with the following links:
+Home
+About
+Resources
+Support the Mission
+Additional Services
+Contact
+
+Website Branding:
+Project Nimdeɛ
+
+Tagline:
+Teaching, tools, and thoughtful STEM learning.
+
+Main Vision:
+Project Nimdeɛ is a digital home for curriculum-aligned resources, classroom learning, educational innovation, and community impact. It brings together mathematics, science, computer science, and a long-term vision of expanding access to education for students who need it most.
+
+HOME PAGE:
+Create a modern hero section with:
+Large heading:
+Project Nimdeɛ
+
+Subheading:
+Teaching, tools, and thoughtful STEM learning.
+
+Short intro paragraph:
+A digital home for curriculum-aligned resources, interactive STEM learning, classroom support, and educational innovation rooted in accessibility, creativity, and opportunity.
+
+Add a call-to-action button:
+Explore Resources
+
+Add four feature cards underneath:
+
+1. Student-Centred Learning
+Resources designed to support real classrooms, meaningful practice, and stronger understanding.
+
+2. Curriculum-Aligned Resources
+Materials built around Alberta outcomes, clear learning goals, and classroom use.
+
+3. Accessible STEM Tools
+Interactive tools and supports that help make learning more approachable and engaging.
+
+4. Education for Impact
+A growing vision rooted in knowledge, opportunity, and the belief that education can help open doors for students and communities.
+
+Add another section called:
+Explore Learning Areas
+
+Create cards linking to:
+- Mathematics
+- Science
+- Computer Science
+- Robotics & Coding
+- Study Tools
+
+ABOUT PAGE:
+Create an About Hannah section with polished professional writing using the following information:
+
+Hi! I’m Hannah Terkper, a Ghanaian-Canadian STEM educator based in Edmonton. My work is rooted in the belief that education can transform lives, create opportunity, and help students see what is possible for their future.
+
+I hold a Bachelor of Education with a major in Biological Sciences, a minor in Mathematics, and a certification in Sustainability. I recently completed my Master of Education in Emerging Technologies, where my work focused on artificial intelligence, instructional design, digital curriculum development, and data-informed instructional improvement.
+
+As an educator, I have taught mathematics, science, computer science, robotics, and STEM-focused programming across Grades 7–12. I am passionate about creating accessible and meaningful learning experiences that help students build confidence and deepen their understanding.
+
+Project Nimdeɛ brings together my background in teaching, curriculum design, technology, and my Ghanaian identity. The word Nimdeɛ is connected to knowledge and wisdom, which reflects the heart of this project.
+
+My long-term vision is to grow this platform into an education-focused initiative that provides high-quality learning resources, innovative STEM opportunities, and educational support that helps expand access to learning for students and communities.
+
+Add a second section called:
+The Vision
+
+Include:
+Project Nimdeɛ began as a digital resource platform, but its broader vision is rooted in educational opportunity and impact. Over time, the goal is to expand into initiatives that support students through STEM learning, mentorship, accessible educational tools, and future community-focused educational programs.
+
+Add a placeholder image section for:
+“Hannah in the Classroom”
+
+RESOURCES PAGE:
+Create a modern resources page divided into sections:
+- Mathematics
+- Science
+- Computer Science
+- Robotics & Coding
+
+Use modern resource cards with placeholders for:
+- Grade 7 Math
+- Grade 8 Math
+- Grade 9 Math
+- Math 10C
+- Math 20-1
+- Junior High Science
+- Biology
+- Chemistry
+- Python Programming
+- Robotics
+- Web Design
+- Game Design
+
+Each card should include:
+- title
+- short description
+- button (“Coming Soon” or “View Resources”)
+
+SUPPORT THE MISSION PAGE:
+Create a page focused on the future educational vision of Project Nimdeɛ.
+
+Include sections:
+
+1. Why Project Nimdeɛ?
+Explain that the platform aims to support meaningful learning, educational access, STEM engagement, and future community-based initiatives connected to opportunity and education.
+
+2. Future Goals
+Create cards for:
+- Student learning resources
+- STEM and robotics access
+- Educational outreach
+- Mentorship opportunities
+- Support for underserved communities
+
+3. Support Notice
+Include a professional note explaining that Project Nimdeɛ is currently in development and is not yet a registered nonprofit or charity. Donation systems and fundraising initiatives will be added in the future once appropriate organizational structures are established.
+
+Add a button:
+Contact About Supporting the Vision
+
+ADDITIONAL SERVICES PAGE:
+Create a page titled:
+Additional Services
+
+This page should feel secondary to the educational mission but still professional and welcoming.
+
+Include sections for:
+- Academic tutoring
+- STEM support
+- Study coaching
+- Beginner piano lessons
+- Educational consulting
+
+Include short descriptions for each service and a note saying:
+“Contact for availability, scheduling, and additional information.”
+
+Use a clean card-based layout.
+
+CONTACT PAGE:
+Create a contact form with:
+- Name
+- Email
+- Subject
+- Message
+
+Add contact categories:
+- Resource Questions
+- Tutoring
+- Piano Lessons
+- Collaboration
+- Educational Partnerships
+- Supporting Project Nimdeɛ
+- General Inquiries
+
+FOOTER:
+Add a consistent footer across all pages with:
+Project Nimdeɛ
+Knowledge. Learning. Opportunity.
+
+Include:
+- quick links
+- placeholder social media icons
+- copyright section
+
+DESIGN REQUIREMENTS:
+- Fully mobile responsive
+- Modern educational aesthetic
+- Clean spacing and typography
+- Smooth hover animations
+- Accessible contrast and readable fonts
+- Organized commented code
+- Static website only for now
+- Include subtle animations and scroll effects
+- Use reusable CSS classes and modular design

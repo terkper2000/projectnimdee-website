@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Project Nimdeɛ"
+version = "1.0.0"
+id = "artifacts/project-nimdee"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23770
+
+[services.development]
+run = "pnpm --filter @workspace/project-nimdee run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/project-nimdee", "run", "build" ]
+publicDir = "artifacts/project-nimdee/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23770"
+BASE_PATH = "/"
