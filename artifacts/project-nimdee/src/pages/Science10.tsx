@@ -23,6 +23,7 @@ const units = [
       "Analyze chemical reactions, balance equations, explore conservation of matter and energy, and investigate how chemistry shapes technology and environment.",
     topics: ["Atomic Theory", "Chemical Reactions", "Balancing Equations", "Acids & Bases"],
     outcome: "Outcome 10-A",
+    href: "/resources/science-10/unit-a",
     icon: <FlaskConical className="w-6 h-6" />,
     accent: "from-blue-900 to-blue-500",
     tagBg: "bg-blue-50 text-blue-800",
@@ -36,6 +37,7 @@ const units = [
       "Investigate thermodynamics, heat transfer mechanisms, and how energy transformations apply to real-world engineering and technological design.",
     topics: ["Thermodynamics", "Heat Transfer", "Efficiency", "Thermal Energy"],
     outcome: "Outcome 10-B",
+    href: "/resources/science-10/unit-b",
     icon: <Zap className="w-6 h-6" />,
     accent: "from-amber-900 to-amber-500",
     tagBg: "bg-amber-50 text-amber-800",
@@ -49,6 +51,7 @@ const units = [
       "Examine cellular processes including photosynthesis, respiration, and the cycling of matter and energy through ecosystems from cell to biosphere.",
     topics: ["Photosynthesis", "Cellular Respiration", "Nutrient Cycles", "Ecosystems"],
     outcome: "Outcome 10-C",
+    href: "/resources/science-10/unit-c",
     icon: <Leaf className="w-6 h-6" />,
     accent: "from-emerald-900 to-emerald-500",
     tagBg: "bg-emerald-50 text-emerald-800",
@@ -62,6 +65,7 @@ const units = [
       "Understand Earth's energy balance, atmospheric dynamics, ocean circulation, and the science behind climate change and Alberta's role in global energy.",
     topics: ["Climate Systems", "Solar Radiation", "Ocean Currents", "Greenhouse Effect"],
     outcome: "Outcome 10-D",
+    href: "/resources/science-10/unit-d",
     icon: <Globe className="w-6 h-6" />,
     accent: "from-sky-900 to-sky-500",
     tagBg: "bg-sky-50 text-sky-800",
@@ -300,7 +304,9 @@ export default function Science10() {
                       </div>
                       <div className="mt-4 pt-4 border-t flex justify-between items-center">
                         <span className="text-xs text-muted-foreground font-medium">{unit.outcome}</span>
-                        <span className="text-xs text-primary font-semibold">Resources below</span>
+                        <Link href={unit.href} className="text-xs text-primary font-semibold hover:underline flex items-center gap-1">
+                          Explore unit <ChevronRight className="w-3 h-3" />
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>

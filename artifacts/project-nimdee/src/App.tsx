@@ -10,6 +10,10 @@ import Support from "@/pages/Support";
 import Services from "@/pages/Services";
 import Contact from "@/pages/Contact";
 import Science10 from "@/pages/Science10";
+import Science10UnitA from "@/pages/Science10UnitA";
+import Science10UnitB from "@/pages/Science10UnitB";
+import Science10UnitC from "@/pages/Science10UnitC";
+import Science10UnitD from "@/pages/Science10UnitD";
 import Biology20 from "@/pages/Biology20";
 import Biology30 from "@/pages/Biology30";
 
@@ -20,6 +24,10 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
+      <Route path="/resources/science-10/unit-a" component={Science10UnitA} />
+      <Route path="/resources/science-10/unit-b" component={Science10UnitB} />
+      <Route path="/resources/science-10/unit-c" component={Science10UnitC} />
+      <Route path="/resources/science-10/unit-d" component={Science10UnitD} />
       <Route path="/resources/science-10" component={Science10} />
       <Route path="/resources/biology-20" component={Biology20} />
       <Route path="/resources/biology-30" component={Biology30} />
