@@ -74,14 +74,16 @@ const resources: Resource[] = [
   {
     subject: "science",
     title: "Biology 20",
-    description: "Energy and matter exchange in the biosphere, ecosystems, and cellular and molecular processes for Grade 11.",
-    available: false,
+    description: "Energy and matter exchange in the biosphere, ecosystems, photosynthesis, cellular respiration, and human body systems. Alberta Grade 11.",
+    available: true,
+    href: "/resources/biology-20",
   },
   {
     subject: "science",
     title: "Biology 30",
-    description: "Reproduction, heredity, population genetics, and change in populations across time. Grade 12 Alberta curriculum.",
-    available: false,
+    description: "Nervous and endocrine systems, reproduction, genetics, molecular biology, and population dynamics. Alberta Grade 12 Diploma course.",
+    available: true,
+    href: "/resources/biology-30",
   },
   {
     subject: "science",
