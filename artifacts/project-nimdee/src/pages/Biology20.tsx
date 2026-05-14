@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Youtube, ChevronRight, Globe, Leaf, Zap, Heart } from "lucide-react";
+import { ArrowLeft, ExternalLink, Youtube, ChevronRight, Globe, Leaf, Zap, Heart, ArrowRight } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -26,6 +26,7 @@ const units = [
     tagBg: "bg-teal-50 text-teal-800",
     border: "border-t-teal-600",
     numColor: "text-teal-700",
+    href: "/resources/biology-20/unit-a",
   },
   {
     num: "Unit B",
@@ -38,6 +39,7 @@ const units = [
     tagBg: "bg-lime-50 text-lime-800",
     border: "border-t-lime-600",
     numColor: "text-lime-800",
+    href: "/resources/biology-20/unit-b",
   },
   {
     num: "Unit C",
@@ -50,6 +52,7 @@ const units = [
     tagBg: "bg-amber-50 text-amber-800",
     border: "border-t-amber-600",
     numColor: "text-amber-800",
+    href: "/resources/biology-20/unit-c",
   },
   {
     num: "Unit D",
@@ -62,6 +65,7 @@ const units = [
     tagBg: "bg-rose-50 text-rose-800",
     border: "border-t-rose-600",
     numColor: "text-rose-800",
+    href: "/resources/biology-20/unit-d",
   },
 ];
 
@@ -234,9 +238,9 @@ export default function Biology20() {
         <div className="container mx-auto px-4 md:px-6 py-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
           <span className="font-bold text-muted-foreground text-xs uppercase tracking-wider">Biology 20 Units</span>
           {units.map((u) => (
-            <a key={u.num} href={`#${u.num.toLowerCase().replace(" ", "-")}`} className="text-foreground/70 hover:text-primary transition-colors font-medium">
+            <Link key={u.num} href={u.href} className="text-foreground/70 hover:text-primary transition-colors font-medium">
               {u.num}: {u.title.split(" ").slice(0, 3).join(" ")}…
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -270,7 +274,9 @@ export default function Biology20() {
                       </div>
                       <div className="mt-4 pt-4 border-t flex justify-between items-center">
                         <span className="text-xs text-muted-foreground font-medium">{unit.outcome}</span>
-                        <span className="text-xs text-primary font-semibold">Resources below</span>
+                        <Link href={unit.href} className="text-xs text-primary font-semibold flex items-center gap-1 hover:gap-2 transition-all">
+                          Explore unit <ArrowRight className="w-3 h-3" />
+                        </Link>
                       </div>
                     </CardContent>
                   </Card>

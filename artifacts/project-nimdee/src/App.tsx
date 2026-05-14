@@ -15,6 +15,10 @@ import Science10UnitB from "@/pages/Science10UnitB";
 import Science10UnitC from "@/pages/Science10UnitC";
 import Science10UnitD from "@/pages/Science10UnitD";
 import Biology20 from "@/pages/Biology20";
+import Biology20UnitA from "@/pages/Biology20UnitA";
+import Biology20UnitB from "@/pages/Biology20UnitB";
+import Biology20UnitC from "@/pages/Biology20UnitC";
+import Biology20UnitD from "@/pages/Biology20UnitD";
 import Biology30 from "@/pages/Biology30";
 
 const queryClient = new QueryClient();
@@ -29,6 +33,10 @@ function Router() {
       <Route path="/resources/science-10/unit-c" component={Science10UnitC} />
       <Route path="/resources/science-10/unit-d" component={Science10UnitD} />
       <Route path="/resources/science-10" component={Science10} />
+      <Route path="/resources/biology-20/unit-a" component={Biology20UnitA} />
+      <Route path="/resources/biology-20/unit-b" component={Biology20UnitB} />
+      <Route path="/resources/biology-20/unit-c" component={Biology20UnitC} />
+      <Route path="/resources/biology-20/unit-d" component={Biology20UnitD} />
       <Route path="/resources/biology-20" component={Biology20} />
       <Route path="/resources/biology-30" component={Biology30} />
       <Route path="/resources" component={Resources} />
