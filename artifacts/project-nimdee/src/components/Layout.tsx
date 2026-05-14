@@ -23,20 +23,22 @@ interface MenuCategory {
 const resourceMenu: MenuCategory[] = [
   {
     id: "math",
-    label: "Mathematics",
+    label: "Alberta Mathematics",
     items: [
-      { label: "Grade 7 Math", available: false },
-      { label: "Grade 8 Math", available: false },
-      { label: "Grade 9 Math", available: false },
+      { label: "Math 7", available: false },
+      { label: "Math 8", available: false },
+      { label: "Math 9", available: false },
       { label: "Math 10C", available: false },
       { label: "Math 20-1", available: false },
     ],
   },
   {
     id: "science",
-    label: "Science",
+    label: "Alberta Science",
     items: [
-      { label: "Junior High Science", available: false },
+      { label: "Science 7", available: false },
+      { label: "Science 8", available: false },
+      { label: "Science 9", available: false },
       { label: "Science 10", href: "/resources/science-10", available: true },
       { label: "Biology 20", href: "/resources/biology-20", available: true },
       { label: "Biology 30", href: "/resources/biology-30", available: true },
