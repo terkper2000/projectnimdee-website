@@ -47,9 +47,17 @@ export default function Contact() {
     formState: { errors, isSubmitting },
   } = useForm<ContactForm>({ resolver: zodResolver(contactSchema) });
 
-  const onSubmit = async (_data: ContactForm) => {
-    await new Promise((r) => setTimeout(r, 800));
-    setSubmitted(true);
+  const onSubmit = async (data: ContactForm) => {
+    const res = await fetch("https://formspree.io/f/xdabvlle", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      alert("Something went wrong. Please try again or email directly.");
+    }
   };
 
   return (
