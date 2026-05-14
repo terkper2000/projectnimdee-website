@@ -271,7 +271,7 @@ export function Layout({ children }: LayoutProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-base font-medium transition-colors hover:text-primary ${
                   location === link.href ? "text-primary" : "text-foreground"
                 }`}
                 data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
@@ -289,7 +289,7 @@ export function Layout({ children }: LayoutProps) {
             >
               <button
                 onClick={() => setMegaMenuOpen((o) => !o)}
-                className={`flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary ${
+                className={`flex items-center gap-1 text-base font-medium transition-colors hover:text-primary ${
                   isResourcesActive ? "text-primary" : "text-foreground"
                 }`}
                 data-testid="link-nav-resources"
@@ -308,7 +308,7 @@ export function Layout({ children }: LayoutProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`text-base font-medium transition-colors hover:text-primary ${
                   location === link.href ? "text-primary" : "text-foreground"
                 }`}
                 data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
