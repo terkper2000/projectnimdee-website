@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ExternalLink, Youtube, ChevronRight, Globe, Leaf, Zap, Heart, ArrowRight } from "lucide-react";
+import { UnitCompleteBadge } from "@/components/UnitCompleteToggle";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -262,7 +263,10 @@ export default function Biology20() {
                       <div className="flex items-start gap-3 mb-4">
                         <div className={`p-2 rounded-lg bg-gradient-to-br ${unit.accent} text-white shrink-0`}>{unit.icon}</div>
                         <div>
-                          <p className={`text-xs font-bold uppercase tracking-widest mb-1 ${unit.numColor}`}>{unit.num}</p>
+                          <div className="flex items-center gap-2 flex-wrap mb-1">
+                            <p className={`text-xs font-bold uppercase tracking-widest ${unit.numColor}`}>{unit.num}</p>
+                            <UnitCompleteBadge unitId={unit.href.replace('/resources/', '').replace(/\//g, '-')} />
+                          </div>
                           <h3 className="font-serif font-bold text-lg text-foreground leading-snug">{unit.title}</h3>
                         </div>
                       </div>

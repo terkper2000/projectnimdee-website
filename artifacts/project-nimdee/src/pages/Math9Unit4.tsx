@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
 import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
+import { UnitCompleteToggle } from "@/components/UnitCompleteToggle";
 import GeneratedPractice from "@/components/GeneratedPractice";
 import { generateUnit4 } from "@/utils/math9Generators";
 
@@ -419,6 +420,8 @@ export default function Math9Unit4() {
 
           <PracticeProblems problems={unit4Problems} accentClass="border-l-blue-500" />
           <GeneratedPractice generateProblem={generateUnit4} unitTitle="Geometry" accentColor="border-l-blue-500" />
+
+          <UnitCompleteToggle unitId="math-9-unit-4" />
 
           {/* Continue */}
           <section>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight } from "lucide-react";
+import { UnitCompleteToggle } from "@/components/UnitCompleteToggle";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -678,6 +679,8 @@ export default function Biology20UnitD() {
               ))}
             </motion.div>
           </section>
+
+          <UnitCompleteToggle unitId="biology-20-unit-d" />
 
           {/* Other Units Nav */}
           <section className="border-t pt-10">

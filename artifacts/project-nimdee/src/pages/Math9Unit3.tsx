@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
 import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
+import { UnitCompleteToggle } from "@/components/UnitCompleteToggle";
 import GeneratedPractice from "@/components/GeneratedPractice";
 import { generateUnit3 } from "@/utils/math9Generators";
 
@@ -384,6 +385,8 @@ export default function Math9Unit3() {
 
           <PracticeProblems problems={unit3Problems} accentClass="border-l-teal-500" />
           <GeneratedPractice generateProblem={generateUnit3} unitTitle="Polynomials" accentColor="border-l-teal-500" />
+
+          <UnitCompleteToggle unitId="math-9-unit-3" />
 
           {/* Continue */}
           <section>
