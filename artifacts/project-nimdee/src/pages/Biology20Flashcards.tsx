@@ -1,9 +1,68 @@
 import { useState, useCallback } from "react";
 import { Link } from "wouter";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ChevronRight, Shuffle, RotateCcw, ChevronLeft, ChevronRight as ChevronRightIcon } from "lucide-react";
+import {
+  ArrowLeft, ChevronRight, Shuffle, RotateCcw,
+  ChevronLeft, ChevronRight as ChevronRightIcon, FlipHorizontal2,
+} from "lucide-react";
+
+/* ── FlipCard Component ──────────────────────────────────────────── */
+
+interface FlipCardProps {
+  front: React.ReactNode;
+  back: React.ReactNode;
+  isFlipped: boolean;
+  onFlip: () => void;
+  minHeight?: string;
+  className?: string;
+}
+
+function FlipCard({ front, back, isFlipped, onFlip, minHeight = "200px", className = "" }: FlipCardProps) {
+  return (
+    <div
+      className={`relative cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl ${className}`}
+      style={{ perspective: "1200px" }}
+      onClick={onFlip}
+      onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onFlip(); } }}
+      tabIndex={0}
+      role="group"
+      aria-label={isFlipped ? "Flashcard – showing answer. Press Enter or Space to flip back." : "Flashcard – showing question. Press Enter or Space to flip."}
+    >
+      <div
+        style={{
+          transformStyle: "preserve-3d",
+          transition: "transform 0.55s cubic-bezier(0.4, 0.2, 0.2, 1)",
+          transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+          position: "relative",
+          minHeight,
+        }}
+      >
+        {/* Front face */}
+        <div
+          style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
+          className="absolute inset-0 w-full"
+        >
+          {front}
+        </div>
+        {/* Back face */}
+        <div
+          style={{
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+          className="absolute inset-0 w-full"
+        >
+          {back}
+        </div>
+        {/* Height spacer */}
+        <div style={{ minHeight, visibility: "hidden" }} aria-hidden="true" />
+      </div>
+    </div>
+  );
+}
 
 /* ── Inline SVG Diagrams ─────────────────────────────────────────── */
 
@@ -177,6 +236,205 @@ function NephronDiagram() {
       <text x="265" y="138" textAnchor="middle" fill="white" fontSize="7.5" fontWeight="bold">Duct</text>
       <text x="265" y="150" textAnchor="middle" fill="white" fontSize="6.5">H₂O (ADH)</text>
       <text x="5" y="170" fill="#475569" fontSize="8" fontWeight="bold">→ Urine to ureter → bladder → excreted</text>
+    </svg>
+  );
+}
+
+/* ── NEW: Heart Anatomy Diagram ──────────────────────────────────── */
+
+function HeartAnatomyDiagram() {
+  return (
+    <svg viewBox="0 0 320 250" className="w-full max-w-[320px] mx-auto mt-3" role="img" aria-label="Heart Anatomy – 4 Chambers and 4 Valves">
+      <defs>
+        <marker id="aB" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3z" fill="#3b82f6"/></marker>
+        <marker id="aR" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3z" fill="#dc2626"/></marker>
+      </defs>
+
+      {/* ── Right Atrium (RA) ── */}
+      <rect x="4" y="18" width="100" height="68" rx="9" fill="#dbeafe" stroke="#3b82f6" strokeWidth="1.8"/>
+      <text x="54" y="38" textAnchor="middle" fill="#1e40af" fontSize="8.5" fontWeight="bold">Right Atrium (RA)</text>
+      <text x="54" y="52" textAnchor="middle" fill="#1d4ed8" fontSize="7.5">Receives deoxygenated</text>
+      <text x="54" y="63" textAnchor="middle" fill="#1d4ed8" fontSize="7.5">blood from body</text>
+      <text x="54" y="79" textAnchor="middle" fill="#64748b" fontSize="7">via SVC &amp; IVC</text>
+
+      {/* ── Tricuspid Valve (RA → RV) ── */}
+      <line x1="54" y1="86" x2="54" y2="104" stroke="#3b82f6" strokeWidth="2" markerEnd="url(#aB)"/>
+      <rect x="18" y="87" width="72" height="14" rx="4" fill="#bfdbfe" stroke="#3b82f6" strokeWidth="1"/>
+      <text x="54" y="98" textAnchor="middle" fill="#1e40af" fontSize="7" fontWeight="bold">Tricuspid Valve</text>
+
+      {/* ── Right Ventricle (RV) ── */}
+      <rect x="4" y="104" width="100" height="78" rx="9" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="1.5"/>
+      <text x="54" y="126" textAnchor="middle" fill="white" fontSize="8.5" fontWeight="bold">Right Ventricle (RV)</text>
+      <text x="54" y="141" textAnchor="middle" fill="#dbeafe" fontSize="7.5">Pumps to lungs</text>
+      <text x="54" y="154" textAnchor="middle" fill="#dbeafe" fontSize="7">Pulmonary circulation</text>
+      <text x="54" y="167" textAnchor="middle" fill="#93c5fd" fontSize="7">→ Pulmonary valve →</text>
+      <text x="54" y="178" textAnchor="middle" fill="#93c5fd" fontSize="7">Pulmonary artery</text>
+
+      {/* ── Left Atrium (LA) ── */}
+      <rect x="216" y="18" width="100" height="68" rx="9" fill="#fee2e2" stroke="#dc2626" strokeWidth="1.8"/>
+      <text x="266" y="38" textAnchor="middle" fill="#991b1b" fontSize="8.5" fontWeight="bold">Left Atrium (LA)</text>
+      <text x="266" y="52" textAnchor="middle" fill="#b91c1c" fontSize="7.5">Receives oxygenated</text>
+      <text x="266" y="63" textAnchor="middle" fill="#b91c1c" fontSize="7.5">blood from lungs</text>
+      <text x="266" y="79" textAnchor="middle" fill="#64748b" fontSize="7">via pulmonary veins</text>
+
+      {/* ── Mitral Valve (LA → LV) ── */}
+      <line x1="266" y1="86" x2="266" y2="104" stroke="#dc2626" strokeWidth="2" markerEnd="url(#aR)"/>
+      <rect x="230" y="87" width="72" height="14" rx="4" fill="#fecaca" stroke="#dc2626" strokeWidth="1"/>
+      <text x="266" y="98" textAnchor="middle" fill="#991b1b" fontSize="7" fontWeight="bold">Mitral (Bicuspid) Valve</text>
+
+      {/* ── Left Ventricle (LV) ── */}
+      <rect x="216" y="104" width="100" height="78" rx="9" fill="#dc2626" stroke="#991b1b" strokeWidth="1.5"/>
+      <text x="266" y="126" textAnchor="middle" fill="white" fontSize="8.5" fontWeight="bold">Left Ventricle (LV)</text>
+      <text x="266" y="141" textAnchor="middle" fill="#fee2e2" fontSize="7.5">Pumps to body</text>
+      <text x="266" y="154" textAnchor="middle" fill="#fee2e2" fontSize="7">Systemic circulation</text>
+      <text x="266" y="167" textAnchor="middle" fill="#fca5a5" fontSize="7">→ Aortic valve →</text>
+      <text x="266" y="178" textAnchor="middle" fill="#fca5a5" fontSize="7">Aorta</text>
+
+      {/* ── Lungs (centre) ── */}
+      <rect x="112" y="50" width="96" height="48" rx="8" fill="#dcfce7" stroke="#16a34a" strokeWidth="1.5"/>
+      <text x="160" y="69" textAnchor="middle" fill="#166534" fontSize="8.5" fontWeight="bold">LUNGS</text>
+      <text x="160" y="82" textAnchor="middle" fill="#15803d" fontSize="7.5">Gas Exchange</text>
+      <text x="160" y="93" textAnchor="middle" fill="#166534" fontSize="7">O₂ in  •  CO₂ out</text>
+
+      {/* RV → Lungs (pulmonary artery — blue) */}
+      <path d="M104,138 Q112,105 112,74" stroke="#3b82f6" strokeWidth="2" fill="none" markerEnd="url(#aB)"/>
+      <text x="88" y="118" fill="#3b82f6" fontSize="6.5" fontWeight="bold">Pulm.</text>
+      <text x="85" y="128" fill="#3b82f6" fontSize="6.5" fontWeight="bold">Artery</text>
+
+      {/* Lungs → LA (pulmonary veins — red) */}
+      <path d="M208,74 Q208,105 216,138" stroke="#dc2626" strokeWidth="2" fill="none" markerEnd="url(#aR)"/>
+      <text x="213" y="118" fill="#dc2626" fontSize="6.5" fontWeight="bold">Pulm.</text>
+      <text x="210" y="128" fill="#dc2626" fontSize="6.5" fontWeight="bold">Veins</text>
+
+      {/* Aorta exit from LV downward → body */}
+      <path d="M266,182 Q266,215 160,225" stroke="#dc2626" strokeWidth="2" fill="none" markerEnd="url(#aR)"/>
+      <text x="245" y="212" fill="#dc2626" fontSize="7" fontWeight="bold">Aorta</text>
+
+      {/* Body → RA via vena cava */}
+      <path d="M112,225 Q54,225 54,182" stroke="#3b82f6" strokeWidth="2" fill="none" strokeDasharray="4,2" markerEnd="url(#aB)"/>
+
+      {/* Body box */}
+      <rect x="112" y="212" width="96" height="30" rx="6" fill="#fff7ed" stroke="#f97316" strokeWidth="1.5"/>
+      <text x="160" y="226" textAnchor="middle" fill="#9a3412" fontSize="8" fontWeight="bold">Body (tissues)</text>
+      <text x="160" y="237" textAnchor="middle" fill="#c2410c" fontSize="7">O₂ delivered, CO₂ collected</text>
+
+      {/* SVC / IVC labels */}
+      <text x="6" y="15" fill="#1d4ed8" fontSize="6.5" fontWeight="bold">SVC ↓</text>
+      <text x="6" y="200" fill="#1d4ed8" fontSize="6.5" fontWeight="bold">IVC ↑</text>
+
+      {/* Legend note */}
+      <text x="160" y="248" textAnchor="middle" fill="#94a3b8" fontSize="6.5">Blue = deoxygenated · Red = oxygenated</text>
+    </svg>
+  );
+}
+
+/* ── NEW: Lymphatic System Diagram ───────────────────────────────── */
+
+function LymphaticSystemDiagram() {
+  return (
+    <svg viewBox="0 0 280 310" className="w-full max-w-[280px] mx-auto mt-3" role="img" aria-label="Lymphatic System Overview">
+      <defs>
+        <marker id="aL" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0,0 L0,5 L5,2.5z" fill="#8b5cf6"/></marker>
+      </defs>
+
+      {/* Title */}
+      <text x="140" y="12" textAnchor="middle" fill="#1e293b" fontSize="9.5" fontWeight="bold">Lymphatic System</text>
+
+      {/* ── Body silhouette (simplified outline) ── */}
+      {/* Head */}
+      <ellipse cx="140" cy="40" rx="22" ry="25" fill="#fef3c7" stroke="#d97706" strokeWidth="1.5"/>
+      <text x="140" y="45" textAnchor="middle" fill="#92400e" fontSize="7">Head</text>
+      {/* Neck */}
+      <rect x="131" y="65" width="18" height="18" fill="#fef3c7" stroke="#d97706" strokeWidth="1"/>
+      {/* Torso */}
+      <rect x="90" y="83" width="100" height="130" rx="12" fill="#f0fdf4" stroke="#86efac" strokeWidth="1.5"/>
+      {/* Left arm */}
+      <rect x="55" y="88" width="34" height="90" rx="10" fill="#f0fdf4" stroke="#86efac" strokeWidth="1"/>
+      {/* Right arm */}
+      <rect x="191" y="88" width="34" height="90" rx="10" fill="#f0fdf4" stroke="#86efac" strokeWidth="1"/>
+      {/* Left leg */}
+      <rect x="97" y="213" width="36" height="88" rx="10" fill="#f0fdf4" stroke="#86efac" strokeWidth="1"/>
+      {/* Right leg */}
+      <rect x="147" y="213" width="36" height="88" rx="10" fill="#f0fdf4" stroke="#86efac" strokeWidth="1"/>
+
+      {/* ── Thoracic Duct (main lymph vessel, left side) ── */}
+      <path d="M140,205 Q128,175 130,140 Q131,115 133,95" stroke="#8b5cf6" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      <text x="108" y="155" fill="#7c3aed" fontSize="7" fontWeight="bold">Thoracic</text>
+      <text x="108" y="165" fill="#7c3aed" fontSize="7" fontWeight="bold">Duct</text>
+      {/* Thoracic duct arrow up to left subclavian */}
+      <path d="M133,95 Q128,85 118,83" stroke="#8b5cf6" strokeWidth="2" fill="none" markerEnd="url(#aL)"/>
+      <text x="97" y="80" fill="#7c3aed" fontSize="6.5">→ L. subclavian</text>
+
+      {/* ── Right Lymphatic Duct (shorter, right side) ── */}
+      <path d="M147,105 Q158,95 168,88" stroke="#8b5cf6" strokeWidth="1.8" fill="none" markerEnd="url(#aL)"/>
+      <text x="155" y="82" fill="#7c3aed" fontSize="6.5">R. duct →</text>
+      <text x="155" y="91" fill="#7c3aed" fontSize="6.5">R. subclavian</text>
+
+      {/* ── Cervical lymph nodes (neck) ── */}
+      <circle cx="127" cy="73" r="5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <circle cx="153" cy="73" r="5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <text x="86" y="73" fill="#5b21b6" fontSize="7" fontWeight="bold">Cervical</text>
+      <text x="86" y="82" fill="#5b21b6" fontSize="7" fontWeight="bold">nodes</text>
+      <line x1="106" y1="73" x2="122" y2="73" stroke="#7c3aed" strokeWidth="1" strokeDasharray="2,2"/>
+
+      {/* ── Thymus (upper chest, immune maturation) ── */}
+      <rect x="122" y="92" width="36" height="22" rx="5" fill="#c4b5fd" stroke="#7c3aed" strokeWidth="1.5"/>
+      <text x="140" y="101" textAnchor="middle" fill="#3b0764" fontSize="7.5" fontWeight="bold">Thymus</text>
+      <text x="140" y="111" textAnchor="middle" fill="#5b21b6" fontSize="6.5">T-cell maturation</text>
+      {/* Callout line */}
+      <line x1="158" y1="103" x2="192" y2="96" stroke="#7c3aed" strokeWidth="1" strokeDasharray="2,2"/>
+      <text x="194" y="93" fill="#5b21b6" fontSize="6.5">T-cells</text>
+      <text x="194" y="103" fill="#5b21b6" fontSize="6.5">mature here</text>
+
+      {/* ── Axillary lymph nodes (armpits) ── */}
+      <circle cx="89" cy="118" r="6" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <circle cx="191" cy="118" r="6" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <text x="38" y="112" fill="#5b21b6" fontSize="7" fontWeight="bold">Axillary</text>
+      <text x="38" y="122" fill="#5b21b6" fontSize="7" fontWeight="bold">nodes</text>
+      <line x1="67" y1="118" x2="83" y2="118" stroke="#7c3aed" strokeWidth="1" strokeDasharray="2,2"/>
+      <text x="198" y="115" fill="#5b21b6" fontSize="7">Axillary</text>
+      <text x="198" y="125" fill="#5b21b6" fontSize="7">nodes</text>
+
+      {/* ── Spleen (left abdomen, immune filter) ── */}
+      <ellipse cx="108" cy="167" rx="18" ry="14" fill="#f9a8d4" stroke="#be185d" strokeWidth="1.5"/>
+      <text x="108" y="164" textAnchor="middle" fill="#9d174d" fontSize="7.5" fontWeight="bold">Spleen</text>
+      <text x="108" y="174" textAnchor="middle" fill="#be185d" fontSize="6.5">Filters blood</text>
+      {/* Callout */}
+      <line x1="90" y1="167" x2="62" y2="170" stroke="#be185d" strokeWidth="1" strokeDasharray="2,2"/>
+      <text x="15" y="163" fill="#9d174d" fontSize="6.5">Filters blood,</text>
+      <text x="15" y="173" fill="#9d174d" fontSize="6.5">destroys old</text>
+      <text x="15" y="183" fill="#9d174d" fontSize="6.5">RBCs, immune</text>
+
+      {/* ── Mesenteric / abdominal nodes ── */}
+      <circle cx="155" cy="172" r="5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <circle cx="168" cy="160" r="4" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <circle cx="165" cy="185" r="4" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <text x="180" y="158" fill="#5b21b6" fontSize="6.5">Mesenteric</text>
+      <text x="180" y="168" fill="#5b21b6" fontSize="6.5">nodes</text>
+      <text x="180" y="178" fill="#5b21b6" fontSize="6.5">(abdomen)</text>
+
+      {/* Lymph vessels connecting nodes to thoracic duct */}
+      <line x1="89" y1="124" x2="132" y2="155" stroke="#c4b5fd" strokeWidth="1.2" strokeDasharray="3,2"/>
+      <line x1="155" y1="172" x2="140" y2="190" stroke="#c4b5fd" strokeWidth="1.2" strokeDasharray="3,2"/>
+
+      {/* ── Inguinal lymph nodes (groin) ── */}
+      <circle cx="115" cy="220" r="5.5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <circle cx="165" cy="220" r="5.5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1.2"/>
+      <text x="75" y="218" fill="#5b21b6" fontSize="7" fontWeight="bold">Inguinal</text>
+      <text x="75" y="228" fill="#5b21b6" fontSize="7" fontWeight="bold">nodes</text>
+      <line x1="100" y1="220" x2="109" y2="220" stroke="#7c3aed" strokeWidth="1" strokeDasharray="2,2"/>
+      <text x="178" y="218" fill="#5b21b6" fontSize="7">Inguinal</text>
+      <text x="178" y="228" fill="#5b21b6" fontSize="7">nodes</text>
+
+      {/* Lymph vessels from legs up */}
+      <line x1="115" y1="215" x2="137" y2="195" stroke="#c4b5fd" strokeWidth="1.2" strokeDasharray="3,2"/>
+      <line x1="165" y1="215" x2="143" y2="195" stroke="#c4b5fd" strokeWidth="1.2" strokeDasharray="3,2"/>
+
+      {/* Legend */}
+      <circle cx="88" cy="296" r="5" fill="#a78bfa" stroke="#7c3aed" strokeWidth="1"/>
+      <text x="98" y="300" fill="#4c1d95" fontSize="7">Lymph nodes</text>
+      <line x1="148" y1="296" x2="164" y2="296" stroke="#8b5cf6" strokeWidth="2"/>
+      <text x="168" y="300" fill="#4c1d95" fontSize="7">Lymph vessels</text>
     </svg>
   );
 }
@@ -488,15 +746,15 @@ const allCards: Flashcard[] = [
   {
     id: "d10", unit: "D", tag: "Respiratory System",
     front: "Describe gas exchange at the alveoli. What structural features maximise efficiency?",
-    back: "Gas exchange: By DIFFUSION along partial pressure gradients.\n• O₂: From alveolar air (high pO₂ ~100 mmHg) → blood in capillary (low pO₂ ~40 mmHg)\n• CO₂: From blood (high pCO₂ ~45 mmHg) → alveolar air (low pCO₂ ~40 mmHg)\n\nO₂ carried: Bound to hemoglobin (HbO₂). CO₂ carried: Mainly as bicarbonate (HCO₃⁻) in plasma.\n\nAlveolar features that maximize exchange:\n• ~300 million alveoli, total surface area ~70 m²\n• Walls only 1 cell thick (minimal diffusion distance)\n• Dense capillary network surrounds each alveolus\n• Moist surface facilitates gas dissolution",
+    back: "Location: Alveoli (air sacs in lungs) — ~300 million per lung; total surface area ~70 m².\n\nGas exchange: O₂ diffuses from alveolar air → blood (high → low [O₂]). CO₂ diffuses from blood → alveolar air (high → low [CO₂]).\n\nStructural features:\n• Alveolar walls one cell thick (simple squamous epithelium) → minimal diffusion distance\n• Rich capillary network surrounding each alveolus → continuous blood flow\n• Enormous surface area (tennis court equivalent)\n• Moist lining → gases dissolve before diffusing\n• Surfactant: reduces surface tension → prevents alveolar collapse on exhalation",
   },
   {
-    id: "d11", unit: "D", tag: "Digestive System",
-    front: "Name the digestive enzymes for carbohydrates and proteins, stating where each acts.",
-    back: "CARBOHYDRATES:\n• Salivary amylase (mouth) — begins starch → maltose\n• Pancreatic amylase (small intestine) — continues starch → maltose\n• Maltase, sucrase, lactase (SI brush border) — disaccharides → monosaccharides (glucose, fructose, galactose)\n\nPROTEINS:\n• Pepsin (stomach, pH 2) — proteins → polypeptides\n• Trypsin & chymotrypsin (SI, from pancreas) — polypeptides → smaller peptides\n• Peptidases (SI brush border) — peptides → amino acids\n\nLIPIDS: Pancreatic lipase (SI). Bile salts (from liver/gallbladder) EMULSIFY fat first (not enzymes — no chemical bonds broken). Products: fatty acids + glycerol.",
+    id: "d11", unit: "D", tag: "Digestion",
+    front: "Describe the enzymatic digestion of proteins, carbohydrates, and lipids. Where does each occur?",
+    back: "CARBOHYDRATES:\n• Mouth: salivary amylase breaks starch → maltose\n• Small intestine: pancreatic amylase + disaccharidases (maltase, sucrase, lactase) → monosaccharides\n\nPROTEINS:\n• Stomach: pepsin (activated by HCl, pH 1.5–2) breaks proteins → peptides\n• Small intestine: trypsin + chymotrypsin (pancreatic) → smaller peptides; peptidases → amino acids\n\nLIPIDS:\n• Small intestine only: bile emulsifies fat → droplets\n• Pancreatic lipase breaks triglycerides → fatty acids + glycerol\n• Absorbed as micelles → lacteals (lymph system)",
   },
   {
-    id: "d12", unit: "D", tag: "Blood Composition",
+    id: "d12", unit: "D", tag: "Blood Components",
     front: "Describe the four components of blood and their functions.",
     back: "Plasma (~55%): Liquid matrix — water (90%) + dissolved proteins (albumin maintains osmotic pressure; fibrinogen for clotting; antibodies) + glucose, hormones, CO₂ as HCO₃⁻, ions.\n\nRed Blood Cells / Erythrocytes (~44%): Biconcave discs, no nucleus at maturity, contain hemoglobin. Carry O₂ (as HbO₂) and some CO₂. Made in red bone marrow. Lifespan ~120 days.\n\nWhite Blood Cells / Leukocytes (<1%): Neutrophils (phagocytosis), lymphocytes (B cells → antibodies; T cells → cell-mediated immunity), monocytes, eosinophils.\n\nPlatelets / Thrombocytes (<1%): Cell fragments; release clotting factors when vessel wall damaged → initiate coagulation cascade.",
   },
@@ -519,6 +777,19 @@ const allCards: Flashcard[] = [
     id: "d16", unit: "D", tag: "Blood Vessels",
     front: "Compare the structure and function of arteries, capillaries, and veins.",
     back: "Arteries: Thick walls (smooth muscle + elastic fibres), no valves. Carry blood AWAY from heart at HIGH pressure. Elastic recoil maintains flow between heartbeats. Arterioles (small arteries) control blood pressure through vasoconstriction/vasodilation.\n\nCapillaries: Only 1-cell-thick endothelium; no smooth muscle. SMALLEST vessels — form networks (capillary beds). Site of all gas, nutrient, and waste EXCHANGE between blood and tissues.\n\nVeins: Thin walls, LOW pressure, have valves (prevent backflow). Carry blood TOWARD heart. Blood moved by skeletal muscle contractions squeezing veins + breathing (negative pressure in thorax). Venules collect from capillaries → merge into veins.",
+  },
+  // ── NEW Unit D Diagram Cards ─────────────────────────────────────
+  {
+    id: "d17", unit: "D", tag: "Heart Anatomy",
+    front: "Label and describe the four chambers of the heart and the four valves between them.",
+    back: "RIGHT SIDE (receives deoxygenated blood from body):\n• Right Atrium (RA): Receives blood via SVC + IVC\n• Tricuspid Valve (3 cusps): RA → RV — prevents backflow\n• Right Ventricle (RV): Pumps via pulmonary valve → pulmonary artery → lungs\n\nLEFT SIDE (receives oxygenated blood from lungs):\n• Left Atrium (LA): Receives blood from pulmonary veins\n• Mitral/Bicuspid Valve (2 cusps): LA → LV — prevents backflow\n• Left Ventricle (LV): Pumps via aortic valve → aorta → body\n\nMemory: Left ventricle has THICKER walls — must push blood around entire body at higher pressure.",
+    diagram: <HeartAnatomyDiagram />,
+  },
+  {
+    id: "d18", unit: "D", tag: "Lymphatic System",
+    front: "Describe the major structures of the lymphatic system and their functions.",
+    back: "VESSELS: Lymphatic capillaries → lymphatic vessels → ducts. One-way flow (no pump — moved by muscle contractions + breathing). Valves prevent backflow.\n\nTHORACIC DUCT: Largest lymph vessel. Drains lymph from most of body → left subclavian vein → returns to blood circulation.\n\nLYMPH NODES: Filter lymph; contain lymphocytes. Clusters at neck (cervical), armpits (axillary), groin (inguinal), abdomen (mesenteric). Swell during infection.\n\nTHYMUS: Upper chest; where T-lymphocytes mature and learn self-tolerance. Active in childhood.\n\nSPLEEN: Filters blood, destroys old RBCs, stores platelets, produces lymphocytes. Largest lymphoid organ.\n\nFUNCTION: Returns excess interstitial fluid to blood, transports dietary fats (chylomicrons) from intestines, and mounts immune responses.",
+    diagram: <LymphaticSystemDiagram />,
   },
 ];
 
@@ -549,8 +820,8 @@ export default function Biology20Flashcards() {
   const [filter, setFilter] = useState<FilterUnit>("all");
   const [deck, setDeck] = useState<Flashcard[]>(allCards);
   const [idx, setIdx] = useState(0);
-  const [flipped, setFlipped] = useState(false);
-  const [direction, setDirection] = useState(1);
+  const [deckFlipped, setDeckFlipped] = useState(false);
+  const [gridFlipped, setGridFlipped] = useState<Record<string, boolean>>({});
 
   const filtered = filter === "all" ? deck : deck.filter(c => c.unit === filter);
   const card = filtered[idx] ?? filtered[0];
@@ -559,12 +830,11 @@ export default function Biology20Flashcards() {
   const handleFilter = useCallback((f: FilterUnit) => {
     setFilter(f);
     setIdx(0);
-    setFlipped(false);
+    setDeckFlipped(false);
   }, []);
 
   const go = useCallback((dir: 1 | -1) => {
-    setDirection(dir);
-    setFlipped(false);
+    setDeckFlipped(false);
     setTimeout(() => {
       setIdx(i => {
         const len = filter === "all" ? deck.length : deck.filter(c => c.unit === filter).length;
@@ -576,16 +846,77 @@ export default function Biology20Flashcards() {
   const shuffle = useCallback(() => {
     setDeck(prev => shuffleArray(prev));
     setIdx(0);
-    setFlipped(false);
+    setDeckFlipped(false);
+    setGridFlipped({});
   }, []);
 
   const reset = useCallback(() => {
     setDeck(allCards);
     setIdx(0);
-    setFlipped(false);
+    setDeckFlipped(false);
+    setGridFlipped({});
+  }, []);
+
+  const toggleGridFlip = useCallback((id: string) => {
+    setGridFlipped(prev => ({ ...prev, [id]: !prev[id] }));
   }, []);
 
   const uc = unitColors[card?.unit ?? "all"];
+
+  /* ── Deck card faces ──────────────────────────────────────────── */
+  const deckFront = card ? (
+    <Card className="w-full h-full shadow-md border-2 border-border bg-card">
+      <CardContent className="p-6 md:p-8 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${uc.badge}`}>Unit {card.unit}</span>
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${uc.tag}`}>{card.tag}</span>
+          </div>
+          <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-medium">
+            <FlipHorizontal2 className="w-3.5 h-3.5" />
+            Click to flip
+          </span>
+        </div>
+        <div className="flex-1 flex items-center justify-center text-center py-4">
+          <p className="text-lg md:text-xl font-serif font-bold text-foreground leading-snug">{card.front}</p>
+        </div>
+        <div className="mt-4 pt-3 border-t flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">Question — tap or press Enter/Space to reveal</span>
+          <span className="text-xs font-mono text-muted-foreground">{card.id.toUpperCase()}</span>
+        </div>
+      </CardContent>
+    </Card>
+  ) : null;
+
+  const deckBack = card ? (
+    <Card className="w-full h-full shadow-md border-2 border-primary/30 bg-primary/5">
+      <CardContent className="p-6 md:p-8 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${uc.badge}`}>Unit {card.unit}</span>
+            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${uc.tag}`}>{card.tag}</span>
+          </div>
+          <span className="flex items-center gap-1.5 text-xs text-primary font-semibold">
+            Answer
+          </span>
+        </div>
+        <div className="flex-1 overflow-y-auto">
+          <p className="text-sm text-foreground leading-relaxed whitespace-pre-line mb-3">{card.back}</p>
+          {card.diagram && (
+            <div className="mt-3 bg-muted/30 border rounded-xl p-3">
+              {card.diagram}
+            </div>
+          )}
+        </div>
+        <div className="mt-4 pt-3 border-t flex items-center justify-between">
+          <span className="text-xs text-muted-foreground flex items-center gap-1.5">
+            <FlipHorizontal2 className="w-3.5 h-3.5" /> Click to go back to question
+          </span>
+          <span className="text-xs font-mono text-muted-foreground">{card.id.toUpperCase()}</span>
+        </div>
+      </CardContent>
+    </Card>
+  ) : null;
 
   return (
     <Layout>
@@ -610,7 +941,7 @@ export default function Biology20Flashcards() {
             <span className="inline-block bg-teal-500/20 text-teal-300 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-3">Biology 20 — Study Tools</span>
             <h1 className="text-4xl md:text-5xl font-serif font-bold text-secondary-foreground mb-3">Flashcards</h1>
             <p className="text-secondary-foreground/75 text-base max-w-xl mb-4">
-              {allCards.length} exam-ready cards covering all four Biology 20 units. Click a card to flip it — diagrams appear on select cards to reinforce key concepts.
+              {allCards.length} exam-ready cards covering all four Biology 20 units. Click any card to flip it — diagrams appear on select cards to reinforce key concepts.
             </p>
             <div className="flex flex-wrap gap-2">
               {(["A","B","C","D"] as Unit[]).map(u => (
@@ -659,7 +990,7 @@ export default function Biology20Flashcards() {
             </div>
           </div>
 
-          {/* Progress */}
+          {/* Progress bar */}
           <div className="flex items-center gap-4 mb-6">
             <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
               <div className="h-full bg-primary rounded-full transition-all duration-300" style={{ width: `${progress}%` }} />
@@ -669,61 +1000,16 @@ export default function Biology20Flashcards() {
             </span>
           </div>
 
-          {/* Flashcard */}
-          {card && (
+          {/* Deck viewer — 3D flip card */}
+          {card && deckFront && deckBack && (
             <div className="max-w-2xl mx-auto mb-6">
-              <div
-                className="w-full cursor-pointer select-none"
-                style={{ perspective: "1400px" }}
-                onClick={() => setFlipped(f => !f)}
-              >
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.div
-                    key={flipped ? `${card.id}-back` : `${card.id}-front`}
-                    initial={{ opacity: 0, rotateY: direction > 0 ? 90 : -90, scale: 0.95 }}
-                    animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-                    exit={{ opacity: 0, rotateY: direction > 0 ? -90 : 90, scale: 0.95 }}
-                    transition={{ duration: 0.28, ease: "easeOut" as const }}
-                  >
-                    <Card className={`min-h-[320px] md:min-h-[360px] shadow-md border-2 ${flipped ? "border-primary/30 bg-primary/5" : "border-border"} transition-colors`}>
-                      <CardContent className="p-6 md:p-8 flex flex-col h-full">
-                        {/* Header */}
-                        <div className="flex items-center justify-between mb-4">
-                          <div className="flex items-center gap-2">
-                            <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${uc.badge}`}>Unit {card.unit}</span>
-                            <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${uc.tag}`}>{card.tag}</span>
-                          </div>
-                          <span className="text-xs text-muted-foreground font-medium">{flipped ? "Answer" : "Question — click to reveal"}</span>
-                        </div>
-
-                        {/* Content */}
-                        {!flipped ? (
-                          <div className="flex-1 flex items-center justify-center text-center">
-                            <p className="text-lg md:text-xl font-serif font-bold text-foreground leading-snug">{card.front}</p>
-                          </div>
-                        ) : (
-                          <div className="flex-1 overflow-y-auto">
-                            <p className="text-sm text-foreground leading-relaxed whitespace-pre-line mb-3">{card.back}</p>
-                            {card.diagram && (
-                              <div className="mt-3 bg-muted/30 border rounded-xl p-3">
-                                {card.diagram}
-                              </div>
-                            )}
-                          </div>
-                        )}
-
-                        {/* Footer */}
-                        <div className="mt-4 pt-3 border-t flex items-center justify-between">
-                          <span className="text-xs text-muted-foreground">
-                            {flipped ? "✓ Review this and move on" : "Tap to see the answer"}
-                          </span>
-                          <span className="text-xs font-mono text-muted-foreground">{card.id.toUpperCase()}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+              <FlipCard
+                front={deckFront}
+                back={deckBack}
+                isFlipped={deckFlipped}
+                onFlip={() => setDeckFlipped(f => !f)}
+                minHeight="340px"
+              />
             </div>
           )}
 
@@ -733,9 +1019,9 @@ export default function Biology20Flashcards() {
               className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg border-2 border-border hover:border-primary/40 font-semibold text-sm text-muted-foreground hover:text-foreground transition-all">
               <ChevronLeft className="w-4 h-4" /> Previous
             </button>
-            <button onClick={() => setFlipped(f => !f)}
-              className="px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm shadow-sm hover:shadow-md transition-all">
-              Flip Card
+            <button onClick={() => setDeckFlipped(f => !f)}
+              className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-bold text-sm shadow-sm hover:shadow-md transition-all">
+              <FlipHorizontal2 className="w-4 h-4" /> Flip Card
             </button>
             <button onClick={() => go(1)}
               className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg border-2 border-border hover:border-primary/40 font-semibold text-sm text-muted-foreground hover:text-foreground transition-all">
@@ -743,30 +1029,85 @@ export default function Biology20Flashcards() {
             </button>
           </div>
 
-          {/* Card grid overview */}
+          {/* Card grid — all cards with individual flip states */}
           <section>
             <div className="flex items-center gap-4 mb-5">
               <h2 className="text-lg font-serif font-bold text-foreground whitespace-nowrap">All Flashcards</h2>
               <div className="flex-1 h-px bg-border" />
-              <span className="text-xs text-muted-foreground">{filtered.length} cards</span>
+              <span className="text-xs text-muted-foreground">{filtered.length} cards · click any card to flip</span>
             </div>
-            <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.04 } } }}
+            <motion.div
+              variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.04 } } }}
               initial="hidden" whileInView="visible" viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+            >
               {filtered.map((c, i) => {
                 const uc2 = unitColors[c.unit];
+                const isGridFlipped = !!gridFlipped[c.id];
+                const isActive = idx === i;
+
+                const gridFront = (
+                  <div className={`absolute inset-0 w-full h-full rounded-xl border-2 p-3 flex flex-col transition-colors ${
+                    isActive ? "border-primary bg-primary/5" : "border-border bg-card hover:border-primary/30"
+                  }`}>
+                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${uc2.badge}`}>{c.unit}</span>
+                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${uc2.tag} truncate max-w-[100px]`}>{c.tag}</span>
+                    </div>
+                    <p className="text-xs text-foreground/85 leading-relaxed font-medium line-clamp-4 flex-1">{c.front}</p>
+                    <div className="mt-2 flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <FlipHorizontal2 className="w-3 h-3" /> flip
+                      </span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setIdx(i);
+                          setDeckFlipped(false);
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }}
+                        className="text-xs text-primary font-semibold hover:underline"
+                      >
+                        focus ↑
+                      </button>
+                    </div>
+                  </div>
+                );
+
+                const gridBack = (
+                  <div className={`absolute inset-0 w-full h-full rounded-xl border-2 p-3 flex flex-col ${
+                    isActive ? "border-primary bg-primary/10" : "border-primary/30 bg-primary/5"
+                  }`}>
+                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${uc2.badge}`}>{c.unit}</span>
+                      <span className="text-xs text-primary font-semibold">Answer</span>
+                    </div>
+                    <p className="text-xs text-foreground/85 leading-relaxed line-clamp-5 flex-1">{c.back}</p>
+                    <div className="mt-2 flex items-center justify-between">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <FlipHorizontal2 className="w-3 h-3" /> flip back
+                      </span>
+                      {c.diagram && (
+                        <span className="text-xs text-muted-foreground italic">diagram in deck view</span>
+                      )}
+                    </div>
+                  </div>
+                );
+
                 return (
-                  <motion.button
+                  <motion.div
                     key={c.id}
                     variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" as const } } }}
-                    onClick={() => { setIdx(i); setFlipped(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                    className={`text-left p-3 rounded-xl border-2 transition-all duration-200 hover:shadow-md ${idx === i ? "border-primary bg-primary/5" : "border-border bg-muted/20 hover:border-primary/30"}`}>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${uc2.badge}`}>{c.unit}</span>
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${uc2.tag}`}>{c.tag}</span>
-                    </div>
-                    <p className="text-xs text-foreground/80 leading-relaxed font-medium line-clamp-2">{c.front}</p>
-                  </motion.button>
+                  >
+                    <FlipCard
+                      front={gridFront}
+                      back={gridBack}
+                      isFlipped={isGridFlipped}
+                      onFlip={() => toggleGridFlip(c.id)}
+                      minHeight="160px"
+                      className="w-full"
+                    />
+                  </motion.div>
                 );
               })}
             </motion.div>

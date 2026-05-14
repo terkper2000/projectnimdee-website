@@ -300,7 +300,7 @@ export default function Biology20() {
                   <span className="text-xs font-bold text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full">64 cards</span>
                 </div>
                 <h3 className="text-lg font-serif font-bold text-teal-900 mt-1">Flashcards</h3>
-                <p className="text-sm text-teal-800/70 leading-relaxed flex-1">Interactive flip cards with 6 inline SVG diagrams. Shuffle, filter by unit, and track your progress through all four units.</p>
+                <p className="text-sm text-teal-800/70 leading-relaxed flex-1">True 3D flip cards with 8 inline SVG diagrams. Each card flips individually — shuffle, filter by unit, and study all four units in an interactive grid.</p>
                 <span className="text-sm font-bold text-teal-700 group-hover:text-teal-900 flex items-center gap-1 mt-1">
                   Open Flashcards <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                 </span>
