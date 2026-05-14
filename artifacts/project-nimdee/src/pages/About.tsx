@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Globe, Heart, Lightbulb } from "lucide-react";
+import hannahClassroom from "@assets/Hannah_in_classroom_1778723778888.jpg";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -49,28 +50,15 @@ export default function About() {
               transition={{ duration: 0.7 }}
               className="order-2 lg:order-1"
             >
-              <div
-                className="relative rounded-3xl overflow-hidden shadow-xl bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/30 flex items-center justify-center"
-                style={{ minHeight: "420px" }}
-                data-testid="image-hannah-placeholder"
-              >
-                <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                  <div className="w-24 h-24 rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                    <GraduationCap className="w-12 h-12 text-primary" />
-                  </div>
-                  <p className="text-muted-foreground font-medium text-lg">Hannah in the Classroom</p>
-                  <p className="text-muted-foreground/60 text-sm mt-2">Photo coming soon</p>
-                </div>
-                {/* Decorative dots */}
-                <div className="absolute top-6 right-6 grid grid-cols-3 gap-2">
-                  {Array.from({ length: 9 }).map((_, i) => (
-                    <div key={i} className="w-2 h-2 rounded-full bg-primary/30" />
-                  ))}
-                </div>
-                <div className="absolute bottom-6 left-6 grid grid-cols-3 gap-2">
-                  {Array.from({ length: 9 }).map((_, i) => (
-                    <div key={i} className="w-2 h-2 rounded-full bg-secondary/40" />
-                  ))}
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <img
+                  src={hannahClassroom}
+                  alt="Hannah Terkper in the classroom"
+                  className="w-full h-full object-cover"
+                  style={{ minHeight: "420px", maxHeight: "580px" }}
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent px-6 py-4">
+                  <p className="text-white font-semibold text-sm">Hannah in the Classroom</p>
                 </div>
               </div>
             </motion.div>
