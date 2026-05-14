@@ -285,6 +285,41 @@ export default function Biology20() {
             </motion.div>
           </section>
 
+          {/* Study Tools Banner */}
+          <section className="mb-16">
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground whitespace-nowrap">Study Tools</h2>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link href="/resources/biology-20/flashcards"
+                className="group relative overflow-hidden rounded-2xl border-2 border-teal-200 bg-teal-50 hover:border-teal-400 hover:shadow-md transition-all duration-200 p-6 flex flex-col gap-2">
+                <div className="flex items-start justify-between">
+                  <span className="text-2xl">🃏</span>
+                  <span className="text-xs font-bold text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full">64 cards</span>
+                </div>
+                <h3 className="text-lg font-serif font-bold text-teal-900 mt-1">Flashcards</h3>
+                <p className="text-sm text-teal-800/70 leading-relaxed flex-1">Interactive flip cards with 6 inline SVG diagrams. Shuffle, filter by unit, and track your progress through all four units.</p>
+                <span className="text-sm font-bold text-teal-700 group-hover:text-teal-900 flex items-center gap-1 mt-1">
+                  Open Flashcards <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+              <Link href="/resources/biology-20/quiz"
+                className="group relative overflow-hidden rounded-2xl border-2 border-amber-200 bg-amber-50 hover:border-amber-400 hover:shadow-md transition-all duration-200 p-6 flex flex-col gap-2">
+                <div className="flex items-start justify-between">
+                  <span className="text-2xl">📝</span>
+                  <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">40 questions</span>
+                </div>
+                <h3 className="text-lg font-serif font-bold text-amber-900 mt-1">Practice Quiz</h3>
+                <p className="text-sm text-amber-800/70 leading-relaxed flex-1">40 multiple-choice questions with detailed explanations. Filter by unit and track your score — great for exam prep.</p>
+                <span className="text-sm font-bold text-amber-700 group-hover:text-amber-900 flex items-center gap-1 mt-1">
+                  Start Quiz <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </motion.div>
+          </section>
+
           {/* Outcomes */}
           <section>
             <div className="flex items-center gap-4 mb-10">

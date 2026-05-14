@@ -15,6 +15,8 @@ import Science10UnitB from "@/pages/Science10UnitB";
 import Science10UnitC from "@/pages/Science10UnitC";
 import Science10UnitD from "@/pages/Science10UnitD";
 import Biology20 from "@/pages/Biology20";
+import Biology20Flashcards from "@/pages/Biology20Flashcards";
+import Biology20Quiz from "@/pages/Biology20Quiz";
 import Biology20UnitA from "@/pages/Biology20UnitA";
 import Biology20UnitB from "@/pages/Biology20UnitB";
 import Biology20UnitC from "@/pages/Biology20UnitC";
@@ -33,6 +35,8 @@ function Router() {
       <Route path="/resources/science-10/unit-c" component={Science10UnitC} />
       <Route path="/resources/science-10/unit-d" component={Science10UnitD} />
       <Route path="/resources/science-10" component={Science10} />
+      <Route path="/resources/biology-20/flashcards" component={Biology20Flashcards} />
+      <Route path="/resources/biology-20/quiz" component={Biology20Quiz} />
       <Route path="/resources/biology-20/unit-a" component={Biology20UnitA} />
       <Route path="/resources/biology-20/unit-b" component={Biology20UnitB} />
       <Route path="/resources/biology-20/unit-c" component={Biology20UnitC} />
