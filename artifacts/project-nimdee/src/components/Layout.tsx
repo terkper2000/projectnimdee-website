@@ -249,13 +249,20 @@ export function Layout({ children }: LayoutProps) {
         }`}
       >
         <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="group flex flex-col" data-testid="link-home-logo">
-            <span className="text-2xl font-serif font-bold text-foreground group-hover:text-primary transition-colors">
-              Project Nimdeɛ
-            </span>
-            <span className="text-xs text-muted-foreground hidden sm:block">
-              Teaching, tools, and thoughtful STEM learning.
-            </span>
+          <Link href="/" className="group flex items-center gap-3" data-testid="link-home-logo">
+            <img
+              src="/pn-logo.png"
+              alt="Project Nimdeɛ logo"
+              className="h-11 w-11 object-contain flex-shrink-0"
+            />
+            <div className="flex flex-col">
+              <span className="text-2xl font-serif font-bold text-foreground group-hover:text-primary transition-colors">
+                Project Nimdeɛ
+              </span>
+              <span className="text-xs text-muted-foreground hidden sm:block">
+                Teaching, tools, and thoughtful STEM learning.
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
@@ -417,7 +424,15 @@ export function Layout({ children }: LayoutProps) {
       <footer className="bg-secondary text-secondary-foreground py-12 mt-20 border-t border-secondary-foreground/10">
         <div className="container mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="text-2xl font-serif font-bold mb-2">Project Nimdeɛ</h3>
+            <div className="flex items-center gap-3 mb-3">
+              <img
+                src="/pn-logo.png"
+                alt="Project Nimdeɛ logo"
+                className="h-12 w-12 object-contain flex-shrink-0"
+                style={{ filter: "brightness(0) invert(1)" }}
+              />
+              <h3 className="text-2xl font-serif font-bold">Project Nimdeɛ</h3>
+            </div>
             <p className="text-secondary-foreground/80 mb-6">Knowledge. Learning. Opportunity.</p>
             <div className="flex gap-4">
               <a href="#" className="text-secondary-foreground/80 hover:text-primary transition-colors" data-testid="link-social-twitter"><Twitter size={20} /></a>
