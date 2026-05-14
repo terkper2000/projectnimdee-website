@@ -248,12 +248,12 @@ export function Layout({ children }: LayoutProps) {
             : "bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+        <div className="container mx-auto px-4 md:px-6 h-28 flex items-center justify-between">
           <Link href="/" className="group flex items-center gap-3" data-testid="link-home-logo">
             <img
               src="/pn-logo.png"
               alt="Project Nimdeɛ logo"
-              className="h-11 w-11 object-contain flex-shrink-0"
+              className="h-14 w-14 object-contain flex-shrink-0"
             />
             <div className="flex flex-col">
               <span className="text-2xl font-serif font-bold text-foreground group-hover:text-primary transition-colors">
