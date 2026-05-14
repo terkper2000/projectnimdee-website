@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown } from "lucide-react";
+import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown, Search } from "lucide-react";
+import SearchModal from "@/components/SearchModal";
 import { Button } from "@/components/ui/button";
 
 interface LayoutProps {
@@ -182,6 +183,7 @@ export function Layout({ children }: LayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [mobileCategoryOpen, setMobileCategoryOpen] = useState<string | null>(null);
   const [location] = useLocation();
   const megaMenuRef = useRef<HTMLDivElement>(null);
@@ -210,6 +212,22 @@ export function Layout({ children }: LayoutProps) {
     if (megaMenuOpen) document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [megaMenuOpen]);
+
+  useEffect(() => {
+    const keyHandler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    const openHandler = (_e: Event) => setSearchOpen(true);
+    document.addEventListener("keydown", keyHandler);
+    window.addEventListener("open-search", openHandler);
+    return () => {
+      document.removeEventListener("keydown", keyHandler);
+      window.removeEventListener("open-search", openHandler);
+    };
+  }, []);
 
   const handleResourcesMouseEnter = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -318,14 +336,24 @@ export function Layout({ children }: LayoutProps) {
             ))}
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            data-testid="button-mobile-menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Right side: search + mobile toggle */}
+          <div className="flex items-center gap-1">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="p-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 transition-colors"
+              aria-label="Search (⌘K)"
+              data-testid="button-search"
+            >
+              <Search size={20} />
+            </button>
+            <button
+              className="md:hidden p-2 text-foreground"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              data-testid="button-mobile-menu"
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Nav */}
@@ -469,6 +497,7 @@ export function Layout({ children }: LayoutProps) {
           <p>© 2026 Project Nimdeɛ. All rights reserved.</p>
         </div>
       </footer>
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }

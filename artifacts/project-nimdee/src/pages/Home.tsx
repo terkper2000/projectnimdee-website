@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "wouter";
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
@@ -16,6 +16,7 @@ import {
   Keyboard,
   ArrowRight,
   ChevronDown,
+  Search,
 } from "lucide-react";
 
 const fadeUp = {
@@ -55,6 +56,106 @@ const particles = Array.from({ length: 22 }, (_, i) => ({
   delay: (i % 7) * 0.9,
   yRange: (i % 4) * 8 + 10,
 }));
+
+const SUBJECTS = [
+  { value: "math-9", label: "Math 9" },
+  { value: "science-10", label: "Science 10" },
+  { value: "biology-20", label: "Biology 20" },
+  { value: "biology-30", label: "Biology 30" },
+];
+
+const TOPICS: Record<string, Array<{ value: string; label: string }>> = {
+  "math-9": [
+    { value: "/resources/math-9", label: "All Units — Math 9" },
+    { value: "/resources/math-9/unit-1", label: "Unit 1: Rational Numbers" },
+    { value: "/resources/math-9/unit-2", label: "Unit 2: Powers & Exponents" },
+    { value: "/resources/math-9/unit-3", label: "Unit 3: Polynomials" },
+    { value: "/resources/math-9/unit-4", label: "Unit 4: Geometry" },
+    { value: "/resources/math-9/unit-5", label: "Unit 5: Linear Relations" },
+    { value: "/resources/math-9/unit-6", label: "Unit 6: Equations & Inequalities" },
+    { value: "/resources/math-9/unit-7", label: "Unit 7: Circle Geometry" },
+    { value: "/resources/math-9/unit-8", label: "Unit 8: Data & Probability" },
+    { value: "/resources/math-9/quiz", label: "Quiz Mode — All Units" },
+  ],
+  "science-10": [
+    { value: "/resources/science-10", label: "All Units — Science 10" },
+    { value: "/resources/science-10/unit-a", label: "Unit A: Energy & Chemical Change" },
+    { value: "/resources/science-10/unit-b", label: "Unit B: Matter Cycling in Living Systems" },
+    { value: "/resources/science-10/unit-c", label: "Unit C: Motion & Forces" },
+    { value: "/resources/science-10/unit-d", label: "Unit D: Energy Flow in Global Systems" },
+  ],
+  "biology-20": [
+    { value: "/resources/biology-20", label: "All Units — Biology 20" },
+    { value: "/resources/biology-20/unit-a", label: "Unit A: Energy Flow in Ecosystems" },
+    { value: "/resources/biology-20/unit-b", label: "Unit B: Ecosystems & Population Change" },
+    { value: "/resources/biology-20/unit-c", label: "Unit C: Photosynthesis & Cellular Respiration" },
+    { value: "/resources/biology-20/unit-d", label: "Unit D: Nervous System & Homeostasis" },
+    { value: "/resources/biology-20/flashcards", label: "Flashcards" },
+    { value: "/resources/biology-20/quiz", label: "Quiz Mode" },
+  ],
+  "biology-30": [
+    { value: "/resources/biology-30", label: "Biology 30 Overview" },
+  ],
+};
+
+function QuickPrepWidget() {
+  const [subject, setSubject] = useState("");
+  const [topic, setTopic] = useState("");
+  const [, navigate] = useLocation();
+
+  const currentTopics = subject ? (TOPICS[subject] ?? []) : [];
+  const canGo = subject !== "" && topic !== "";
+
+  return (
+    <div className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto">
+      <select
+        value={subject}
+        onChange={(e) => { setSubject(e.target.value); setTopic(""); }}
+        className="flex-1 rounded-xl px-4 py-3.5 text-sm font-medium outline-none transition-all cursor-pointer"
+        style={{
+          background: "hsl(40 33% 97% / 0.08)",
+          border: "1px solid hsl(40 33% 97% / 0.2)",
+          color: subject ? "hsl(40 33% 97%)" : "hsl(40 33% 97% / 0.5)",
+        }}
+      >
+        <option value="">Choose a subject…</option>
+        {SUBJECTS.map((s) => (
+          <option key={s.value} value={s.value}>{s.label}</option>
+        ))}
+      </select>
+
+      <select
+        value={topic}
+        onChange={(e) => setTopic(e.target.value)}
+        disabled={!subject}
+        className="flex-1 rounded-xl px-4 py-3.5 text-sm font-medium outline-none transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+        style={{
+          background: "hsl(40 33% 97% / 0.08)",
+          border: "1px solid hsl(40 33% 97% / 0.2)",
+          color: topic ? "hsl(40 33% 97%)" : "hsl(40 33% 97% / 0.5)",
+        }}
+      >
+        <option value="">Choose a topic…</option>
+        {currentTopics.map((t) => (
+          <option key={t.value} value={t.value}>{t.label}</option>
+        ))}
+      </select>
+
+      <button
+        onClick={() => canGo && navigate(topic)}
+        disabled={!canGo}
+        className="px-8 py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all active:scale-95"
+        style={{
+          background: canGo ? "hsl(35 90% 50%)" : "hsl(35 90% 50% / 0.4)",
+          color: "hsl(40 33% 97%)",
+          cursor: canGo ? "pointer" : "not-allowed",
+        }}
+      >
+        Go <ArrowRight className="w-4 h-4" />
+      </button>
+    </div>
+  );
+}
 
 export default function Home() {
   const features = [
@@ -350,6 +451,42 @@ export default function Home() {
               <Link href="/about">About the Vision</Link>
             </Button>
           </motion.div>
+
+          {/* Hero search trigger */}
+          <motion.button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-search"))}
+            className="mt-10 flex items-center gap-3 px-5 py-3.5 rounded-2xl text-left transition-all hover:opacity-90 active:scale-[0.98] group"
+            style={{
+              background: "hsl(40 33% 97% / 0.07)",
+              border: "1px solid hsl(40 33% 97% / 0.18)",
+              maxWidth: 480,
+            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.45 }}
+            aria-label="Open search"
+          >
+            <Search
+              className="w-4 h-4 shrink-0 transition-colors"
+              style={{ color: "hsl(35 90% 60%)" }}
+            />
+            <span
+              className="text-sm flex-1"
+              style={{ color: "hsl(40 33% 97% / 0.5)" }}
+            >
+              I need help with…
+            </span>
+            <kbd
+              className="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold"
+              style={{
+                background: "hsl(40 33% 97% / 0.1)",
+                border: "1px solid hsl(40 33% 97% / 0.18)",
+                color: "hsl(40 33% 97% / 0.35)",
+              }}
+            >
+              ⌘K
+            </kbd>
+          </motion.button>
         </div>
 
         {/* Scroll cue */}
@@ -530,6 +667,92 @@ export default function Home() {
               />
             </motion.div>
           </motion.blockquote>
+        </div>
+      </section>
+
+      {/* ── QUICK PREP ── */}
+      <section
+        className="py-20 relative overflow-hidden"
+        style={{ background: "hsl(180 50% 11%)" }}
+      >
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, hsl(40 33% 98%) 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+        {/* Subtle amber glow top-right */}
+        <div
+          className="absolute -top-20 right-0 w-96 h-96 rounded-full pointer-events-none"
+          style={{
+            background: "hsl(35 90% 55% / 0.08)",
+            filter: "blur(80px)",
+          }}
+        />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <motion.span
+              variants={fadeUp}
+              className="inline-block text-xs font-bold tracking-widest uppercase mb-3"
+              style={{ color: "hsl(35 90% 55%)" }}
+            >
+              Exam Crunch?
+            </motion.span>
+            <motion.h2
+              variants={fadeUp}
+              className="text-3xl md:text-4xl font-serif font-bold mb-3"
+              style={{ color: "hsl(40 33% 97%)" }}
+            >
+              Quick Prep
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-base max-w-md mx-auto"
+              style={{ color: "hsl(40 33% 97% / 0.6)" }}
+            >
+              Pick a subject and topic — jump straight to the resource you need.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <QuickPrepWidget />
+          </motion.div>
+
+          <motion.p
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-center mt-6 text-xs"
+            style={{ color: "hsl(40 33% 97% / 0.35)" }}
+          >
+            Or use the search bar in the top right — press{" "}
+            <kbd
+              className="px-1.5 py-0.5 rounded text-[10px] font-bold"
+              style={{
+                background: "hsl(40 33% 97% / 0.12)",
+                border: "1px solid hsl(40 33% 97% / 0.2)",
+                color: "hsl(40 33% 97% / 0.5)",
+              }}
+            >
+              ⌘K
+            </kbd>{" "}
+            to search across all subjects instantly.
+          </motion.p>
         </div>
       </section>
 
