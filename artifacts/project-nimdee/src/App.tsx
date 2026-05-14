@@ -22,6 +22,15 @@ import Biology20UnitB from "@/pages/Biology20UnitB";
 import Biology20UnitC from "@/pages/Biology20UnitC";
 import Biology20UnitD from "@/pages/Biology20UnitD";
 import Biology30 from "@/pages/Biology30";
+import Math9 from "@/pages/Math9";
+import Math9Unit1 from "@/pages/Math9Unit1";
+import Math9Unit2 from "@/pages/Math9Unit2";
+import Math9Unit3 from "@/pages/Math9Unit3";
+import Math9Unit4 from "@/pages/Math9Unit4";
+import Math9Unit5 from "@/pages/Math9Unit5";
+import Math9Unit6 from "@/pages/Math9Unit6";
+import Math9Unit7 from "@/pages/Math9Unit7";
+import Math9Unit8 from "@/pages/Math9Unit8";
 
 const queryClient = new QueryClient();
 
@@ -43,6 +52,15 @@ function Router() {
       <Route path="/resources/biology-20/unit-d" component={Biology20UnitD} />
       <Route path="/resources/biology-20" component={Biology20} />
       <Route path="/resources/biology-30" component={Biology30} />
+      <Route path="/resources/math-9/unit-1" component={Math9Unit1} />
+      <Route path="/resources/math-9/unit-2" component={Math9Unit2} />
+      <Route path="/resources/math-9/unit-3" component={Math9Unit3} />
+      <Route path="/resources/math-9/unit-4" component={Math9Unit4} />
+      <Route path="/resources/math-9/unit-5" component={Math9Unit5} />
+      <Route path="/resources/math-9/unit-6" component={Math9Unit6} />
+      <Route path="/resources/math-9/unit-7" component={Math9Unit7} />
+      <Route path="/resources/math-9/unit-8" component={Math9Unit8} />
+      <Route path="/resources/math-9" component={Math9} />
       <Route path="/resources" component={Resources} />
       <Route path="/support" component={Support} />
       <Route path="/services" component={Services} />

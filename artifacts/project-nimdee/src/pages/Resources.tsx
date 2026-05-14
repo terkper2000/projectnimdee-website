@@ -43,8 +43,9 @@ const resources: Resource[] = [
   {
     subject: "math",
     title: "Grade 9 Math",
-    description: "Polynomials, linear equations, circle geometry, and proportional reasoning.",
-    available: false,
+    description: "Rational numbers, powers, polynomials, linear relations, circle geometry, and probability. 8 units, Alberta Grade 9 curriculum aligned.",
+    available: true,
+    href: "/resources/math-9",
   },
   {
     subject: "math",

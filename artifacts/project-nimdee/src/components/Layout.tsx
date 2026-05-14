@@ -27,7 +27,7 @@ const resourceMenu: MenuCategory[] = [
     items: [
       { label: "Math 7", available: false },
       { label: "Math 8", available: false },
-      { label: "Math 9", available: false },
+      { label: "Math 9", href: "/resources/math-9", available: true },
       { label: "Math 10C", available: false },
       { label: "Math 20-1", available: false },
     ],
