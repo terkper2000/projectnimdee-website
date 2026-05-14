@@ -264,25 +264,6 @@ export default function Home() {
 
         {/* Content */}
         <div className="container mx-auto px-4 md:px-6 relative z-10 pt-32 pb-28">
-          {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.1 }}
-            className="mb-8"
-          >
-            <span
-              className="inline-block text-xs font-bold tracking-[0.22em] uppercase px-4 py-2 rounded-full border"
-              style={{
-                color: "hsl(35 90% 65%)",
-                borderColor: "hsl(35 90% 55% / 0.35)",
-                background: "hsl(35 90% 55% / 0.1)",
-              }}
-            >
-              Alberta Curriculum · STEM Education
-            </span>
-          </motion.div>
-
           {/* Animated title */}
           <div className="mb-6">
             <motion.h1
