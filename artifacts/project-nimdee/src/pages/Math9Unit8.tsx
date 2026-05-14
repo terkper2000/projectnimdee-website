@@ -32,7 +32,7 @@ const dataFactors = [
   { factor: "Cultural Sensitivity", desc: "Questions may be offensive or irrelevant to certain cultural groups.", example: "Asking about Christmas traditions in a culturally diverse school ignores other groups." },
 ];
 
-const unit8Problems: Problem[] = [
+export const unit8Problems: Problem[] = [
   {
     level: "Basic",
     question: "A bag contains 4 red, 3 blue, and 5 green marbles. What is P(red)?",

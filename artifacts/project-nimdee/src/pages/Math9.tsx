@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ExternalLink, Youtube, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import { ArrowLeft, ExternalLink, Youtube, ChevronRight, Hash, Sigma, Triangle, BarChart3, Shuffle } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -292,6 +292,9 @@ export default function Math9() {
               {u.num}: {u.title}
             </Link>
           ))}
+          <Link href="/resources/math-9/quiz" className="flex items-center gap-1 text-teal-700 hover:text-teal-900 transition-colors font-bold whitespace-nowrap ml-2 border-l pl-4 border-border">
+            <Shuffle className="w-3.5 h-3.5" />Quiz Mode
+          </Link>
         </div>
       </div>
 
@@ -334,6 +337,34 @@ export default function Math9() {
               ))}
             </motion.div>
           </section>
+
+          {/* Quiz CTA */}
+          <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-teal-800 to-teal-600 p-8 md:p-12 shadow-lg">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,hsl(var(--primary)/0.3),transparent_60%)]" />
+              <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                <div className="flex-1 text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 bg-white/15 text-white rounded-full px-4 py-1.5 text-xs font-bold tracking-wide uppercase mb-4">
+                    <Shuffle className="w-3.5 h-3.5" />
+                    Ready to test yourself?
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-serif font-bold text-white mb-3 leading-tight">
+                    Unit Quiz Mode
+                  </h2>
+                  <p className="text-white/75 text-sm md:text-base leading-relaxed max-w-lg">
+                    Choose any combination of units 1–8, work through shuffled practice problems one at a time, and see your final score — with an optional timer.
+                  </p>
+                </div>
+                <Link
+                  href="/resources/math-9/quiz"
+                  className="shrink-0 flex items-center gap-3 bg-white text-teal-800 font-bold rounded-xl px-7 py-4 hover:bg-white/90 transition-colors shadow-md text-sm"
+                >
+                  <Shuffle className="w-4 h-4" />
+                  Start Quiz
+                </Link>
+              </div>
+            </div>
+          </motion.section>
 
           {/* Outcomes */}
           <section>

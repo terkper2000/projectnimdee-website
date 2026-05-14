@@ -34,7 +34,7 @@ const vocab = [
   { term: "Secant", def: "A line that intersects the circle at exactly two points.", symbol: "s" },
 ];
 
-const unit7Problems: Problem[] = [
+export const unit7Problems: Problem[] = [
   {
     level: "Basic",
     question: "Name the part of a circle: a line segment connecting the centre to any point on the circle.",

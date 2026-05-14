@@ -43,7 +43,7 @@ const rotationSymmetry = [
   { shape: "Scalene Triangle", order: "1 (none)", angle: "360° only" },
 ];
 
-const unit4Problems: Problem[] = [
+export const unit4Problems: Problem[] = [
   {
     level: "Basic",
     question: "How many lines of symmetry does a regular pentagon have?",

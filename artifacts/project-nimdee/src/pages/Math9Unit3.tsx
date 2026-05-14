@@ -33,7 +33,7 @@ const vocab = [
   { term: "Trinomial", def: "A polynomial with exactly three terms.", example: "x² − 2x + 1" },
 ];
 
-const unit3Problems: Problem[] = [
+export const unit3Problems: Problem[] = [
   {
     level: "Basic",
     question: "State the degree of the polynomial: 4x² − 7x + 2",

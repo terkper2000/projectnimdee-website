@@ -29,7 +29,7 @@ const rationalExamples = [
   { category: "Repeating Decimals", examples: "0.333…, 0.181818…", asDecimal: "1/3, 2/11", note: "One or more digits repeat forever" },
 ];
 
-const unit1Problems: Problem[] = [
+export const unit1Problems: Problem[] = [
   {
     level: "Basic",
     question: "Convert −0.45 to a fraction in lowest terms.",

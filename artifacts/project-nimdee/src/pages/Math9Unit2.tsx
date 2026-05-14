@@ -67,7 +67,7 @@ const exponentLaws = [
   },
 ];
 
-const unit2Problems: Problem[] = [
+export const unit2Problems: Problem[] = [
   {
     level: "Basic",
     question: "Evaluate: (−2)⁴",

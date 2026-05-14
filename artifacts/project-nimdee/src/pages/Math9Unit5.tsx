@@ -29,7 +29,7 @@ const slopeTypes = [
   { type: "Undefined", symbol: "m = ?", description: "Vertical line — no run (division by zero)", example: "x = 3" },
 ];
 
-const unit5Problems: Problem[] = [
+export const unit5Problems: Problem[] = [
   {
     level: "Basic",
     question: "Determine whether y = 3x + 1 is linear, and find the y-intercept and slope.",

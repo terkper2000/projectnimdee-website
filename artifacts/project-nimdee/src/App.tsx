@@ -31,6 +31,7 @@ import Math9Unit5 from "@/pages/Math9Unit5";
 import Math9Unit6 from "@/pages/Math9Unit6";
 import Math9Unit7 from "@/pages/Math9Unit7";
 import Math9Unit8 from "@/pages/Math9Unit8";
+import Math9Quiz from "@/pages/Math9Quiz";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ function Router() {
       <Route path="/resources/biology-20/unit-d" component={Biology20UnitD} />
       <Route path="/resources/biology-20" component={Biology20} />
       <Route path="/resources/biology-30" component={Biology30} />
+      <Route path="/resources/math-9/quiz" component={Math9Quiz} />
       <Route path="/resources/math-9/unit-1" component={Math9Unit1} />
       <Route path="/resources/math-9/unit-2" component={Math9Unit2} />
       <Route path="/resources/math-9/unit-3" component={Math9Unit3} />

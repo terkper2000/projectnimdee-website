@@ -29,7 +29,7 @@ const inequalitySymbols = [
   { symbol: "≥", meaning: "is greater than or equal to", numberLine: "Closed circle, arrow right" },
 ];
 
-const unit6Problems: Problem[] = [
+export const unit6Problems: Problem[] = [
   {
     level: "Basic",
     question: "Solve: x + 7 = −3",
