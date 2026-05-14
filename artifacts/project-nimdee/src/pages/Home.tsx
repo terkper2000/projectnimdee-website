@@ -264,20 +264,6 @@ export default function Home() {
 
         {/* Content */}
         <div className="container mx-auto px-4 md:px-6 relative z-10 pt-32 pb-28">
-          {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mb-8"
-          >
-            <img
-              src="/pn-logo.png"
-              alt="Project Nimdeɛ"
-              className="h-24 w-24 object-contain"
-            />
-          </motion.div>
-
           {/* Animated title */}
           <div className="mb-6">
             <motion.h1
