@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,87 @@ const inequalitySymbols = [
   { symbol: ">", meaning: "is greater than", numberLine: "Open circle, arrow right" },
   { symbol: "≤", meaning: "is less than or equal to", numberLine: "Closed circle, arrow left" },
   { symbol: "≥", meaning: "is greater than or equal to", numberLine: "Closed circle, arrow right" },
+];
+
+const unit6Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "Solve: x + 7 = −3",
+    steps: [
+      "Subtract 7 from both sides",
+      "x = −3 − 7",
+    ],
+    answer: "x = −10 (check: −10 + 7 = −3 ✓)",
+  },
+  {
+    level: "Basic",
+    question: "Solve: x/4 = −6",
+    steps: [
+      "Multiply both sides by 4",
+      "x = −6 × 4",
+    ],
+    answer: "x = −24 (check: −24/4 = −6 ✓)",
+  },
+  {
+    level: "Basic",
+    question: "Solve: 3x − 5 = 16",
+    steps: [
+      "Add 5 to both sides: 3x = 21",
+      "Divide both sides by 3: x = 7",
+    ],
+    answer: "x = 7 (check: 3(7)−5 = 16 ✓)",
+  },
+  {
+    level: "Intermediate",
+    question: "Solve: (2/3)x − 4 = 2",
+    steps: [
+      "Add 4 to both sides: (2/3)x = 6",
+      "Multiply both sides by 3/2: x = 6 × (3/2) = 9",
+    ],
+    answer: "x = 9 (check: (2/3)(9)−4 = 6−4 = 2 ✓)",
+  },
+  {
+    level: "Intermediate",
+    question: "Solve: 5x − 2 = 3x + 10",
+    steps: [
+      "Subtract 3x from both sides: 2x − 2 = 10",
+      "Add 2 to both sides: 2x = 12",
+      "Divide by 2: x = 6",
+    ],
+    answer: "x = 6 (check: 5(6)−2 = 28, 3(6)+10 = 28 ✓)",
+  },
+  {
+    level: "Intermediate",
+    question: "Solve the inequality: −3x + 4 > 13",
+    steps: [
+      "Subtract 4 from both sides: −3x > 9",
+      "Divide both sides by −3 → FLIP the inequality symbol!",
+      "x < −3",
+    ],
+    answer: "x < −3 (open circle at −3, arrow pointing left)",
+  },
+  {
+    level: "Challenge",
+    question: "Solve: 2(3x − 1) = 4(x + 3)",
+    steps: [
+      "Distribute: 6x − 2 = 4x + 12",
+      "Subtract 4x: 2x − 2 = 12",
+      "Add 2: 2x = 14",
+      "Divide by 2: x = 7",
+    ],
+    answer: "x = 7 (check: 2(20) = 40, 4(10) = 40 ✓)",
+  },
+  {
+    level: "Challenge",
+    question: "A cell phone plan costs $25/month plus $0.10 per text. Maria's bill was $43. How many texts did she send? Write and solve an equation.",
+    steps: [
+      "Let t = number of texts",
+      "Equation: 25 + 0.10t = 43",
+      "Subtract 25: 0.10t = 18",
+      "Divide by 0.10: t = 180",
+    ],
+    answer: "Maria sent 180 texts",
+  },
 ];
 
 export default function Math9Unit6() {
@@ -318,6 +400,8 @@ export default function Math9Unit6() {
               ))}
             </motion.div>
           </section>
+
+          <PracticeProblems problems={unit6Problems} accentClass="border-l-emerald-500" />
 
           {/* Continue */}
           <section>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,88 @@ const rationalExamples = [
   { category: "Fractions", examples: "1/2, −3/4, 7/3, −11/5", asDecimal: "0.5, −0.75, 2.333…, −2.2", note: "Ratio of two integers (b ≠ 0)" },
   { category: "Terminating Decimals", examples: "0.25, −0.8, 3.125", asDecimal: "1/4, −4/5, 25/8", note: "Decimal ends (finite digits)" },
   { category: "Repeating Decimals", examples: "0.333…, 0.181818…", asDecimal: "1/3, 2/11", note: "One or more digits repeat forever" },
+];
+
+const unit1Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "Convert −0.45 to a fraction in lowest terms.",
+    steps: [
+      "Write over 100: −0.45 = −45/100",
+      "Find GCF of 45 and 100: GCF = 5",
+      "Divide numerator and denominator by 5: −45/100 = −9/20",
+    ],
+    answer: "−9/20",
+  },
+  {
+    level: "Basic",
+    question: "Order from least to greatest: −1/2, 0.4, −0.75, 3/4",
+    steps: [
+      "Convert all to decimals: −1/2 = −0.5, 0.4 = 0.4, −0.75 = −0.75, 3/4 = 0.75",
+      "Order the decimals: −0.75 < −0.5 < 0.4 < 0.75",
+    ],
+    answer: "−3/4 < −1/2 < 0.4 < 3/4",
+  },
+  {
+    level: "Basic",
+    question: "Calculate: 2/3 + (−5/6)",
+    steps: [
+      "LCD of 3 and 6 = 6",
+      "2/3 = 4/6",
+      "4/6 + (−5/6) = −1/6",
+    ],
+    answer: "−1/6",
+  },
+  {
+    level: "Basic",
+    question: "Calculate: −3/4 − (−1/2)",
+    steps: [
+      "Subtracting a negative = adding: −3/4 + 1/2",
+      "LCD = 4: −3/4 + 2/4 = −1/4",
+    ],
+    answer: "−1/4",
+  },
+  {
+    level: "Intermediate",
+    question: "Calculate: (−5/6) × (3/10)",
+    steps: [
+      "Multiply numerators: −5 × 3 = −15",
+      "Multiply denominators: 6 × 10 = 60",
+      "= −15/60",
+      "Simplify (GCF = 15): −15/60 = −1/4",
+    ],
+    answer: "−1/4",
+  },
+  {
+    level: "Intermediate",
+    question: "Calculate: (−2/3) ÷ (4/9)",
+    steps: [
+      "Multiply by the reciprocal: (−2/3) × (9/4)",
+      "= (−2 × 9) / (3 × 4) = −18/12",
+      "Simplify (GCF = 6): −18/12 = −3/2",
+    ],
+    answer: "−3/2 or −1 1/2",
+  },
+  {
+    level: "Intermediate",
+    question: "Evaluate using BEDMAS: 1/2 + (1/3 − 1/4) × 2",
+    steps: [
+      "B: (1/3 − 1/4) — LCD = 12: 4/12 − 3/12 = 1/12",
+      "M: 1/12 × 2 = 2/12 = 1/6",
+      "A: 1/2 + 1/6 — LCD = 6: 3/6 + 1/6 = 4/6 = 2/3",
+    ],
+    answer: "2/3",
+  },
+  {
+    level: "Challenge",
+    question: "Evaluate: (−3/4)² ÷ (3/8) + (−1/2)",
+    steps: [
+      "E: (−3/4)² = 9/16",
+      "D: (9/16) ÷ (3/8) = (9/16) × (8/3) = 72/48 = 3/2",
+      "A/S: 3/2 + (−1/2) = 3/2 − 1/2 = 2/2 = 1",
+    ],
+    answer: "1",
+  },
 ];
 
 export default function Math9Unit1() {
@@ -393,6 +476,8 @@ export default function Math9Unit1() {
               ))}
             </motion.div>
           </section>
+
+          <PracticeProblems problems={unit1Problems} accentClass="border-l-amber-500" />
 
           {/* Continue to Next Unit */}
           <section>

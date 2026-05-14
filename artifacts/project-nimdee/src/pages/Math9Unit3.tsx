@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -30,6 +31,92 @@ const vocab = [
   { term: "Monomial", def: "A polynomial with exactly one term.", example: "5x²" },
   { term: "Binomial", def: "A polynomial with exactly two terms.", example: "3x + 4" },
   { term: "Trinomial", def: "A polynomial with exactly three terms.", example: "x² − 2x + 1" },
+];
+
+const unit3Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "State the degree of the polynomial: 4x² − 7x + 2",
+    steps: [
+      "Find the highest exponent among all terms",
+      "Terms: 4x² (degree 2), −7x (degree 1), 2 (degree 0)",
+      "Highest degree = 2",
+    ],
+    answer: "Degree 2 (trinomial)",
+  },
+  {
+    level: "Basic",
+    question: "Identify and collect like terms: 5x² + 3x − 2x² + x − 4",
+    steps: [
+      "Group like terms: (5x² − 2x²) + (3x + x) + (−4)",
+      "Combine: 3x² + 4x − 4",
+    ],
+    answer: "3x² + 4x − 4",
+  },
+  {
+    level: "Basic",
+    question: "Add: (2x² − 3x + 1) + (x² + 5x − 6)",
+    steps: [
+      "Remove brackets: 2x² − 3x + 1 + x² + 5x − 6",
+      "Group like terms: (2x² + x²) + (−3x + 5x) + (1 − 6)",
+      "Combine: 3x² + 2x − 5",
+    ],
+    answer: "3x² + 2x − 5",
+  },
+  {
+    level: "Intermediate",
+    question: "Subtract: (4x² + x − 3) − (2x² − 3x + 5)",
+    steps: [
+      "Distribute the negative: 4x² + x − 3 − 2x² + 3x − 5",
+      "Group like terms: (4x² − 2x²) + (x + 3x) + (−3 − 5)",
+      "Combine: 2x² + 4x − 8",
+    ],
+    answer: "2x² + 4x − 8",
+  },
+  {
+    level: "Intermediate",
+    question: "Multiply: 3x(4x² − 2x + 5)",
+    steps: [
+      "Distribute 3x to each term",
+      "3x × 4x² = 12x³",
+      "3x × (−2x) = −6x²",
+      "3x × 5 = 15x",
+      "= 12x³ − 6x² + 15x",
+    ],
+    answer: "12x³ − 6x² + 15x",
+  },
+  {
+    level: "Intermediate",
+    question: "Divide: (8x³ − 12x²) ÷ 4x",
+    steps: [
+      "Divide each term separately by 4x",
+      "8x³ ÷ 4x = 2x²",
+      "−12x² ÷ 4x = −3x",
+    ],
+    answer: "2x² − 3x",
+  },
+  {
+    level: "Challenge",
+    question: "Simplify: −2y(3y² − y + 4) + (5y³ − 2y)",
+    steps: [
+      "Distribute −2y: −6y³ + 2y² − 8y",
+      "Add the second polynomial: −6y³ + 2y² − 8y + 5y³ − 2y",
+      "Group like terms: (−6y³ + 5y³) + 2y² + (−8y − 2y)",
+      "Combine: −y³ + 2y² − 10y",
+    ],
+    answer: "−y³ + 2y² − 10y",
+  },
+  {
+    level: "Challenge",
+    question: "Divide: (15a³ − 10a² + 5a) ÷ (−5a)",
+    steps: [
+      "Divide each term by −5a",
+      "15a³ ÷ (−5a) = −3a²",
+      "−10a² ÷ (−5a) = 2a",
+      "5a ÷ (−5a) = −1",
+    ],
+    answer: "−3a² + 2a − 1",
+  },
 ];
 
 export default function Math9Unit3() {
@@ -292,6 +379,8 @@ export default function Math9Unit3() {
               ))}
             </motion.div>
           </section>
+
+          <PracticeProblems problems={unit3Problems} accentClass="border-l-teal-500" />
 
           {/* Continue */}
           <section>

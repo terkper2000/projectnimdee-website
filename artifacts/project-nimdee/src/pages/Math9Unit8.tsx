@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -29,6 +30,88 @@ const dataFactors = [
   { factor: "Timing", desc: "When data is collected can significantly affect results.", example: "Surveying cafeteria satisfaction right after a popular meal vs. on a bad day." },
   { factor: "Privacy", desc: "Respondents may be unwilling to answer honestly if anonymity is not guaranteed.", example: "Asking about income without anonymity leads to under-reporting." },
   { factor: "Cultural Sensitivity", desc: "Questions may be offensive or irrelevant to certain cultural groups.", example: "Asking about Christmas traditions in a culturally diverse school ignores other groups." },
+];
+
+const unit8Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "A bag contains 4 red, 3 blue, and 5 green marbles. What is P(red)?",
+    steps: [
+      "Total marbles = 4 + 3 + 5 = 12",
+      "Favourable outcomes (red) = 4",
+      "P(red) = 4/12 = 1/3",
+    ],
+    answer: "P(red) = 1/3 ≈ 33.3%",
+  },
+  {
+    level: "Basic",
+    question: "A school surveys 30 out of 600 students. Is this a population or sample? What fraction of the population was surveyed?",
+    steps: [
+      "Only 30 out of 600 were asked → this is a sample",
+      "Fraction = 30/600 = 1/20",
+    ],
+    answer: "Sample; 1/20 (or 5%) of the population",
+  },
+  {
+    level: "Basic",
+    question: "A die is rolled 60 times and lands on 4 exactly 8 times. What is the experimental probability of rolling a 4?",
+    steps: [
+      "Experimental P = times event occurred ÷ total trials",
+      "= 8 ÷ 60 = 2/15",
+    ],
+    answer: "Experimental P(4) = 2/15 ≈ 13.3%",
+  },
+  {
+    level: "Intermediate",
+    question: "What is the theoretical probability of rolling a 4? Compare it to the experimental result above.",
+    steps: [
+      "P(4) theoretically = 1/6 ≈ 16.7%",
+      "Experimental was 8/60 = 2/15 ≈ 13.3%",
+      "They differ because 60 trials is still a relatively small sample — results get closer to theoretical as trials increase",
+    ],
+    answer: "Theoretical P(4) = 1/6; experimental was 2/15, slightly lower due to random variation",
+  },
+  {
+    level: "Intermediate",
+    question: "A coin is flipped and a die is rolled. Use a tree diagram to find P(Tails and even number).",
+    steps: [
+      "Total outcomes = 2 × 6 = 12",
+      "Favourable: (T,2), (T,4), (T,6) = 3 outcomes",
+      "P(Tails and even) = 3/12 = 1/4",
+    ],
+    answer: "P(Tails and even) = 1/4 = 25%",
+  },
+  {
+    level: "Intermediate",
+    question: "Identify the source of bias: 'Do you agree that our school's sports teams are amazing?'",
+    steps: [
+      "The word 'amazing' and the leading phrasing encourage a 'yes' response",
+      "This is a biased survey question — it is leading",
+      "Source: Bias (and language)",
+    ],
+    answer: "The question is leading/biased — it uses positive language that nudges respondents toward agreement",
+  },
+  {
+    level: "Challenge",
+    question: "A bag has 2 red and 3 blue marbles. What is P(red on both draws) if you draw twice without replacing the first marble?",
+    steps: [
+      "P(red first) = 2/5",
+      "After drawing red, 1 red and 3 blue remain → P(red second) = 1/4",
+      "P(both red) = 2/5 × 1/4 = 2/20 = 1/10",
+    ],
+    answer: "P(both red) = 1/10 = 10%",
+  },
+  {
+    level: "Challenge",
+    question: "A bar graph shows sales figures with the y-axis starting at 800 instead of 0. One bar is 850 and another is 875. Explain how this is misleading.",
+    steps: [
+      "The difference is 875 − 850 = 25 (about 3% more)",
+      "But with the y-axis starting at 800, the taller bar looks roughly twice as tall",
+      "This makes a small difference look like a massive one",
+      "This is a truncated/broken y-axis — a misleading data display",
+    ],
+    answer: "The truncated y-axis exaggerates a small 3% difference, making it look like a 100% difference visually",
+  },
 ];
 
 export default function Math9Unit8() {
@@ -328,6 +411,8 @@ export default function Math9Unit8() {
               ))}
             </motion.div>
           </section>
+
+          <PracticeProblems problems={unit8Problems} accentClass="border-l-rose-500" />
 
           {/* Back to landing */}
           <section>

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -40,6 +41,86 @@ const rotationSymmetry = [
   { shape: "Regular Hexagon", order: "6", angle: "60°" },
   { shape: "Circle", order: "Infinite", angle: "Any angle" },
   { shape: "Scalene Triangle", order: "1 (none)", angle: "360° only" },
+];
+
+const unit4Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "How many lines of symmetry does a regular pentagon have?",
+    steps: [
+      "A regular polygon with n sides has n lines of symmetry",
+      "A regular pentagon has 5 sides",
+    ],
+    answer: "5 lines of symmetry",
+  },
+  {
+    level: "Basic",
+    question: "What is the order of rotation symmetry for a regular hexagon, and what is its angle of rotation?",
+    steps: [
+      "A regular hexagon has 6 sides → order of rotation = 6",
+      "Angle = 360° ÷ 6 = 60°",
+    ],
+    answer: "Order 6, angle of rotation 60°",
+  },
+  {
+    level: "Basic",
+    question: "A map has a scale of 1:25 000. A park is 6 cm on the map. What is its actual length?",
+    steps: [
+      "Actual = diagram length × scale denominator",
+      "= 6 cm × 25 000 = 150 000 cm",
+      "Convert: 150 000 cm ÷ 100 = 1500 m = 1.5 km",
+    ],
+    answer: "1.5 km",
+  },
+  {
+    level: "Intermediate",
+    question: "Triangle ABC ~ Triangle DEF. AB = 8 cm, BC = 10 cm. DE = 12 cm. Find EF.",
+    steps: [
+      "Scale factor = DE ÷ AB = 12 ÷ 8 = 3/2",
+      "EF = BC × scale factor = 10 × 3/2 = 15 cm",
+    ],
+    answer: "EF = 15 cm",
+  },
+  {
+    level: "Intermediate",
+    question: "A building is 30 m tall. On a blueprint it is drawn 5 cm tall. What is the scale factor?",
+    steps: [
+      "Convert to same units: 30 m = 3000 cm",
+      "Scale factor = diagram ÷ actual = 5 ÷ 3000 = 1/600",
+    ],
+    answer: "Scale 1:600",
+  },
+  {
+    level: "Intermediate",
+    question: "A rectangular prism has dimensions 5 m × 3 m × 2 m. Find its surface area.",
+    steps: [
+      "SA = 2(lw + lh + wh)",
+      "= 2(5×3 + 5×2 + 3×2)",
+      "= 2(15 + 10 + 6)",
+      "= 2(31) = 62 m²",
+    ],
+    answer: "62 m²",
+  },
+  {
+    level: "Challenge",
+    question: "A composite object: a cube (4 m sides) sits on top of a rectangular prism (8 m × 8 m × 3 m). Find the total exposed surface area.",
+    steps: [
+      "SA of large prism alone: 2(8×8 + 8×3 + 8×3) = 2(64+24+24) = 2(112) = 224 m²",
+      "SA of cube alone: 6 × 4² = 6 × 16 = 96 m²",
+      "Hidden faces: top of prism under cube = 4×4 = 16 m², bottom of cube = 16 m² → subtract 2×16 = 32 m²",
+      "Total = 224 + 96 − 32 = 288 m²",
+    ],
+    answer: "288 m²",
+  },
+  {
+    level: "Challenge",
+    question: "Two similar rectangles: the first is 6 cm × 10 cm, the second has a shorter side of 9 cm. Find the longer side of the second rectangle.",
+    steps: [
+      "Scale factor = 9 ÷ 6 = 3/2",
+      "Longer side = 10 × 3/2 = 15 cm",
+    ],
+    answer: "15 cm",
+  },
 ];
 
 export default function Math9Unit4() {
@@ -333,6 +414,8 @@ export default function Math9Unit4() {
               </CardContent>
             </Card>
           </section>
+
+          <PracticeProblems problems={unit4Problems} accentClass="border-l-blue-500" />
 
           {/* Continue */}
           <section>

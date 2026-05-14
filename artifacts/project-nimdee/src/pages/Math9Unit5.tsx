@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,86 @@ const slopeTypes = [
   { type: "Negative", symbol: "m < 0", description: "Line falls from left to right", example: "m = −2/3" },
   { type: "Zero", symbol: "m = 0", description: "Horizontal line — no rise", example: "y = 4" },
   { type: "Undefined", symbol: "m = ?", description: "Vertical line — no run (division by zero)", example: "x = 3" },
+];
+
+const unit5Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "Determine whether y = 3x + 1 is linear, and find the y-intercept and slope.",
+    steps: [
+      "The equation is in y = mx + b form → it is linear",
+      "Slope m = 3",
+      "y-intercept b = 1 → point (0, 1)",
+    ],
+    answer: "Linear; slope = 3, y-intercept = 1",
+  },
+  {
+    level: "Basic",
+    question: "Find the slope of the line passing through (0, 2) and (4, 10).",
+    steps: [
+      "m = (y₂ − y₁) / (x₂ − x₁)",
+      "= (10 − 2) / (4 − 0)",
+      "= 8 / 4",
+    ],
+    answer: "m = 2",
+  },
+  {
+    level: "Basic",
+    question: "A table of values shows x: 0, 1, 2, 3 and y: 5, 8, 11, 14. Is this linear? If so, write the equation.",
+    steps: [
+      "Check first differences: 8−5=3, 11−8=3, 14−11=3 → constant, so linear",
+      "Slope m = 3 (difference per step)",
+      "When x=0, y=5 → y-intercept b = 5",
+    ],
+    answer: "Yes, linear. y = 3x + 5",
+  },
+  {
+    level: "Intermediate",
+    question: "Find the slope and y-intercept, then write the equation: line through (−2, 1) and (4, 10).",
+    steps: [
+      "m = (10 − 1) / (4 − (−2)) = 9/6 = 3/2",
+      "Use point (4, 10): 10 = (3/2)(4) + b → 10 = 6 + b → b = 4",
+    ],
+    answer: "y = (3/2)x + 4",
+  },
+  {
+    level: "Intermediate",
+    question: "Using y = −2x + 7, interpolate the value of y when x = 2.5.",
+    steps: [
+      "Substitute x = 2.5 into the equation",
+      "y = −2(2.5) + 7 = −5 + 7",
+    ],
+    answer: "y = 2",
+  },
+  {
+    level: "Intermediate",
+    question: "A taxi charges $3.00 base fee plus $1.50 per km. Write an equation for total cost C in terms of km k, and find the cost for 12 km.",
+    steps: [
+      "C = 1.50k + 3.00 (partial variation; b = 3 is the fixed fee)",
+      "C = 1.50(12) + 3.00 = 18.00 + 3.00",
+    ],
+    answer: "C = 1.50k + 3; cost for 12 km = $21.00",
+  },
+  {
+    level: "Challenge",
+    question: "A line has slope −3/4 and passes through the point (8, −1). Write its equation and find the x-intercept.",
+    steps: [
+      "y = (−3/4)x + b; substitute (8, −1): −1 = (−3/4)(8) + b → −1 = −6 + b → b = 5",
+      "Equation: y = (−3/4)x + 5",
+      "x-intercept: set y = 0: 0 = (−3/4)x + 5 → (3/4)x = 5 → x = 20/3 ≈ 6.67",
+    ],
+    answer: "y = (−3/4)x + 5; x-intercept at x = 20/3",
+  },
+  {
+    level: "Challenge",
+    question: "Identify the type of variation and write the equation: (0, 0), (2, 6), (5, 15). Then extrapolate y when x = 8.",
+    steps: [
+      "Check: y/x = 6/2 = 3, 15/5 = 3 → constant → direct variation (b = 0)",
+      "Equation: y = 3x",
+      "Extrapolate: y = 3(8) = 24",
+    ],
+    answer: "Direct variation: y = 3x; when x = 8, y = 24",
+  },
 ];
 
 export default function Math9Unit5() {
@@ -404,6 +485,8 @@ export default function Math9Unit5() {
               </div>
             </Card>
           </section>
+
+          <PracticeProblems problems={unit5Problems} accentClass="border-l-violet-500" />
 
           {/* Continue */}
           <section>

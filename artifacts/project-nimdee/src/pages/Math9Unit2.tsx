@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -63,6 +64,85 @@ const exponentLaws = [
     desc: "Distribute the exponent to both the numerator and denominator.",
     example: "(2/3)³ = 2³/3³",
     worked: ["(2/3)³ = 2³/3³", "= 8/27"],
+  },
+];
+
+const unit2Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "Evaluate: (−2)⁴",
+    steps: [
+      "The negative is inside brackets, so it is part of the base",
+      "(−2)⁴ = (−2)(−2)(−2)(−2)",
+      "= 4 × 4 = 16",
+    ],
+    answer: "16",
+  },
+  {
+    level: "Basic",
+    question: "Evaluate: −3² (no brackets around −3)",
+    steps: [
+      "Without brackets, the exponent applies only to 3",
+      "−3² = −(3²) = −(9)",
+    ],
+    answer: "−9",
+  },
+  {
+    level: "Basic",
+    question: "Simplify using the zero exponent law: 7⁰ + (−5)⁰",
+    steps: [
+      "Any non-zero base to the power of 0 equals 1",
+      "7⁰ = 1 and (−5)⁰ = 1",
+      "1 + 1 = 2",
+    ],
+    answer: "2",
+  },
+  {
+    level: "Basic",
+    question: "Simplify using the Product Law: x⁴ × x⁵",
+    steps: [
+      "Product Law: same base → add exponents",
+      "x⁴ × x⁵ = x⁴⁺⁵",
+    ],
+    answer: "x⁹",
+  },
+  {
+    level: "Intermediate",
+    question: "Simplify: (a³)⁴ ÷ a⁷",
+    steps: [
+      "Power of a Power: (a³)⁴ = a³ˣ⁴ = a¹²",
+      "Quotient Law: a¹² ÷ a⁷ = a¹²⁻⁷",
+    ],
+    answer: "a⁵",
+  },
+  {
+    level: "Intermediate",
+    question: "Simplify: (2x²y)³",
+    steps: [
+      "Power of a Product: distribute the exponent to each factor",
+      "= 2³ × (x²)³ × y³",
+      "= 8 × x⁶ × y³",
+    ],
+    answer: "8x⁶y³",
+  },
+  {
+    level: "Intermediate",
+    question: "Write with a positive exponent and evaluate: 4⁻²",
+    steps: [
+      "Negative exponent: a⁻ⁿ = 1/aⁿ",
+      "4⁻² = 1/4² = 1/16",
+    ],
+    answer: "1/16",
+  },
+  {
+    level: "Challenge",
+    question: "Simplify completely (positive exponents only): (3m²n)² ÷ (9m⁵)",
+    steps: [
+      "Power of a Product: (3m²n)² = 9m⁴n²",
+      "Quotient Law: 9m⁴n² ÷ 9m⁵ = m⁴⁻⁵ × n² = m⁻¹n²",
+      "Negative exponent: m⁻¹ = 1/m",
+    ],
+    answer: "n²/m",
   },
 ];
 
@@ -322,6 +402,8 @@ export default function Math9Unit2() {
               </CardContent>
             </Card>
           </section>
+
+          <PracticeProblems problems={unit2Problems} accentClass="border-l-orange-500" />
 
           {/* Continue */}
           <section>

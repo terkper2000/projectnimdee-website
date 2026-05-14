@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, ChevronRight, Hash, Sigma, Triangle, BarChart3 } from "lucide-react";
+import PracticeProblems, { type Problem } from "@/components/PracticeProblems";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -31,6 +32,89 @@ const vocab = [
   { term: "Inscribed Angle", def: "An angle with its vertex on the circle, formed by two chords.", symbol: "∠APB" },
   { term: "Tangent", def: "A line that touches the circle at exactly one point (point of tangency).", symbol: "t" },
   { term: "Secant", def: "A line that intersects the circle at exactly two points.", symbol: "s" },
+];
+
+const unit7Problems: Problem[] = [
+  {
+    level: "Basic",
+    question: "Name the part of a circle: a line segment connecting the centre to any point on the circle.",
+    steps: [
+      "A line segment from the centre to the circle = radius",
+    ],
+    answer: "Radius",
+  },
+  {
+    level: "Basic",
+    question: "A central angle ∠AOB = 96°. An inscribed angle ∠APB subtends the same arc. Find ∠APB.",
+    steps: [
+      "Property 2: Central angle = 2 × Inscribed angle",
+      "∠APB = ∠AOB ÷ 2 = 96° ÷ 2",
+    ],
+    answer: "∠APB = 48°",
+  },
+  {
+    level: "Basic",
+    question: "Points P, Q, and R are all on a circle. ∠PAQ = 31°. Find ∠PBQ where B is also on the same arc.",
+    steps: [
+      "Property 3: Inscribed angles subtended by the same arc are equal",
+      "∠PBQ = ∠PAQ = 31°",
+    ],
+    answer: "∠PBQ = 31°",
+  },
+  {
+    level: "Intermediate",
+    question: "A circle has radius 13 cm. A chord is 24 cm long. How far is the chord from the centre?",
+    steps: [
+      "Property 1: Perpendicular from centre bisects the chord",
+      "Half chord = 24 ÷ 2 = 12 cm",
+      "Using Pythagorean theorem: d² + 12² = 13²",
+      "d² = 169 − 144 = 25",
+      "d = 5 cm",
+    ],
+    answer: "5 cm from the centre",
+  },
+  {
+    level: "Intermediate",
+    question: "An inscribed angle ∠APB = 55°. The arc AB subtends a central angle ∠AOB. Find ∠AOB.",
+    steps: [
+      "Property 2: Central angle = 2 × Inscribed angle",
+      "∠AOB = 2 × 55° = 110°",
+    ],
+    answer: "∠AOB = 110°",
+  },
+  {
+    level: "Intermediate",
+    question: "A tangent from external point T touches a circle (centre O, radius 8 cm) at point P. OT = 17 cm. Find PT.",
+    steps: [
+      "Property 4: Tangent ⊥ radius → right angle at P",
+      "PT² + OP² = OT²",
+      "PT² + 8² = 17²",
+      "PT² = 289 − 64 = 225",
+      "PT = 15 cm",
+    ],
+    answer: "PT = 15 cm",
+  },
+  {
+    level: "Challenge",
+    question: "In a circle, ∠AOB = 130° (central angle). P is on the major arc. Triangle APB is isosceles with AP = BP. Find ∠APB and ∠PAB.",
+    steps: [
+      "Property 2: ∠APB = ∠AOB ÷ 2 = 130° ÷ 2 = 65°",
+      "Triangle APB: angles sum to 180°",
+      "AP = BP → isosceles → ∠PAB = ∠PBA",
+      "2∠PAB + 65° = 180° → 2∠PAB = 115° → ∠PAB = 57.5°",
+    ],
+    answer: "∠APB = 65°, ∠PAB = ∠PBA = 57.5°",
+  },
+  {
+    level: "Challenge",
+    question: "A circle has centre O and radius 6 cm. A tangent meets the circle at P and ∠OTP = 25° where T is the external point. Find ∠POT.",
+    steps: [
+      "Property 4: ∠OPT = 90° (tangent ⊥ radius)",
+      "Triangle OPT: angles sum to 180°",
+      "∠POT = 180° − 90° − 25° = 65°",
+    ],
+    answer: "∠POT = 65°",
+  },
 ];
 
 export default function Math9Unit7() {
@@ -315,6 +399,8 @@ export default function Math9Unit7() {
               </Card>
             </div>
           </section>
+
+          <PracticeProblems problems={unit7Problems} accentClass="border-l-sky-500" />
 
           {/* Continue */}
           <section>
