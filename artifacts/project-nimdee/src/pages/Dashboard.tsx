@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { useUser, useClerk, Show } from "@clerk/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/Layout";
 import { api } from "@/lib/api";
@@ -34,8 +34,7 @@ const CONFIDENCE_LEVELS = ["low","medium","high"] as const;
 type Tab = "overview" | "progress" | "saved" | "plan" | "reflect" | "mistakes" | "confidence" | "badges";
 
 export default function Dashboard() {
-  const { user } = useUser();
-  const { signOut } = useClerk();
+  const { user, signOut } = useAuth();
   const qc = useQueryClient();
   const [tab, setTab] = useState<Tab>("overview");
 
@@ -52,7 +51,7 @@ export default function Dashboard() {
   }, [(badges as any[]).length === 0]);
   const { data: studyPlans = [] } = useQuery({ queryKey: ["study-plans"], queryFn: api.getStudyPlans });
 
-  const firstName = user?.firstName ?? "there";
+  const firstName = user?.firstName ?? user?.email?.split("@")[0] ?? "there";
   const earnedBadgeIds = new Set((badges as any[]).map((b: any) => b.badgeId));
 
   const completedCount = (progress as any[]).filter((p: any) => p.completed).length;
@@ -82,7 +81,7 @@ export default function Dashboard() {
             <div>
               <p className="text-teal-300 text-sm font-medium mb-1">Your Learning Dashboard</p>
               <h1 className="font-serif text-3xl md:text-4xl font-bold">Welcome back, {firstName} 👋</h1>
-              <p className="text-teal-200 text-sm mt-2">{user?.primaryEmailAddress?.emailAddress}</p>
+              <p className="text-teal-200 text-sm mt-2">{user?.email}</p>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-right text-sm">

@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown, Search, LayoutDashboard, LogOut, LogIn } from "lucide-react";
 import SearchModal from "@/components/SearchModal";
 import { Button } from "@/components/ui/button";
-import { useUser, useClerk, ClerkLoaded } from "@clerk/react";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -134,10 +134,9 @@ const resourceMenu: MenuCategory[] = [
 ];
 
 function MobileAuthLinks() {
-  const { isSignedIn, isLoaded, user } = useUser();
-  const { signOut } = useClerk();
-  if (!isLoaded) return null;
-  if (isSignedIn) {
+  const { user, isLoading, signOut } = useAuth();
+  if (isLoading) return null;
+  if (user) {
     return (
       <div className="pt-2 pb-1 space-y-1">
         <Link href="/dashboard"
@@ -147,7 +146,7 @@ function MobileAuthLinks() {
         </Link>
         <button onClick={() => signOut()}
           className="flex items-center gap-2 py-2.5 text-base font-medium text-muted-foreground w-full text-left">
-          <LogOut className="w-4 h-4" /> Sign out ({user?.firstName ?? user?.primaryEmailAddress?.emailAddress})
+          <LogOut className="w-4 h-4" /> Sign out ({user.firstName ?? user.email})
         </button>
       </div>
     );
@@ -164,9 +163,9 @@ function MobileAuthLinks() {
 }
 
 function AuthNavButtons() {
-  const { isSignedIn, isLoaded } = useUser();
-  if (!isLoaded) return null;
-  if (isSignedIn) return <NavUserMenu />;
+  const { user, isLoading } = useAuth();
+  if (isLoading) return null;
+  if (user) return <NavUserMenu />;
   return (
     <div className="hidden md:flex items-center gap-2 ml-2">
       <Button asChild size="sm" variant="outline"
@@ -179,8 +178,7 @@ function AuthNavButtons() {
 }
 
 function NavUserMenu() {
-  const { user } = useUser();
-  const { signOut } = useClerk();
+  const { user, signOut } = useAuth();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -198,9 +196,9 @@ function NavUserMenu() {
         className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 transition-all"
         data-testid="button-nav-user-menu">
         <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center overflow-hidden shrink-0">
-          {user?.imageUrl
-            ? <img src={user.imageUrl} alt="" className="w-full h-full object-cover" />
-            : <span className="text-xs font-bold text-primary">{(user?.firstName?.[0] ?? user?.primaryEmailAddress?.emailAddress?.[0] ?? "?").toUpperCase()}</span>}
+          {user?.avatarUrl
+            ? <img src={user.avatarUrl} alt="" className="w-full h-full object-cover" />
+            : <span className="text-xs font-bold text-primary">{(user?.firstName?.[0] ?? user?.email?.[0] ?? "?").toUpperCase()}</span>}
         </div>
         <span className="text-sm font-medium text-foreground max-w-[100px] truncate">{user?.firstName ?? "Account"}</span>
         <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
@@ -209,7 +207,7 @@ function NavUserMenu() {
         <div className="absolute right-0 top-full mt-2 w-52 bg-background border rounded-xl shadow-xl z-50 py-1.5 overflow-hidden">
           <div className="px-4 py-2.5 border-b">
             <p className="text-sm font-bold text-foreground truncate">{user?.firstName} {user?.lastName}</p>
-            <p className="text-xs text-muted-foreground truncate">{user?.primaryEmailAddress?.emailAddress}</p>
+            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
           </div>
           <Link href="/dashboard" onClick={() => setOpen(false)}
             className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-primary/8 hover:text-primary transition-colors"

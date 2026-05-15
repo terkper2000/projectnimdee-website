@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { getAuth } from "@clerk/express";
 import { db } from "@workspace/db";
 import { usersTable, insertUserSchema } from "@workspace/db";
 import { eq } from "drizzle-orm";
@@ -7,9 +6,9 @@ import { requireAuth } from "../middlewares/requireAuth";
 
 const router = Router();
 
-// GET /api/users/me — fetch or auto-provision current user
+// GET /api/users/me — fetch current user profile
 router.get("/me", requireAuth, async (req, res) => {
-  const userId = (req as typeof req & { userId: string }).userId;
+  const userId = (req as any).userId;
   try {
     const [user] = await db.select().from(usersTable).where(eq(usersTable.id, userId));
     if (!user) {
@@ -23,14 +22,9 @@ router.get("/me", requireAuth, async (req, res) => {
   }
 });
 
-// POST /api/users/me — create user profile after registration
-router.post("/me", async (req, res) => {
-  const auth = getAuth(req);
-  const userId = (auth?.sessionClaims?.userId as string) || auth?.userId;
-  if (!userId) {
-    res.status(401).json({ error: "Unauthorized" });
-    return;
-  }
+// POST /api/users/me — upsert user profile (called after sign-in/sign-up)
+router.post("/me", requireAuth, async (req, res) => {
+  const userId = (req as any).userId;
   const parsed = insertUserSchema.safeParse({ ...req.body, id: userId });
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.issues });
@@ -55,9 +49,9 @@ router.post("/me", async (req, res) => {
   }
 });
 
-// PATCH /api/users/me — update profile
+// PATCH /api/users/me — update profile fields
 router.patch("/me", requireAuth, async (req, res) => {
-  const userId = (req as typeof req & { userId: string }).userId;
+  const userId = (req as any).userId;
   try {
     const [updated] = await db
       .update(usersTable)
