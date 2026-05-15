@@ -8,11 +8,18 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
+interface UnitLink {
+  label: string;
+  name: string;
+  href: string;
+}
+
 interface SubItem {
   label: string;
   href?: string;
   available: boolean;
   badge?: string;
+  units?: UnitLink[];
 }
 
 interface MenuCategory {
@@ -28,7 +35,19 @@ const resourceMenu: MenuCategory[] = [
     items: [
       { label: "Math 7", available: false },
       { label: "Math 8", available: false },
-      { label: "Math 9", href: "/resources/math-9", available: true },
+      {
+        label: "Math 9", href: "/resources/math-9", available: true,
+        units: [
+          { label: "Unit 1", name: "Rational Numbers", href: "/resources/math-9/unit-1" },
+          { label: "Unit 2", name: "Powers & Exponents", href: "/resources/math-9/unit-2" },
+          { label: "Unit 3", name: "Polynomial Operations", href: "/resources/math-9/unit-3" },
+          { label: "Unit 4", name: "Polygon Geometry", href: "/resources/math-9/unit-4" },
+          { label: "Unit 5", name: "Linear Relations", href: "/resources/math-9/unit-5" },
+          { label: "Unit 6", name: "Equations & Inequalities", href: "/resources/math-9/unit-6" },
+          { label: "Unit 7", name: "Circle Geometry", href: "/resources/math-9/unit-7" },
+          { label: "Unit 8", name: "Data & Probability", href: "/resources/math-9/unit-8" },
+        ],
+      },
       { label: "Math 10C", available: false },
       { label: "Math 20-1", available: false },
     ],
@@ -40,9 +59,33 @@ const resourceMenu: MenuCategory[] = [
       { label: "Science 7", available: false },
       { label: "Science 8", available: false },
       { label: "Science 9", available: false },
-      { label: "Science 10", href: "/resources/science-10", available: true },
-      { label: "Biology 20", href: "/resources/biology-20", available: true },
-      { label: "Biology 30", href: "/resources/biology-30", available: true },
+      {
+        label: "Science 10", href: "/resources/science-10", available: true,
+        units: [
+          { label: "Unit A", name: "Energy & Matter in Chemical Change", href: "/resources/science-10/unit-a" },
+          { label: "Unit B", name: "Energy Flow in Technological Systems", href: "/resources/science-10/unit-b" },
+          { label: "Unit C", name: "Matter Cycling in Living Systems", href: "/resources/science-10/unit-c" },
+          { label: "Unit D", name: "Global Energy Systems", href: "/resources/science-10/unit-d" },
+        ],
+      },
+      {
+        label: "Biology 20", href: "/resources/biology-20", available: true,
+        units: [
+          { label: "Unit A", name: "Energy & Matter", href: "/resources/biology-20/unit-a" },
+          { label: "Unit B", name: "Ecosystems", href: "/resources/biology-20/unit-b" },
+          { label: "Unit C", name: "Photosynthesis & Cellular Respiration", href: "/resources/biology-20/unit-c" },
+          { label: "Unit D", name: "Human Systems", href: "/resources/biology-20/unit-d" },
+        ],
+      },
+      {
+        label: "Biology 30", href: "/resources/biology-30", available: true,
+        units: [
+          { label: "Unit A", name: "Nervous & Endocrine Systems", href: "/resources/biology-30" },
+          { label: "Unit B", name: "Reproduction & Development", href: "/resources/biology-30" },
+          { label: "Unit C", name: "Genetics & Molecular Biology", href: "/resources/biology-30" },
+          { label: "Unit D", name: "Population & Community Dynamics", href: "/resources/biology-30" },
+        ],
+      },
       { label: "Chemistry 20", available: false },
       { label: "Chemistry 30", available: false },
     ],
@@ -91,13 +134,15 @@ const resourceMenu: MenuCategory[] = [
 
 function ResourcesMegaMenu({ onClose }: { onClose: () => void }) {
   const [activeCategory, setActiveCategory] = useState<string>("science");
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const active = resourceMenu.find((c) => c.id === activeCategory)!;
+  const hoveredSubItem = active.items.find((i) => i.label === hoveredItem && i.units);
 
   return (
-    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 z-50 w-[680px] max-w-[calc(100vw-2rem)]">
+    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 z-50 w-[860px] max-w-[calc(100vw-2rem)]">
       <div className="bg-background rounded-xl shadow-2xl border overflow-hidden flex">
-        {/* Left column — categories */}
-        <div className="w-56 bg-muted/50 border-r flex flex-col py-2 shrink-0">
+        {/* Col 1 — categories */}
+        <div className="w-52 bg-muted/50 border-r flex flex-col py-2 shrink-0">
           <Link
             href="/resources"
             onClick={onClose}
@@ -111,8 +156,8 @@ function ResourcesMegaMenu({ onClose }: { onClose: () => void }) {
           {resourceMenu.map((cat) => (
             <button
               key={cat.id}
-              onMouseEnter={() => setActiveCategory(cat.id)}
-              onClick={() => setActiveCategory(cat.id)}
+              onMouseEnter={() => { setActiveCategory(cat.id); setHoveredItem(null); }}
+              onClick={() => { setActiveCategory(cat.id); setHoveredItem(null); }}
               className={`flex items-center justify-between w-full text-left px-4 py-2.5 text-sm font-medium transition-colors mx-0 rounded-none ${
                 activeCategory === cat.id
                   ? "bg-primary/10 text-primary font-semibold"
@@ -126,29 +171,34 @@ function ResourcesMegaMenu({ onClose }: { onClose: () => void }) {
           ))}
         </div>
 
-        {/* Right column — subcategory items */}
-        <div className="flex-1 py-4 px-5">
+        {/* Col 2 — subjects */}
+        <div className={`py-4 px-5 shrink-0 ${hoveredSubItem ? "w-56 border-r" : "flex-1"}`}>
           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 pb-2 border-b">
             {active.label}
           </p>
           <ul className="space-y-1">
             {active.items.map((item, i) => (
-              <li key={i}>
+              <li
+                key={i}
+                onMouseEnter={() => setHoveredItem(item.units ? item.label : null)}
+              >
                 {item.available && item.href ? (
                   <Link
                     href={item.href}
                     onClick={onClose}
-                    className="flex items-center justify-between group px-3 py-2 rounded-lg hover:bg-primary/8 transition-colors"
+                    className={`flex items-center justify-between group px-3 py-2 rounded-lg transition-colors ${
+                      hoveredItem === item.label ? "bg-primary/10" : "hover:bg-primary/8"
+                    }`}
                     data-testid={`megamenu-item-${item.label.toLowerCase().replace(/\s+/g, "-")}`}
                   >
-                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                    <span className={`text-sm font-medium transition-colors ${hoveredItem === item.label ? "text-primary" : "text-foreground group-hover:text-primary"}`}>
                       {item.label}
                     </span>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-primary/10 text-primary">
                         Available
                       </span>
-                      <ChevronRight className="w-3.5 h-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ChevronRight className={`w-3.5 h-3.5 text-primary transition-opacity ${hoveredItem === item.label ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
                     </div>
                   </Link>
                 ) : (
@@ -173,6 +223,43 @@ function ResourcesMegaMenu({ onClose }: { onClose: () => void }) {
             </Link>
           </div>
         </div>
+
+        {/* Col 3 — units panel (slides in when a subject with units is hovered) */}
+        {hoveredSubItem && hoveredSubItem.units && (
+          <div className="flex-1 py-4 px-5 bg-primary/3">
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3 pb-2 border-b">
+              {hoveredSubItem.label} — Units
+            </p>
+            <ul className="space-y-1">
+              {hoveredSubItem.units.map((unit, i) => (
+                <li key={i}>
+                  <Link
+                    href={unit.href}
+                    onClick={onClose}
+                    className="flex items-center gap-3 group px-3 py-2.5 rounded-lg hover:bg-primary/10 transition-colors"
+                  >
+                    <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                      {unit.label}
+                    </span>
+                    <span className="text-sm font-medium text-foreground group-hover:text-primary transition-colors leading-tight">
+                      {unit.name}
+                    </span>
+                    <ChevronRight className="w-3.5 h-3.5 text-primary opacity-0 group-hover:opacity-100 transition-opacity ml-auto shrink-0" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 pt-3 border-t">
+              <Link
+                href={hoveredSubItem.href!}
+                onClick={onClose}
+                className="text-xs font-semibold text-primary hover:underline"
+              >
+                {hoveredSubItem.label} overview →
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
