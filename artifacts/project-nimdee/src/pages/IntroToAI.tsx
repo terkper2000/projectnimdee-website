@@ -1102,6 +1102,172 @@ export default function IntroToAI() {
             </motion.div>
           </section>
 
+          {/* ── AI Careers & Education Paths ── */}
+          <section>
+            <div className="flex items-center gap-4 mb-2">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground whitespace-nowrap">Careers in AI — Education Paths</h2>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            <p className="text-muted-foreground mb-6 text-sm">If you want to build AI — not just use it — here are the actual career paths and how to get there from Alberta.</p>
+            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-4">
+              {[
+                {
+                  role: "Machine Learning Engineer / AI Engineer",
+                  emoji: "🤖",
+                  color: "bg-violet-50 border-violet-200",
+                  salary: "$95,000–$180,000+/yr (Alberta/Canada)",
+                  outlook: "Among the fastest-growing roles globally; high demand in Edmonton/Calgary tech sector",
+                  path: [
+                    "University: BSc Computer Science or Math (U of A, U of C, Waterloo) — strong foundation in linear algebra, calculus, and statistics is essential",
+                    "Online: Coursera Deep Learning Specialization (Andrew Ng) + fast.ai practical course — self-study route taken by many practitioners",
+                    "Portfolio: Build and publish ML projects on GitHub; Kaggle competitions are the standard credential signal",
+                  ],
+                  prereqs: "Math 30-1, start Python now (free on freeCodeCamp or Khan Academy)",
+                },
+                {
+                  role: "Data Scientist / Data Analyst",
+                  emoji: "📊",
+                  color: "bg-teal-50 border-teal-200",
+                  salary: "$70,000–$140,000/yr",
+                  outlook: "Very high demand — every industry (oil & gas, health, finance, retail) needs people who can interpret data",
+                  path: [
+                    "University: BSc Statistics, Math, CS, or Economics with quantitative focus",
+                    "NAIT: IT Analytics programs — practical diploma route into entry-level analyst roles",
+                    "Online: Google Data Analytics Certificate (Coursera, ~6 months) is widely accepted; Python + SQL are the key tools to learn",
+                  ],
+                  prereqs: "Math 30-1 (statistics knowledge is central), Science 10 for context",
+                },
+                {
+                  role: "AI Ethics Researcher / Policy Analyst",
+                  emoji: "⚖️",
+                  color: "bg-amber-50 border-amber-200",
+                  salary: "$60,000–$120,000/yr",
+                  outlook: "Emerging rapidly — governments, companies, and NGOs all hiring as regulation increases",
+                  path: [
+                    "University: BA/BSc Philosophy, Political Science, Law, or Computer Science — interdisciplinary backgrounds valued",
+                    "Graduate: Many AI ethics roles require MA/MSc; Policy schools (U of A, Simon Fraser) are building relevant programs",
+                    "Self-study: Read the EU AI Act, Stanford HAI publications, and the Montreal Declaration on Responsible AI",
+                  ],
+                  prereqs: "Strong writing and critical thinking; Social Studies 30-1 and English 30-1 are directly relevant",
+                },
+                {
+                  role: "Robotics / Automation Engineer",
+                  emoji: "🦾",
+                  color: "bg-blue-50 border-blue-200",
+                  salary: "$75,000–$135,000/yr",
+                  outlook: "Strong demand in Alberta manufacturing, oil & gas automation, and agricultural technology",
+                  path: [
+                    "University: BSc Electrical, Mechanical, or Computer Engineering with robotics electives",
+                    "NAIT/SAIT: Mechatronics Technology — hands-on diploma program combining electronics, programming, and mechanical systems",
+                    "Self-study: Start with Arduino/Raspberry Pi projects; ROS (Robot Operating System) is the industry standard to learn",
+                  ],
+                  prereqs: "Math 30-1, Physics 30; hands-on tinkering experience is a major asset",
+                },
+              ].map((c, i) => (
+                <motion.div key={i} variants={fadeUp} className={`border-2 rounded-2xl p-5 ${c.color}`}>
+                  <div className="flex items-start gap-3 mb-3">
+                    <span className="text-2xl">{c.emoji}</span>
+                    <div>
+                      <h3 className="font-serif font-bold text-base text-foreground">{c.role}</h3>
+                      <div className="flex flex-wrap gap-3 text-xs mt-1">
+                        <span className="text-muted-foreground"><span className="font-bold text-foreground">Salary: </span>{c.salary}</span>
+                        <span className="text-muted-foreground"><span className="font-bold text-foreground">Prereqs: </span>{c.prereqs}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mb-3"><span className="font-bold text-foreground">Alberta outlook: </span>{c.outlook}</p>
+                  <div>
+                    <p className="text-xs font-bold text-foreground uppercase tracking-wider mb-2">Education Paths</p>
+                    <ul className="space-y-1.5">
+                      {c.path.map((p, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs text-foreground">
+                          <span className="w-1.5 h-1.5 rounded-full bg-current opacity-50 shrink-0 mt-1.5" />{p}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+
+          {/* ── How to Use AI as a Study Tool ── */}
+          <section>
+            <div className="flex items-center gap-4 mb-2">
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground whitespace-nowrap">How to Use AI as a Study Tool</h2>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            <p className="text-muted-foreground mb-3 text-sm">
+              AI tools like ChatGPT and Claude can dramatically accelerate your learning — if you use them correctly. The key distinction: use AI to <em>understand</em>, not to <em>avoid understanding</em>.
+            </p>
+            <div className="bg-rose-50 border border-rose-200 rounded-xl p-4 mb-6 flex gap-3">
+              <AlertTriangle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+              <div className="text-sm">
+                <p className="font-bold text-rose-900 mb-1">The over-reliance trap</p>
+                <p className="text-rose-800">If you ask AI to write your essay, solve your math problems, or summarise your readings — you will get the grade but not the education. The skills you practise in school (argumentation, problem-solving, analysis) are the ones employers and universities test for. Offloading them to AI doesn't build them.</p>
+              </div>
+            </div>
+            <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }} className="space-y-5">
+              {[
+                {
+                  subject: "Mathematics",
+                  emoji: "📐",
+                  color: "bg-blue-50 border-blue-200",
+                  prompts: [
+                    { label: "Concept explanation", prompt: `"Explain what a derivative means in plain language, using a real-world example that a Grade 11 student would understand. Don't use jargon."` },
+                    { label: "Step-by-step breakdown", prompt: `"Walk me through how to solve [this problem] step by step. Explain why each step works, not just what to do."` },
+                    { label: "Self-test generator", prompt: `"Give me 5 practice problems on [unit topic] at a Grade 11 difficulty level. Don't give me the answers yet."` },
+                    { label: "Error analysis", prompt: `"I solved this problem and got [my answer], but the answer key says [correct answer]. Where did I go wrong? Show me the exact step."` },
+                  ],
+                  warning: "Don't ask AI to solve problems for you directly — ask it to explain concepts so you can solve the next one yourself.",
+                },
+                {
+                  subject: "Essay Writing (ELA)",
+                  emoji: "✍️",
+                  color: "bg-rose-50 border-rose-200",
+                  prompts: [
+                    { label: "Thesis sharpening", prompt: `"Here is my thesis: [your thesis]. Is this a debatable argument or just a statement of fact? How could I make it more specific and arguable?"` },
+                    { label: "Argument structure feedback", prompt: `"Here is my body paragraph: [paragraph]. Does my evidence actually support my argument? What's the weakest part of my reasoning?"` },
+                    { label: "Editing (not writing)", prompt: `"Read my introduction and identify: (1) what's unclear, (2) where my logic jumps, (3) one specific thing to improve. Don't rewrite it — just diagnose it."` },
+                    { label: "Counterargument generation", prompt: `"My argument is [your argument]. What are the two strongest counterarguments someone could make? I want to address them in my essay."` },
+                  ],
+                  warning: "Never ask AI to write sections of your essay. Ask it to critique what you've written — that's the skill being assessed.",
+                },
+                {
+                  subject: "Science Concepts",
+                  emoji: "🔬",
+                  color: "bg-teal-50 border-teal-200",
+                  prompts: [
+                    { label: "Analogy request", prompt: `"Explain [concept, e.g. osmosis / electron orbitals / natural selection] using an analogy I'd encounter in everyday life. Grade 11 Biology."` },
+                    { label: "Concept connection", prompt: `"How does [concept A] connect to [concept B] in this unit? Draw me a cause-and-effect chain."` },
+                    { label: "Diagram explanation", prompt: `"Describe what's happening at each stage of [process, e.g. cellular respiration / the Krebs cycle] in plain language."` },
+                    { label: "Exam question practice", prompt: `"Write a 4-mark exam question on [topic] in the style of an Alberta Diploma Exam, then give me the marking guide after I answer it."` },
+                  ],
+                  warning: "Always verify AI science explanations against your textbook — LLMs occasionally get details wrong, especially in complex biochemistry or physics.",
+                },
+              ].map((s, i) => (
+                <motion.div key={i} variants={fadeUp} className={`border-2 rounded-2xl p-5 ${s.color}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-xl">{s.emoji}</span>
+                    <h3 className="font-serif font-bold text-base text-foreground">{s.subject}</h3>
+                  </div>
+                  <div className="grid sm:grid-cols-2 gap-3 mb-3">
+                    {s.prompts.map((p, j) => (
+                      <div key={j} className="bg-white/70 rounded-xl p-3 border border-current/10">
+                        <p className="text-xs font-bold text-foreground mb-1.5">{p.label}</p>
+                        <p className="text-xs text-muted-foreground italic leading-relaxed">{p.prompt}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-foreground bg-white/50 rounded-lg p-2.5">
+                    <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                    <span>{s.warning}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </section>
+
           {/* ── Section 9: Ethical Issues ── */}
           <section>
             <div className="flex items-center gap-4 mb-2">
@@ -1133,6 +1299,36 @@ export default function IntroToAI() {
               <p className="text-secondary-foreground/75 text-sm leading-relaxed">
                 Who is responsible when an AI system causes harm? The developer who built it? The company that deployed it? The user who prompted it? The government that failed to regulate it? These questions are being argued in courts and parliaments right now — and the answers will define the digital world you inherit. <span className="font-semibold text-secondary-foreground">Your generation will help decide.</span>
               </p>
+            </motion.div>
+
+            {/* Alberta curriculum connection */}
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="mt-6 bg-teal-50 border-2 border-teal-200 rounded-2xl p-6">
+              <div className="flex items-start gap-3">
+                <span className="text-2xl">🎓</span>
+                <div>
+                  <h3 className="font-serif font-bold text-teal-900 text-lg mb-2">Alberta Curriculum Connection — Science 20 & STS</h3>
+                  <p className="text-sm text-teal-800 leading-relaxed mb-3">
+                    Alberta's Science curriculum includes a dedicated strand called <span className="font-bold">Science, Technology, and Society (STS)</span>. In Science 20, students are expected to examine how technological developments — including AI — affect individuals, communities, and the environment, and to analyse the ethical dimensions of these impacts.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      { outcome: "Science 20 STS Outcome", detail: "Analyse how AI-driven automation affects employment, privacy, and access to information. Consider who benefits and who is harmed by AI deployment decisions." },
+                      { outcome: "Science 30 STS Outcome", detail: "Evaluate the role of scientific evidence in policy decisions. AI in medicine, climate modelling, and surveillance are all active policy debates with a direct STS lens." },
+                      { outcome: "Social Studies 30-1 Connection", detail: "AI concentration of power in a small number of corporations raises questions about democratic governance, national sovereignty, and global inequality that connect directly to Social 30-1 outcomes." },
+                      { outcome: "English 30-1 Connection", detail: "AI-generated disinformation and deepfakes connect to media literacy outcomes — evaluating sources, recognising manipulation, and understanding how language shapes perception." },
+                    ].map((item, i) => (
+                      <div key={i} className="bg-white/60 rounded-xl p-3 border border-teal-100">
+                        <p className="text-xs font-bold text-teal-700 mb-1">{item.outcome}</p>
+                        <p className="text-xs text-teal-900 leading-relaxed">{item.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-teal-700 mt-3">
+                    If your teacher allows topics of your choice for an STS project or essay, AI ethics is one of the richest and most current areas you could choose — with more published research, policy documents, and real-world cases than almost any other technology topic.
+                  </p>
+                </div>
+              </div>
             </motion.div>
           </section>
 
@@ -1233,11 +1429,11 @@ export default function IntroToAI() {
             <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {[
-                { name: "Elements of AI", url: "https://www.elementsofai.com/", tag: "Free Course", desc: "A free online course by the University of Helsinki that teaches AI concepts without requiring any maths background. One of the best starting points available.", color: "teal" },
-                { name: "Google's Teachable Machine", url: "https://teachablemachine.withgoogle.com/", tag: "Hands-On", desc: "Train your own image, sound, or pose recognition model in minutes — in your browser, with your webcam. The fastest way to understand training data and model accuracy.", color: "blue" },
-                { name: "AI4K12 Initiative", url: "https://ai4k12.org/", tag: "For Students", desc: "Curriculum and activities developed specifically for K–12 students covering the five big ideas in AI. Includes interactive exercises for every grade level.", color: "violet" },
-                { name: "3Blue1Brown Neural Network Series", url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi", tag: "YouTube", desc: "The four-video series that is the gold standard for visualising how neural networks work, how they learn, and what attention mechanisms do. Beautiful animations.", color: "amber" },
-                { name: "MIT OpenCourseWare: Deep Learning", url: "https://ocw.mit.edu/", tag: "University Level", desc: "When you're ready for the real thing: MIT's machine learning and deep learning courses, free online. Requires calculus and programming, but they're the real deal.", color: "rose" },
+                { name: "Elements of AI", url: "https://www.elementsofai.com/", tag: "Free Course", desc: "A free online course by the University of Helsinki that teaches AI concepts without requiring any maths background. Earn a verified free certificate on completion. One of the best starting points available.", color: "teal" },
+                { name: "CS50: Introduction to Computer Science", url: "https://cs50.harvard.edu/x/", tag: "Free — Harvard", desc: "Harvard's legendary introductory CS course — completely free online. Covers programming, algorithms, data structures, and AI. One of the most-taken courses in the world. Earns a verified Harvard certificate.", color: "blue" },
+                { name: "fast.ai — Practical Deep Learning", url: "https://course.fast.ai/", tag: "Free — Practitioner", desc: "The fastest route from 'I know Python' to 'I can build real AI models'. Top-down, hands-on approach — you build things before you understand all the theory. Used by thousands of self-taught ML practitioners.", color: "violet" },
+                { name: "Google's Teachable Machine", url: "https://teachablemachine.withgoogle.com/", tag: "Hands-On", desc: "Train your own image, sound, or pose recognition model in minutes — in your browser, with your webcam. The fastest way to understand training data and model accuracy.", color: "amber" },
+                { name: "3Blue1Brown Neural Network Series", url: "https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi", tag: "YouTube", desc: "The four-video series that is the gold standard for visualising how neural networks work, how they learn, and what attention mechanisms do. Beautiful animations.", color: "rose" },
                 { name: "AI Ethics Guidelines (EU AI Act)", url: "https://artificialintelligenceact.eu/", tag: "Policy", desc: "Read the actual regulations. The EU AI Act is the world's first comprehensive AI law — understanding what lawmakers decided is essential for informed AI citizenship.", color: "slate" },
               ].map((r, i) => (
                 <motion.div key={i} variants={fadeUp}>
