@@ -104,7 +104,7 @@ const resourceMenu: MenuCategory[] = [
     id: "ai",
     label: "Think Like a Machine",
     items: [
-      { label: "Intro to AI & How It Works", available: false, badge: "Coming Soon" },
+      { label: "Intro to AI & How It Works", href: "/resources/intro-to-ai", available: true },
       { label: "Machine Learning Basics", available: false },
       { label: "Ethics in AI", available: false },
       { label: "AI in Everyday Life", available: false },
