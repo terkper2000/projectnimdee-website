@@ -194,7 +194,7 @@ export default function Biology20UnitD() {
             >
               <a href="https://www.britannica.com/science/human-digestive-system" target="_blank" rel="noopener noreferrer" className="block">
                 <img
-                  src="/images/human-digestive-system.webp"
+                  src="/images/human-digestive-system.png"
                   alt="Human Digestive System"
                   className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
                   style={{ maxHeight: 520 }}
