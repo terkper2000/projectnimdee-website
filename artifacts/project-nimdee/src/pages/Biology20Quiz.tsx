@@ -323,7 +323,10 @@ const unitColors: Record<FilterUnit, { badge: string; border: string; bg: string
 /* ── Main Component ─────────────────────────────────────────────── */
 
 export default function Biology20Quiz() {
-  const [filter, setFilter] = useState<FilterUnit>("all");
+  const [filter, setFilter] = useState<FilterUnit>(() => {
+    const u = new URLSearchParams(window.location.search).get("unit");
+    return (u && (["A", "B", "C", "D"] as string[]).includes(u)) ? u as FilterUnit : "all";
+  });
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [score, setScore] = useState(0);

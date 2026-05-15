@@ -817,7 +817,10 @@ function shuffleArray<T>(arr: T[]): T[] {
 type FilterUnit = "all" | Unit;
 
 export default function Biology20Flashcards() {
-  const [filter, setFilter] = useState<FilterUnit>("all");
+  const [filter, setFilter] = useState<FilterUnit>(() => {
+    const u = new URLSearchParams(window.location.search).get("unit");
+    return (u && (["A", "B", "C", "D"] as string[]).includes(u)) ? u as FilterUnit : "all";
+  });
   const [deck, setDeck] = useState<Flashcard[]>(allCards);
   const [idx, setIdx] = useState(0);
   const [deckFlipped, setDeckFlipped] = useState(false);

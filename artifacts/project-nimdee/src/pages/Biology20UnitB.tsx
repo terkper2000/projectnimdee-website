@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, ChevronRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
 import { UnitCompleteToggle } from "@/components/UnitCompleteToggle";
 
 const fadeUp = {
@@ -605,6 +605,41 @@ export default function Biology20UnitB() {
           </section>
 
           <UnitCompleteToggle unitId="biology-20-unit-b" />
+
+          {/* Practice & Review */}
+          <section>
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="text-xl font-serif font-bold text-foreground whitespace-nowrap">Practice & Review</h2>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Link href="/resources/biology-20/flashcards?unit=B"
+                className="group relative overflow-hidden rounded-2xl border-2 border-teal-200 bg-teal-50 hover:border-teal-400 hover:shadow-md transition-all duration-200 p-6 flex flex-col gap-2">
+                <div className="flex items-start justify-between">
+                  <span className="text-2xl">🃏</span>
+                  <span className="text-xs font-bold text-teal-700 bg-teal-100 px-2 py-0.5 rounded-full">15 cards</span>
+                </div>
+                <h3 className="text-lg font-serif font-bold text-teal-900 mt-1">Unit B Flashcards</h3>
+                <p className="text-sm text-teal-800/70 leading-relaxed flex-1">15 flip cards covering natural selection, population dynamics, ecosystem organisation, adaptations, and speciation — pre-filtered to Unit B.</p>
+                <span className="text-sm font-bold text-teal-700 group-hover:text-teal-900 flex items-center gap-1 mt-1">
+                  Open Unit B Cards <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+              <Link href="/resources/biology-20/quiz?unit=B"
+                className="group relative overflow-hidden rounded-2xl border-2 border-amber-200 bg-amber-50 hover:border-amber-400 hover:shadow-md transition-all duration-200 p-6 flex flex-col gap-2">
+                <div className="flex items-start justify-between">
+                  <span className="text-2xl">📝</span>
+                  <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full">10 questions</span>
+                </div>
+                <h3 className="text-lg font-serif font-bold text-amber-900 mt-1">Unit B Practice Quiz</h3>
+                <p className="text-sm text-amber-800/70 leading-relaxed flex-1">10 multiple-choice questions on natural selection, evolution, population ecology, and species interactions — pre-filtered to Unit B.</p>
+                <span className="text-sm font-bold text-amber-700 group-hover:text-amber-900 flex items-center gap-1 mt-1">
+                  Start Unit B Quiz <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+              </Link>
+            </motion.div>
+          </section>
 
           {/* Other Units Nav */}
           <section className="border-t pt-10">
