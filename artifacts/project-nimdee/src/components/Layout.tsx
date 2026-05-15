@@ -92,12 +92,12 @@ const resourceMenu: MenuCategory[] = [
   },
   {
     id: "life",
-    label: "Life Science",
+    label: "Life Skills",
     items: [
-      { label: "Study Skills & Habits", available: false },
-      { label: "Growth Mindset", available: false },
-      { label: "Time Management", available: false },
-      { label: "STEM Career Pathways", available: false },
+      { label: "Study Skills & Habits", href: "/resources/life-skills/study-skills", available: true },
+      { label: "Growth Mindset", href: "/resources/life-skills/growth-mindset", available: true },
+      { label: "Time Management", href: "/resources/life-skills/time-management", available: true },
+      { label: "STEM Career Pathways", href: "/resources/life-skills/stem-careers", available: true },
     ],
   },
   {

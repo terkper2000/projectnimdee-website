@@ -33,6 +33,10 @@ import Math9Unit7 from "@/pages/Math9Unit7";
 import Math9Unit8 from "@/pages/Math9Unit8";
 import Math9Quiz from "@/pages/Math9Quiz";
 import IntroToAI from "@/pages/IntroToAI";
+import StudySkills from "@/pages/StudySkills";
+import GrowthMindset from "@/pages/GrowthMindset";
+import TimeManagement from "@/pages/TimeManagement";
+import STEMCareers from "@/pages/STEMCareers";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +69,10 @@ function Router() {
       <Route path="/resources/math-9/unit-8" component={Math9Unit8} />
       <Route path="/resources/math-9" component={Math9} />
       <Route path="/resources/intro-to-ai" component={IntroToAI} />
+      <Route path="/resources/life-skills/study-skills" component={StudySkills} />
+      <Route path="/resources/life-skills/growth-mindset" component={GrowthMindset} />
+      <Route path="/resources/life-skills/time-management" component={TimeManagement} />
+      <Route path="/resources/life-skills/stem-careers" component={STEMCareers} />
       <Route path="/resources" component={Resources} />
       <Route path="/support" component={Support} />
       <Route path="/services" component={Services} />

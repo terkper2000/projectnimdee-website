@@ -779,7 +779,7 @@ export default function IntroToAI() {
               You used AI today. Probably before breakfast. This guide explains what artificial intelligence actually is — how it learns, what agents are, why it matters for your future, and the ethical questions every informed person needs to grapple with.
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
-              {["Grades 7–12", "No prior knowledge needed", "Updated 2025–26"].map(t => (
+              {["Grades 7–12", "No prior knowledge needed", "Updated May 2026"].map(t => (
                 <span key={t} className="bg-white/10 text-secondary-foreground/80 px-3 py-1 rounded-full font-medium">{t}</span>
               ))}
             </div>
