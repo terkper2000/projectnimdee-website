@@ -1,0 +1,111 @@
+Also integrate my existing “Work With Hannah” section into the Additional Services area and user dashboard experience.
+
+I want these services to feel professional, warm, and connected to the broader educational mission of Project Nimdeɛ. These services should not overpower the STEM education mission of the website, but should exist as meaningful personalized support offerings.
+
+Please redesign and improve the Additional Services page using the following content while maintaining the Project Nimdeɛ visual identity and style.
+
+PAGE TITLE:
+Work With Hannah
+
+SUBTITLE:
+Personalized support for students, families, and educators — offered alongside the broader educational mission of Project Nimdeɛ.
+
+Create modern service cards or sections for the following:
+
+1. Academic Tutoring
+One-on-one tutoring support tailored to individual student needs. Focused on building genuine understanding, confidence, and skills in core academic subjects including mathematics and science at the junior and senior high levels.
+
+Tags/Badges:
+- Grades 7–12
+- Math
+- Science
+
+Add a “Contact for Availability” button.
+
+2. STEM Support
+Targeted support for students working through challenging STEM concepts. Sessions are designed to reinforce classroom learning, fill gaps in understanding, and help students approach difficult material with greater confidence.
+
+Tags:
+- Science
+- Technology
+- Engineering
+- Math
+
+Add a “Learn More” or “Request Support” button.
+
+3. Study Coaching
+Developing effective study habits, time management strategies, and organizational systems for students who want to strengthen their approach to learning — not just their subject knowledge.
+
+Tags:
+- Study Skills
+- Organization
+- All Grades
+
+Add a “Book a Consultation” button.
+
+4. Beginner Piano Lessons
+Introductory piano instruction for absolute beginners of all ages. Lessons focus on building foundational technique, reading music, and developing a genuine love of playing — at a pace that works for each student.
+
+Tags:
+- Beginners
+- All Ages
+- Music
+
+Add a “Piano Inquiry” button.
+
+5. Educational Consulting
+Professional consulting for educators, schools, and organizations interested in:
+- curriculum design
+- instructional technology integration
+- AI in education
+- digital learning tools
+- accessible and inclusive learning design
+- STEM programming
+- educational innovation
+
+Tags:
+- Educators
+- Schools
+- Organizations
+
+Add a “Connect About Consulting” button.
+
+Create a final section called:
+Ready to Connect?
+
+Include:
+Contact for availability, scheduling, and additional information about any of these services.
+
+All services are offered on an individual basis and tailored to the specific needs of each student, family, or organization.
+
+Add a prominent “Get in Touch” button linking to the Contact page.
+
+Also connect these services into the user account/dashboard system where appropriate.
+
+For example:
+- students can request tutoring
+- users can save interest in services
+- users can book consultation requests later
+- piano students can access practice resources later
+- tutoring students can eventually access personalized study plans and uploaded materials
+
+Please also add placeholder dashboard cards for:
+- My Tutoring Sessions
+- Saved Study Plans
+- Piano Practice Resources
+- Upcoming Consultations
+- Learning Notes
+
+The dashboard should feel like a personalized educational support hub rather than just a generic login system.
+
+Design Requirements:
+- modern card-based layout
+- warm and professional design
+- subtle animations
+- responsive mobile layout
+- strong typography
+- soft shadows and rounded corners
+- educational but premium feel
+
+The overall feeling should be:
+educational, supportive, thoughtful, organized, modern, and mission-driven.

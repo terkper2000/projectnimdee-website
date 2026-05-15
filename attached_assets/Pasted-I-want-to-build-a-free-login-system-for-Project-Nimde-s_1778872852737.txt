@@ -1,0 +1,177 @@
+I want to build a free login system for Project Nimdeɛ so users can create accounts and access a personalized learning dashboard.
+
+The goal is not to lock all resources behind a login. Most resources should remain free and open. The login should add extra value for students, parents, and future supporters by allowing users to track learning, save resources, and receive personalized study support.
+
+Please build the first version of the login/user account system.
+
+Main features needed:
+
+1. User Registration and Login
+Create pages for:
+- Sign Up
+- Login
+- Logout
+- Forgot Password, if possible
+- User Dashboard
+
+When users register, collect:
+- First name
+- Email
+- Password
+- Role: Student, Parent/Guardian, Educator, Supporter, Other
+- Grade level, optional for students
+- Subject interests: Math, Science, Computer Science, Robotics, Study Skills, Piano/Tutoring
+
+Include a checkbox that says:
+“By creating an account, I agree to receive Project Nimdeɛ updates, learning resources, and educational opportunities by email. I can unsubscribe at any time.”
+
+Also include:
+“Project Nimdeɛ is free to use. Your account helps personalize your learning experience.”
+
+2. Personalized Dashboard
+After login, users should land on a dashboard that says:
+“Welcome back, [Name]”
+
+The dashboard should include cards for:
+- Continue Learning
+- Saved Resources
+- Progress Tracker
+- Recommended Study Materials
+- Upcoming Tools
+- Support the Mission
+
+3. Progress Tracking
+Allow users to track completed resources or lessons.
+
+For now, create a simple progress tracking structure with placeholder subjects:
+- Mathematics
+- Science
+- Computer Science
+- Robotics
+
+Each subject should show:
+- completed items
+- progress percentage
+- recommended next step
+
+4. Saved Resources / Bookmarks
+Allow logged-in users to save or bookmark resources so they can return to them later.
+
+Example:
+“Saved for Later”
+“Difficult Questions”
+“Review Before Test”
+
+5. Personalized Study Plan
+Create a section where students can choose:
+- their grade
+- subject
+- topic they are working on
+- confidence level: low, medium, high
+- upcoming test date, optional
+
+Then generate a simple study plan layout with:
+- what to review first
+- practice suggestions
+- reflection question
+- next step
+
+This can be placeholder logic for now, but design the interface.
+
+6. Learning Reflection Tool
+Add a feature that most websites do not have:
+A “Learning Reflection” section where students answer:
+- What did I learn today?
+- What still feels confusing?
+- What strategy helped me?
+- What do I want to review next?
+
+Save these reflections to the user dashboard.
+
+7. Mistake Tracker
+Add a “Mistake Tracker” feature where students can record questions or topics they got wrong.
+
+Fields:
+- Subject
+- Topic
+- What mistake did I make?
+- Correct strategy
+- Do I need to review this again? Yes/No
+
+This is important because Project Nimdeɛ should help students learn from mistakes, not just complete worksheets.
+
+8. Confidence Tracker
+Add a simple confidence tracker where users rate their confidence in each topic from 1 to 5.
+
+This should help students see growth over time.
+
+9. Achievement Badges
+Add simple free badges for motivation:
+- First Login
+- First Resource Saved
+- First Reflection Completed
+- 3-Day Study Streak
+- Math Progress Badge
+- Science Progress Badge
+- Computer Science Progress Badge
+
+Keep badges educational and not childish.
+
+10. Email List Integration Placeholder
+Create a placeholder for future email newsletter integration.
+
+For now, store whether the user agreed to email updates. Add a note in the code that this can later connect to Mailchimp, ConvertKit, Brevo, or another email service.
+
+11. Privacy and Safety
+Add a simple Privacy Notice page or section explaining:
+- Accounts are used to personalize learning
+- Users can unsubscribe from emails
+- Student information should be protected
+- No payment is required to create an account
+- Donation features are separate from student learning accounts
+
+Because this may include students, design the account system carefully and avoid collecting unnecessary personal information.
+
+12. Navigation Updates
+Update the navbar to include:
+- Home
+- About
+- Resources
+- Support the Mission
+- Additional Services
+- Login
+
+When logged in, show:
+- Dashboard
+- Logout
+
+13. Design Requirements
+The login system and dashboard should match the current Project Nimdeɛ website design:
+- warm
+- modern
+- professional
+- accessible
+- mobile responsive
+- card-based
+- clean spacing
+- readable fonts
+- subtle hover effects
+
+14. Technical Requirements
+Please recommend and implement the simplest secure option for authentication based on the current project setup.
+
+If this is a static website, explain whether I need a backend, Firebase, Supabase, Netlify Identity, or another service.
+
+Do not create a fake insecure login that only stores passwords in localStorage.
+
+If a real backend/auth service is too much right now, build the frontend pages and clearly mark the authentication/data-saving features as placeholders until connected to a secure service.
+
+15. Long-Term Vision
+Build this system so Project Nimdeɛ can eventually become:
+- a free learning platform
+- a STEM resource hub
+- a tutoring support space
+- an AI-supported study tool
+- a future nonprofit education initiative
+
+The login system should feel useful, not restrictive. Users should want to create an account because it helps them learn, reflect, save progress, and access personalized support.
