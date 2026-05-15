@@ -13,7 +13,7 @@ export default defineConfig({
   base: basePath,
   plugins: [
     react(),
-    tailwindcss(),
+    tailwindcss({ optimize: false }),
     ...(isReplit
       ? [
           await import("@replit/vite-plugin-runtime-error-modal").then((m) =>

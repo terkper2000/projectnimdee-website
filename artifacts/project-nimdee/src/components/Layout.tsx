@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown, Search } from "lucide-react";
+import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown, Search, LayoutDashboard, LogOut, LogIn } from "lucide-react";
 import SearchModal from "@/components/SearchModal";
 import { Button } from "@/components/ui/button";
+import { useUser, useClerk, ClerkLoaded } from "@clerk/react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -131,6 +132,100 @@ const resourceMenu: MenuCategory[] = [
     ],
   },
 ];
+
+function MobileAuthLinks() {
+  const { isSignedIn, isLoaded, user } = useUser();
+  const { signOut } = useClerk();
+  if (!isLoaded) return null;
+  if (isSignedIn) {
+    return (
+      <div className="pt-2 pb-1 space-y-1">
+        <Link href="/dashboard"
+          className="flex items-center gap-2 py-2.5 text-base font-medium text-primary"
+          data-testid="link-mobile-nav-dashboard">
+          <LayoutDashboard className="w-4 h-4" /> Dashboard
+        </Link>
+        <button onClick={() => signOut()}
+          className="flex items-center gap-2 py-2.5 text-base font-medium text-muted-foreground w-full text-left">
+          <LogOut className="w-4 h-4" /> Sign out ({user?.firstName ?? user?.primaryEmailAddress?.emailAddress})
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div className="pt-3 pb-1">
+      <Link href="/sign-in"
+        className="flex items-center gap-2 py-2.5 text-base font-semibold text-primary"
+        data-testid="link-mobile-nav-signin">
+        <LogIn className="w-4 h-4" /> Sign in / Create account
+      </Link>
+    </div>
+  );
+}
+
+function AuthNavButtons() {
+  const { isSignedIn, isLoaded } = useUser();
+  if (!isLoaded) return null;
+  if (isSignedIn) return <NavUserMenu />;
+  return (
+    <div className="hidden md:flex items-center gap-2 ml-2">
+      <Button asChild size="sm" variant="outline"
+        className="rounded-full px-4 font-medium border-primary/40 text-primary hover:bg-primary/8"
+        data-testid="button-nav-signin">
+        <Link href="/sign-in"><LogIn className="w-3.5 h-3.5 mr-1.5" />Sign in</Link>
+      </Button>
+    </div>
+  );
+}
+
+function NavUserMenu() {
+  const { user } = useUser();
+  const { signOut } = useClerk();
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    if (open) document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div ref={ref} className="relative">
+      <button onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 transition-all"
+        data-testid="button-nav-user-menu">
+        <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center overflow-hidden shrink-0">
+          {user?.imageUrl
+            ? <img src={user.imageUrl} alt="" className="w-full h-full object-cover" />
+            : <span className="text-xs font-bold text-primary">{(user?.firstName?.[0] ?? user?.primaryEmailAddress?.emailAddress?.[0] ?? "?").toUpperCase()}</span>}
+        </div>
+        <span className="text-sm font-medium text-foreground max-w-[100px] truncate">{user?.firstName ?? "Account"}</span>
+        <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full mt-2 w-52 bg-background border rounded-xl shadow-xl z-50 py-1.5 overflow-hidden">
+          <div className="px-4 py-2.5 border-b">
+            <p className="text-sm font-bold text-foreground truncate">{user?.firstName} {user?.lastName}</p>
+            <p className="text-xs text-muted-foreground truncate">{user?.primaryEmailAddress?.emailAddress}</p>
+          </div>
+          <Link href="/dashboard" onClick={() => setOpen(false)}
+            className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
+            data-testid="link-nav-dashboard">
+            <LayoutDashboard className="w-4 h-4" /> Dashboard
+          </Link>
+          <button onClick={() => signOut()}
+            className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-rose-50 hover:text-rose-600 transition-colors"
+            data-testid="button-nav-signout">
+            <LogOut className="w-4 h-4" /> Sign out
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function ResourcesMegaMenu({ onClose }: { onClose: () => void }) {
   const [activeCategory, setActiveCategory] = useState<string>("science");
@@ -423,7 +518,7 @@ export function Layout({ children }: LayoutProps) {
             ))}
           </nav>
 
-          {/* Right side: search + mobile toggle */}
+          {/* Right side: search + auth + mobile toggle */}
           <div className="flex items-center gap-1">
             <button
               onClick={() => setSearchOpen(true)}
@@ -433,6 +528,10 @@ export function Layout({ children }: LayoutProps) {
             >
               <Search size={20} />
             </button>
+
+            {/* Auth buttons — desktop */}
+            <AuthNavButtons />
+
             <button
               className="md:hidden p-2 text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -530,6 +629,8 @@ export function Layout({ children }: LayoutProps) {
                 {link.label}
               </Link>
             ))}
+            {/* Mobile auth */}
+            <MobileAuthLinks />
           </div>
         )}
       </header>
@@ -580,8 +681,12 @@ export function Layout({ children }: LayoutProps) {
             </Button>
           </div>
         </div>
-        <div className="container mx-auto px-4 md:px-6 mt-12 pt-8 border-t border-secondary-foreground/10 text-center text-secondary-foreground/60 text-sm">
+        <div className="container mx-auto px-4 md:px-6 mt-12 pt-8 border-t border-secondary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-2 text-secondary-foreground/60 text-sm">
           <p>© 2026 Project Nimdeɛ. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Notice</Link>
+            <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+          </div>
         </div>
       </footer>
       <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
