@@ -37,6 +37,7 @@ import StudySkills from "@/pages/StudySkills";
 import GrowthMindset from "@/pages/GrowthMindset";
 import TimeManagement from "@/pages/TimeManagement";
 import STEMCareers from "@/pages/STEMCareers";
+import STEMCareerQuiz from "@/pages/STEMCareerQuiz";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,7 @@ function Router() {
       <Route path="/resources/life-skills/study-skills" component={StudySkills} />
       <Route path="/resources/life-skills/growth-mindset" component={GrowthMindset} />
       <Route path="/resources/life-skills/time-management" component={TimeManagement} />
+      <Route path="/resources/life-skills/stem-careers/quiz" component={STEMCareerQuiz} />
       <Route path="/resources/life-skills/stem-careers" component={STEMCareers} />
       <Route path="/resources" component={Resources} />
       <Route path="/support" component={Support} />

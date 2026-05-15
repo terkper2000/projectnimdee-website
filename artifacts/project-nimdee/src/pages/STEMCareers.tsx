@@ -1,13 +1,14 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
-import { ArrowLeft, ChevronRight, Zap, Globe, ExternalLink } from "lucide-react";
+import { ArrowLeft, ChevronRight, Zap, Globe, ExternalLink, Compass } from "lucide-react";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } } };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 
 const careerAreas = [
   {
+    id: "medicine",
     emoji: "🩺",
     title: "Medicine & Health Sciences",
     color: "bg-rose-50 border-rose-200",
@@ -24,6 +25,7 @@ const careerAreas = [
     prerequisites: "Biology 30, Chemistry 30, Math 30-1",
   },
   {
+    id: "allied",
     emoji: "🏥",
     title: "Allied Health & Medical Technology",
     color: "bg-pink-50 border-pink-200",
@@ -40,6 +42,7 @@ const careerAreas = [
     prerequisites: "Biology 30, Chemistry 20/30, Math 30-1 or 30-2",
   },
   {
+    id: "cs",
     emoji: "💻",
     title: "Computer Science & Software",
     color: "bg-blue-50 border-blue-200",
@@ -56,6 +59,7 @@ const careerAreas = [
     prerequisites: "Math 30-1, Science 10; programming experience is a major advantage",
   },
   {
+    id: "engineering",
     emoji: "⚙️",
     title: "Engineering",
     color: "bg-amber-50 border-amber-200",
@@ -72,6 +76,7 @@ const careerAreas = [
     prerequisites: "Math 30-1, Physics 30, Chemistry 30 (for chemical/bio engineering)",
   },
   {
+    id: "instrumentation",
     emoji: "🔧",
     title: "Instrumentation, Automation & NDT",
     color: "bg-orange-50 border-orange-200",
@@ -88,6 +93,7 @@ const careerAreas = [
     prerequisites: "Math 20-1 or 30-1, Physics 20, Science 10",
   },
   {
+    id: "environmental",
     emoji: "🌿",
     title: "Environmental & Earth Sciences",
     color: "bg-teal-50 border-teal-200",
@@ -104,6 +110,7 @@ const careerAreas = [
     prerequisites: "Biology 20/30, Chemistry 20, Earth Science 30 (recommended)",
   },
   {
+    id: "biosciences",
     emoji: "🔬",
     title: "Biosciences & Bioinformatics",
     color: "bg-violet-50 border-violet-200",
@@ -120,6 +127,7 @@ const careerAreas = [
     prerequisites: "Biology 30, Chemistry 30, Math 30-1; Python or coding experience is a strong asset",
   },
   {
+    id: "drone",
     emoji: "✈️",
     title: "Drone / UAV & Aerospace",
     color: "bg-sky-50 border-sky-200",
@@ -136,6 +144,7 @@ const careerAreas = [
     prerequisites: "Physics 20/30, Math 30-1; Transport Canada RPAS certification is entry point for operators",
   },
   {
+    id: "forensic",
     emoji: "🔍",
     title: "Forensic Science & Laboratory",
     color: "bg-slate-50 border-slate-200",
@@ -152,6 +161,7 @@ const careerAreas = [
     prerequisites: "Biology 30, Chemistry 30, Math 30-1",
   },
   {
+    id: "architecture",
     emoji: "🏗️",
     title: "Architecture & Urban Design",
     color: "bg-red-50 border-red-200",
@@ -168,6 +178,7 @@ const careerAreas = [
     prerequisites: "Math 30-1, Physics 20, Art (recommended); Tinkercad/SketchUp experience is a strong asset",
   },
   {
+    id: "envhealth",
     emoji: "🌍",
     title: "Environmental Health & Public Health",
     color: "bg-green-50 border-green-200",
@@ -184,6 +195,7 @@ const careerAreas = [
     prerequisites: "Biology 30, Chemistry 20, Social Studies 20 (policy understanding)",
   },
   {
+    id: "robotics",
     emoji: "🤖",
     title: "Robotics & Industrial Automation",
     color: "bg-indigo-50 border-indigo-200",
@@ -447,6 +459,24 @@ export default function STEMCareers() {
         </div>
       </div>
 
+      {/* Quiz CTA banner */}
+      <div className="bg-gradient-to-r from-amber-50 to-teal-50 border-b border-amber-200/60">
+        <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-teal-600 flex items-center justify-center flex-shrink-0 shadow-sm">
+              <Compass className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <p className="font-bold text-slate-800 text-base">Not sure which career area fits you?</p>
+              <p className="text-slate-500 text-sm">Take the 9-question quiz and get your top 3 personalised STEM matches.</p>
+            </div>
+          </div>
+          <Link href="/resources/life-skills/stem-careers/quiz" className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-sm transition-colors shadow-sm">
+            Find Your STEM Path <ChevronRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+
       <div className="max-w-5xl mx-auto px-4 py-14 space-y-16">
 
         {/* Why STEM */}
@@ -536,7 +566,7 @@ export default function STEMCareers() {
           <p className="text-muted-foreground mb-8 text-sm">Each area below includes Alberta salary ranges, job outlook (ALIS 2024–2034 data), and specific NAIT/SAIT programs alongside university routes. Click into any that sparks your curiosity.</p>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger} className="space-y-5">
             {careerAreas.map((c) => (
-              <motion.div key={c.title} variants={fadeUp} className={`border-2 rounded-2xl p-6 ${c.color}`}>
+              <motion.div key={c.title} id={c.id} variants={fadeUp} className={`border-2 rounded-2xl p-6 ${c.color}`}>
                 <div className="flex items-start gap-4 mb-4">
                   <span className="text-3xl shrink-0">{c.emoji}</span>
                   <div className="flex-1">
