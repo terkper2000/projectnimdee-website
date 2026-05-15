@@ -165,6 +165,24 @@ export default function Biology20UnitC() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/plant-vs-animal-cell-venn.jpg"
+                alt="Plant Cell vs Animal Cell Venn Diagram"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 420 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Plant Cell vs Animal Cell</strong> — shared structures (ribosomes, ER, plasma membrane, Golgi, mitochondria, nucleus) and structures unique to each cell type
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 2: Photosynthesis */}
@@ -328,6 +346,24 @@ export default function Biology20UnitC() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/light-dependent-independent-reactions.png"
+                alt="Light-Dependent and Light-Independent Reactions (Calvin Cycle)"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 480 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Light-Dependent &amp; Light-Independent Reactions</strong> — light reactions in the thylakoid produce ATP and NADPH; the Calvin cycle in the stroma fixes CO₂ into G3P
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 3: Cellular Respiration */}
@@ -545,6 +581,24 @@ export default function Biology20UnitC() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/cellular-respiration-flowchart.jpg"
+                alt="Cellular Respiration Flowchart — Glycolysis, Krebs Cycle, Electron Transport Chain"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 500 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Cellular Respiration Overview</strong> — C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ~38 ATP via glycolysis (2 ATP), Krebs cycle (2 ATP), and electron transport chain (34 ATP)
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 4: Factors & Applications */}

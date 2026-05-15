@@ -252,6 +252,24 @@ export default function Biology20UnitA() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/energy-transfer-trophic-levels.jpg"
+                alt="Energy Transfer Through the Trophic Levels"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 480 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Energy Transfer Through the Trophic Levels</strong> — approximately 10% of energy is transferred to each successive trophic level
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 2: Biogeochemical Cycles */}
@@ -382,6 +400,61 @@ export default function Biology20UnitA() {
                 </div>
               </motion.div>
             </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <motion.figure
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="rounded-2xl overflow-hidden border shadow-sm md:col-span-2"
+              >
+                <img
+                  src="/images/hydrologic-cycle.jpg"
+                  alt="The Water (Hydrologic) Cycle"
+                  className="w-full object-contain bg-white"
+                  style={{ maxHeight: 400 }}
+                />
+                <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                  <strong>The Hydrologic (Water) Cycle</strong> — evaporation, condensation, precipitation, infiltration, and runoff
+                </figcaption>
+              </motion.figure>
+              <motion.figure
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="rounded-2xl overflow-hidden border shadow-sm"
+              >
+                <img
+                  src="/images/greenhouse-effect.webp"
+                  alt="The Greenhouse Effect"
+                  className="w-full object-contain bg-white"
+                  style={{ maxHeight: 400 }}
+                />
+                <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                  <strong>The Greenhouse Effect</strong> — greenhouse gases trap outgoing infrared radiation
+                </figcaption>
+              </motion.figure>
+            </div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/biogeochemical-cycles.png"
+                alt="Carbon, Nitrogen, Phosphorus and Sulphur Cycles"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 500 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Biogeochemical Cycles</strong> — Carbon, Nitrogen, Phosphorus, and Sulphur Cycles overview
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 3: Human Impacts & Biomagnification */}
@@ -463,6 +536,24 @@ export default function Biology20UnitA() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/bioaccumulation-biomagnification.png"
+                alt="Bioaccumulation vs Biomagnification"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 480 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Bioaccumulation vs Biomagnification</strong> — toxins concentrate within individual organisms (bioaccumulation) and increase across trophic levels (biomagnification)
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 4: Indigenous Knowledge */}

@@ -184,6 +184,24 @@ export default function Biology20UnitD() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/human-digestive-system.webp"
+                alt="Human Digestive System"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 520 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Human Digestive System</strong> — tongue, pharynx, esophagus, stomach, liver, gallbladder, pancreas, small and large intestine
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 2: Enzyme Action & Inhibition */}
@@ -300,6 +318,24 @@ export default function Biology20UnitD() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/respiratory-system.jpg"
+                alt="The Respiratory System"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 480 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>The Respiratory System</strong> — nasal cavity, pharynx, larynx, trachea, bronchi, bronchioles, alveoli, diaphragm, and lung lobes
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 4: Circulatory System */}
@@ -436,6 +472,24 @@ export default function Biology20UnitD() {
                 </Card>
               </motion.div>
             </motion.div>
+
+            <motion.figure
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl overflow-hidden border shadow-sm"
+            >
+              <img
+                src="/images/heart-diagram-blood-flow.gif"
+                alt="Heart Diagram — Blood Flow Through the Heart"
+                className="w-full object-contain bg-white"
+                style={{ maxHeight: 480 }}
+              />
+              <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                <strong>Heart Diagram — Blood Flow</strong> — pulmonary circuit (right side → lungs → left side) and systemic circuit (left side → body → right side)
+              </figcaption>
+            </motion.figure>
           </section>
 
           {/* Section 5: Immune System */}
@@ -678,6 +732,58 @@ export default function Biology20UnitD() {
                 </motion.div>
               ))}
             </motion.div>
+          </section>
+
+          {/* Video Resources */}
+          <section>
+            <div className="flex items-center gap-4 mb-6">
+              <h2 className="text-xl font-serif font-bold text-foreground">Video Resources</h2>
+              <div className="flex-1 h-px bg-border" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="rounded-2xl overflow-hidden border shadow-sm">
+                  <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/o0-1OknbO3M"
+                      title="Biology 20 Unit D Video 1"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <p className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                    Circulatory System — Heart Function &amp; Blood Flow
+                  </p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+              >
+                <div className="rounded-2xl overflow-hidden border shadow-sm">
+                  <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+                    <iframe
+                      src="https://www.youtube.com/embed/FN3MFhYPWWo"
+                      title="Biology 20 Unit D Video 2"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full"
+                    />
+                  </div>
+                  <p className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
+                    Human Body Systems — Integration &amp; Homeostasis
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </section>
 
           <UnitCompleteToggle unitId="biology-20-unit-d" />
