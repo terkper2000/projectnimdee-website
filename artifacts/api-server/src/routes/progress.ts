@@ -5,11 +5,11 @@ import { eq, and } from "drizzle-orm";
 import { requireAuth } from "../middlewares/requireAuth";
 
 const router = Router();
-type AuthReq = typeof router extends Router ? any : never;
 
 // GET /api/progress — get all progress for current user
 router.get("/", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(progressTable).where(eq(progressTable.userId, userId));
     res.json(rows);
@@ -21,7 +21,8 @@ router.get("/", requireAuth, async (req, res) => {
 
 // POST /api/progress — mark a topic complete
 router.post("/", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertProgressSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -35,7 +36,8 @@ router.post("/", requireAuth, async (req, res) => {
 
 // PATCH /api/progress/:id — update (e.g. mark complete)
 router.patch("/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const [row] = await db
       .update(progressTable)
@@ -51,7 +53,8 @@ router.patch("/:id", requireAuth, async (req, res) => {
 
 // DELETE /api/progress/:id
 router.delete("/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     await db.delete(progressTable)
       .where(and(eq(progressTable.id, Number(req.params.id)), eq(progressTable.userId, userId)));
@@ -64,7 +67,8 @@ router.delete("/:id", requireAuth, async (req, res) => {
 
 // GET /api/progress/saved — get saved resources
 router.get("/saved", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(savedResourcesTable).where(eq(savedResourcesTable.userId, userId));
     res.json(rows);
@@ -76,7 +80,8 @@ router.get("/saved", requireAuth, async (req, res) => {
 
 // POST /api/progress/saved — bookmark a resource
 router.post("/saved", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertSavedResourceSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -90,7 +95,8 @@ router.post("/saved", requireAuth, async (req, res) => {
 
 // DELETE /api/progress/saved/:id
 router.delete("/saved/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     await db.delete(savedResourcesTable)
       .where(and(eq(savedResourcesTable.id, Number(req.params.id)), eq(savedResourcesTable.userId, userId)));

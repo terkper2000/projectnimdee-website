@@ -14,7 +14,8 @@ const router = Router();
 
 // ── Reflections ──────────────────────────────────────────────────────
 router.get("/reflections", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(reflectionsTable)
       .where(eq(reflectionsTable.userId, userId))
@@ -24,7 +25,8 @@ router.get("/reflections", requireAuth, async (req, res) => {
 });
 
 router.post("/reflections", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertReflectionSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -34,7 +36,8 @@ router.post("/reflections", requireAuth, async (req, res) => {
 });
 
 router.delete("/reflections/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     await db.delete(reflectionsTable)
       .where(and(eq(reflectionsTable.id, Number(req.params.id)), eq(reflectionsTable.userId, userId)));
@@ -44,7 +47,8 @@ router.delete("/reflections/:id", requireAuth, async (req, res) => {
 
 // ── Mistakes ─────────────────────────────────────────────────────────
 router.get("/mistakes", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(mistakesTable)
       .where(eq(mistakesTable.userId, userId))
@@ -54,7 +58,8 @@ router.get("/mistakes", requireAuth, async (req, res) => {
 });
 
 router.post("/mistakes", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertMistakeSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -64,7 +69,8 @@ router.post("/mistakes", requireAuth, async (req, res) => {
 });
 
 router.patch("/mistakes/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const [row] = await db.update(mistakesTable).set(req.body)
       .where(and(eq(mistakesTable.id, Number(req.params.id)), eq(mistakesTable.userId, userId)))
@@ -74,7 +80,8 @@ router.patch("/mistakes/:id", requireAuth, async (req, res) => {
 });
 
 router.delete("/mistakes/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     await db.delete(mistakesTable)
       .where(and(eq(mistakesTable.id, Number(req.params.id)), eq(mistakesTable.userId, userId)));
@@ -84,7 +91,8 @@ router.delete("/mistakes/:id", requireAuth, async (req, res) => {
 
 // ── Confidence ───────────────────────────────────────────────────────
 router.get("/confidence", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(confidenceTable)
       .where(eq(confidenceTable.userId, userId))
@@ -94,7 +102,8 @@ router.get("/confidence", requireAuth, async (req, res) => {
 });
 
 router.post("/confidence", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertConfidenceSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -105,7 +114,8 @@ router.post("/confidence", requireAuth, async (req, res) => {
 
 // ── Badges ───────────────────────────────────────────────────────────
 router.get("/badges", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(badgesTable).where(eq(badgesTable.userId, userId));
     res.json(rows);
@@ -113,7 +123,8 @@ router.get("/badges", requireAuth, async (req, res) => {
 });
 
 router.post("/badges", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertBadgeSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -128,7 +139,8 @@ router.post("/badges", requireAuth, async (req, res) => {
 
 // ── Study Plans ──────────────────────────────────────────────────────
 router.get("/study-plans", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     const rows = await db.select().from(studyPlansTable)
       .where(eq(studyPlansTable.userId, userId))
@@ -138,7 +150,8 @@ router.get("/study-plans", requireAuth, async (req, res) => {
 });
 
 router.post("/study-plans", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   const parsed = insertStudyPlanSchema.safeParse({ ...req.body, userId });
   if (!parsed.success) { res.status(400).json({ error: parsed.error.issues }); return; }
   try {
@@ -148,7 +161,8 @@ router.post("/study-plans", requireAuth, async (req, res) => {
 });
 
 router.delete("/study-plans/:id", requireAuth, async (req, res) => {
-  const userId = (req as any).userId;
+  if (!req.isAuthenticated()) { res.status(401).json({ error: "Unauthorized" }); return; }
+  const userId = req.user.id;
   try {
     await db.delete(studyPlansTable)
       .where(and(eq(studyPlansTable.id, Number(req.params.id)), eq(studyPlansTable.userId, userId)));

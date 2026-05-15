@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
-import { ClerkProvider, SignIn, SignUp, Show, useClerk } from "@clerk/react";
-import { Switch, Route, useLocation, Router as WouterRouter, Redirect } from "wouter";
-import { QueryClient, QueryClientProvider, useQueryClient } from "@tanstack/react-query";
+import { Switch, Route, Router as WouterRouter, Redirect } from "wouter";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useAuth } from "@workspace/replit-auth-web";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -46,139 +45,16 @@ import Privacy from "@/pages/Privacy";
 
 const queryClient = new QueryClient();
 
-const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY as string | undefined;
-const clerkProxyUrl = import.meta.env.VITE_CLERK_PROXY_URL as string | undefined;
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
 
-function stripBase(path: string): string {
-  return basePath && path.startsWith(basePath)
-    ? path.slice(basePath.length) || "/"
-    : path;
-}
-
-const clerkAppearance = {
-  cssLayerName: "clerk" as const,
-  variables: {
-    colorPrimary: "hsl(35, 90%, 45%)",
-    colorForeground: "hsl(180, 50%, 15%)",
-    colorMutedForeground: "hsl(180, 30%, 40%)",
-    colorDanger: "hsl(0, 72%, 51%)",
-    colorBackground: "hsl(40, 33%, 98%)",
-    colorInput: "hsl(40, 20%, 85%)",
-    colorInputForeground: "hsl(180, 50%, 15%)",
-    colorNeutral: "hsl(40, 20%, 90%)",
-    fontFamily: "'Plus Jakarta Sans', sans-serif",
-    borderRadius: "0.75rem",
-  },
-  elements: {
-    rootBox: "w-full flex justify-center",
-    cardBox:
-      "bg-white rounded-2xl w-[440px] max-w-full overflow-hidden shadow-lg border border-[hsl(40,20%,90%)]",
-    card: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    footer: "!shadow-none !border-0 !bg-transparent !rounded-none",
-    headerTitle: "font-serif text-[hsl(180,50%,15%)] text-xl font-bold",
-    headerSubtitle: "text-[hsl(180,30%,40%)] text-sm",
-    socialButtonsBlockButtonText:
-      "text-[hsl(180,50%,15%)] font-medium text-sm",
-    formFieldLabel: "text-[hsl(180,50%,15%)] text-sm font-medium",
-    footerActionLink:
-      "text-[hsl(35,90%,45%)] font-semibold hover:text-[hsl(35,90%,35%)]",
-    footerActionText: "text-[hsl(180,30%,40%)] text-sm",
-    dividerText: "text-[hsl(180,30%,40%)] text-xs",
-    identityPreviewEditButton: "text-[hsl(35,90%,45%)]",
-    formFieldSuccessText: "text-green-600 text-xs",
-    alertText: "text-sm",
-    socialButtonsBlockButton:
-      "border border-[hsl(40,20%,90%)] hover:bg-[hsl(40,33%,96%)] transition-colors",
-    formButtonPrimary:
-      "bg-[hsl(35,90%,45%)] hover:bg-[hsl(35,90%,38%)] text-white font-semibold rounded-xl transition-colors",
-    formFieldInput:
-      "border border-[hsl(40,20%,85%)] bg-white text-[hsl(180,50%,15%)] rounded-lg text-sm focus:ring-2 focus:ring-[hsl(35,90%,45%)] focus:border-transparent",
-    footerAction: "bg-[hsl(40,33%,96%)] border-t border-[hsl(40,20%,90%)]",
-    dividerLine: "bg-[hsl(40,20%,90%)]",
-    alert: "border rounded-lg",
-    otpCodeFieldInput: "border border-[hsl(40,20%,85%)] rounded-lg",
-    main: "px-6 py-4",
-  },
-};
-
-function SignInPage() {
-  return (
-    <div className="flex min-h-[100dvh] items-center justify-center bg-gradient-to-br from-teal-50 to-amber-50 px-4 py-12">
-      <div className="w-full max-w-md">
-        {!clerkPubKey && (
-          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl text-center">
-            <p className="text-sm text-amber-800 font-medium">
-              Authentication is not yet configured. Please add your Clerk publishable key to enable sign-in.
-            </p>
-          </div>
-        )}
-        <p className="text-center text-sm text-muted-foreground mb-6">
-          Project Nimdeɛ is free to use. Your account personalizes your learning experience.
-        </p>
-        {clerkPubKey && (
-          <SignIn
-            routing="path"
-            path={`${basePath}/sign-in`}
-            signUpUrl={`${basePath}/sign-up`}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-function SignUpPage() {
-  return (
-    <div className="flex min-h-[100dvh] items-center justify-center bg-gradient-to-br from-teal-50 to-amber-50 px-4 py-12">
-      <div className="w-full max-w-md">
-        {!clerkPubKey && (
-          <div className="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-xl text-center">
-            <p className="text-sm text-amber-800 font-medium">
-              Authentication is not yet configured. Please add your Clerk publishable key to enable sign-up.
-            </p>
-          </div>
-        )}
-        <p className="text-center text-sm text-muted-foreground mb-6">
-          Project Nimdeɛ is free to use. Your account personalizes your learning experience.
-        </p>
-        {clerkPubKey && (
-          <SignUp
-            routing="path"
-            path={`${basePath}/sign-up`}
-            signInUrl={`${basePath}/sign-in`}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
 function DashboardRoute() {
-  if (!clerkPubKey) {
-    return <Redirect to="/" />;
+  const { isAuthenticated, isLoading, login } = useAuth();
+  if (isLoading) return null;
+  if (!isAuthenticated) {
+    login();
+    return null;
   }
-  return (
-    <>
-      <Show when="signed-in"><Dashboard /></Show>
-      <Show when="signed-out"><Redirect to="/sign-in" /></Show>
-    </>
-  );
-}
-
-function ClerkQueryClientCacheInvalidator() {
-  const { addListener } = useClerk();
-  const qc = useQueryClient();
-  const prevRef = useRef<string | null | undefined>(undefined);
-  useEffect(() => {
-    const unsub = addListener(({ user }: any) => {
-      const id = user?.id ?? null;
-      if (prevRef.current !== undefined && prevRef.current !== id) qc.clear();
-      prevRef.current = id;
-    });
-    return unsub;
-  }, [addListener, qc]);
-  return null;
+  return <Dashboard />;
 }
 
 function Router() {
@@ -186,8 +62,6 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/about" component={About} />
-      <Route path="/sign-in/*?" component={SignInPage} />
-      <Route path="/sign-up/*?" component={SignUpPage} />
       <Route path="/dashboard" component={DashboardRoute} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/resources/science-10/unit-a" component={Science10UnitA} />
@@ -228,50 +102,15 @@ function Router() {
   );
 }
 
-function AppInner() {
-  const [, setLocation] = useLocation();
-
+function App() {
   return (
-    <ClerkProvider
-      publishableKey={clerkPubKey ?? "pk_test_placeholder"}
-      proxyUrl={clerkProxyUrl}
-      appearance={clerkAppearance}
-      signInUrl={`${basePath}/sign-in`}
-      signUpUrl={`${basePath}/sign-up`}
-      localization={{
-        signIn: {
-          start: {
-            title: "Welcome back",
-            subtitle: "Sign in to your Project Nimdeɛ account",
-          },
-        },
-        signUp: {
-          start: {
-            title: "Create your account",
-            subtitle: "Free forever. Personalized for you.",
-          },
-        },
-      }}
-      routerPush={(to) => setLocation(stripBase(to))}
-      routerReplace={(to) =>
-        setLocation(stripBase(to), { replace: true })
-      }
-    >
+    <WouterRouter base={basePath}>
       <QueryClientProvider client={queryClient}>
-        {clerkPubKey && <ClerkQueryClientCacheInvalidator />}
         <TooltipProvider>
           <Router />
           <Toaster />
         </TooltipProvider>
       </QueryClientProvider>
-    </ClerkProvider>
-  );
-}
-
-function App() {
-  return (
-    <WouterRouter base={basePath}>
-      <AppInner />
     </WouterRouter>
   );
 }

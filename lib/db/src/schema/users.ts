@@ -5,10 +5,11 @@ import { z } from "zod/v4";
 export const roleEnum = pgEnum("user_role", ["student", "parent", "educator", "supporter", "other"]);
 
 export const usersTable = pgTable("users", {
-  id: text("id").primaryKey(), // Clerk user ID
-  email: text("email").notNull().unique(),
-  firstName: text("first_name").notNull(),
+  id: text("id").primaryKey(),
+  email: text("email").unique(),
+  firstName: text("first_name"),
   lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
   role: roleEnum("role").notNull().default("student"),
   gradeLevel: text("grade_level"),
   subjectInterests: text("subject_interests").array().default([]),

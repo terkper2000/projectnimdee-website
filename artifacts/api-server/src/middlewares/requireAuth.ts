@@ -1,13 +1,9 @@
-import { getAuth } from "@clerk/express";
 import type { Request, Response, NextFunction } from "express";
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
-  const auth = getAuth(req);
-  const userId = (auth?.sessionClaims?.userId as string) || auth?.userId;
-  if (!userId) {
+  if (!req.isAuthenticated()) {
     res.status(401).json({ error: "Unauthorized" });
     return;
   }
-  (req as Request & { userId: string }).userId = userId;
   next();
 }
