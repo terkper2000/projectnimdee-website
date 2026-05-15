@@ -192,14 +192,18 @@ export default function Biology20UnitD() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/human-digestive-system.webp"
-                alt="Human Digestive System"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 520 }}
-              />
+              <a href="https://www.britannica.com/science/human-digestive-system" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/human-digestive-system.webp"
+                  alt="Human Digestive System"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 520 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Human Digestive System</strong> — tongue, pharynx, esophagus, stomach, liver, gallbladder, pancreas, small and large intestine
+                <br />
+                <a href="https://www.britannica.com/science/human-digestive-system" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: britannica.com</a>
               </figcaption>
             </motion.figure>
           </section>
@@ -326,14 +330,18 @@ export default function Biology20UnitD() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/respiratory-system.jpg"
-                alt="The Respiratory System"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 480 }}
-              />
+              <a href="https://biologydictionary.net/respiratory-system-fun-facts/" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/respiratory-system.jpg"
+                  alt="The Respiratory System"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 480 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>The Respiratory System</strong> — nasal cavity, pharynx, larynx, trachea, bronchi, bronchioles, alveoli, diaphragm, and lung lobes
+                <br />
+                <a href="https://biologydictionary.net/respiratory-system-fun-facts/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: biologydictionary.net</a>
               </figcaption>
             </motion.figure>
           </section>
@@ -480,14 +488,18 @@ export default function Biology20UnitD() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/heart-diagram-blood-flow.gif"
-                alt="Heart Diagram — Blood Flow Through the Heart"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 480 }}
-              />
+              <a href="https://www.factmonster.com/dk/encyclopedia/science/circulatory-system" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/heart-diagram-blood-flow.gif"
+                  alt="Heart Diagram — Blood Flow Through the Heart"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 480 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Heart Diagram — Blood Flow</strong> — pulmonary circuit (right side → lungs → left side) and systemic circuit (left side → body → right side)
+                <br />
+                <a href="https://www.factmonster.com/dk/encyclopedia/science/circulatory-system" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: factmonster.com</a>
               </figcaption>
             </motion.figure>
           </section>

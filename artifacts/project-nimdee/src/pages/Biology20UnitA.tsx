@@ -260,14 +260,18 @@ export default function Biology20UnitA() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/energy-transfer-trophic-levels.jpg"
-                alt="Energy Transfer Through the Trophic Levels"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 480 }}
-              />
+              <a href="https://mammothmemory.net/biology/organisms-and-their-environment/ecosystems-organisms-and-their-environment/energy-flow.html" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/energy-transfer-trophic-levels.jpg"
+                  alt="Energy Transfer Through the Trophic Levels"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 480 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Energy Transfer Through the Trophic Levels</strong> — approximately 10% of energy is transferred to each successive trophic level
+                <br />
+                <a href="https://mammothmemory.net/biology/organisms-and-their-environment/ecosystems-organisms-and-their-environment/energy-flow.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: mammothmemory.net</a>
               </figcaption>
             </motion.figure>
           </section>
@@ -409,14 +413,18 @@ export default function Biology20UnitA() {
                 transition={{ duration: 0.6 }}
                 className="rounded-2xl overflow-hidden border shadow-sm md:col-span-2"
               >
-                <img
-                  src="/images/hydrologic-cycle.jpg"
-                  alt="The Water (Hydrologic) Cycle"
-                  className="w-full object-contain bg-white"
-                  style={{ maxHeight: 400 }}
-                />
+                <a href="https://bio.libretexts.org/Courses/CT_State_Northwestern/General_Ecology_Ecology/Chapter_2%3A_The_Physical_Environment/2.2%3A_Water_%28Hydrologic%29_Cycle" target="_blank" rel="noopener noreferrer" className="block">
+                  <img
+                    src="/images/hydrologic-cycle.jpg"
+                    alt="The Water (Hydrologic) Cycle"
+                    className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                    style={{ maxHeight: 400 }}
+                  />
+                </a>
                 <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                   <strong>The Hydrologic (Water) Cycle</strong> — evaporation, condensation, precipitation, infiltration, and runoff
+                  <br />
+                  <a href="https://bio.libretexts.org/Courses/CT_State_Northwestern/General_Ecology_Ecology/Chapter_2%3A_The_Physical_Environment/2.2%3A_Water_%28Hydrologic%29_Cycle" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: bio.libretexts.org</a>
                 </figcaption>
               </motion.figure>
               <motion.figure
@@ -426,14 +434,18 @@ export default function Biology20UnitA() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="rounded-2xl overflow-hidden border shadow-sm"
               >
-                <img
-                  src="/images/greenhouse-effect.webp"
-                  alt="The Greenhouse Effect"
-                  className="w-full object-contain bg-white"
-                  style={{ maxHeight: 400 }}
-                />
+                <a href="https://www.shalom-education.com/courses/gcsechemistry/lessons/earths-and-atmospheric-science/topic/the-greenhouse-effect/" target="_blank" rel="noopener noreferrer" className="block">
+                  <img
+                    src="/images/greenhouse-effect.webp"
+                    alt="The Greenhouse Effect"
+                    className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                    style={{ maxHeight: 400 }}
+                  />
+                </a>
                 <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                   <strong>The Greenhouse Effect</strong> — greenhouse gases trap outgoing infrared radiation
+                  <br />
+                  <a href="https://www.shalom-education.com/courses/gcsechemistry/lessons/earths-and-atmospheric-science/topic/the-greenhouse-effect/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: shalom-education.com</a>
                 </figcaption>
               </motion.figure>
             </div>
@@ -445,14 +457,18 @@ export default function Biology20UnitA() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/biogeochemical-cycles.png"
-                alt="Carbon, Nitrogen, Phosphorus and Sulphur Cycles"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 500 }}
-              />
+              <a href="https://launchpadeducation.in/carbon-cycle-nitrogen-cycle-phosphorus-and-sulphur-cycle/" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/biogeochemical-cycles.png"
+                  alt="Carbon, Nitrogen, Phosphorus and Sulphur Cycles"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 500 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Biogeochemical Cycles</strong> — Carbon, Nitrogen, Phosphorus, and Sulphur Cycles overview
+                <br />
+                <a href="https://launchpadeducation.in/carbon-cycle-nitrogen-cycle-phosphorus-and-sulphur-cycle/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: launchpadeducation.in</a>
               </figcaption>
             </motion.figure>
           </section>
@@ -544,14 +560,18 @@ export default function Biology20UnitA() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/bioaccumulation-biomagnification.png"
-                alt="Bioaccumulation vs Biomagnification"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 480 }}
-              />
+              <a href="https://mammothmemory.net/biology/organisms-and-their-environment/ecosystems-organisms-and-their-environment/energy-flow.html" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/bioaccumulation-biomagnification.png"
+                  alt="Bioaccumulation vs Biomagnification"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 480 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Bioaccumulation vs Biomagnification</strong> — toxins concentrate within individual organisms (bioaccumulation) and increase across trophic levels (biomagnification)
+                <br />
+                <a href="https://mammothmemory.net/biology/organisms-and-their-environment/ecosystems-organisms-and-their-environment/energy-flow.html" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: mammothmemory.net</a>
               </figcaption>
             </motion.figure>
           </section>

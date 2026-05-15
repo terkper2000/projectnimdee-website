@@ -294,14 +294,18 @@ export default function Biology20UnitB() {
               transition={{ duration: 0.6 }}
               className="rounded-2xl overflow-hidden border shadow-sm"
             >
-              <img
-                src="/images/ecological-levels-hierarchy.png"
-                alt="Ecological Levels of Organisation"
-                className="w-full object-contain bg-white"
-                style={{ maxHeight: 500 }}
-              />
+              <a href="https://kaiserscience.wordpress.com/biology-the-living-environment/ecology/population-community-ecosystem-biosphere/" target="_blank" rel="noopener noreferrer" className="block">
+                <img
+                  src="/images/ecological-levels-hierarchy.png"
+                  alt="Ecological Levels of Organisation"
+                  className="w-full object-contain bg-white hover:opacity-90 transition-opacity"
+                  style={{ maxHeight: 500 }}
+                />
+              </a>
               <figcaption className="px-5 py-3 text-xs text-center text-muted-foreground border-t">
                 <strong>Ecological Levels of Organisation</strong> — from atoms and molecules up through cells, tissues, organs, organisms, populations, communities, ecosystems, and the biosphere
+                <br />
+                <a href="https://kaiserscience.wordpress.com/biology-the-living-environment/ecology/population-community-ecosystem-biosphere/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium mt-1 inline-block">Source: kaiserscience.wordpress.com</a>
               </figcaption>
             </motion.figure>
           </section>
