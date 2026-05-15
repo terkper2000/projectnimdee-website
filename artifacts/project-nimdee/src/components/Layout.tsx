@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X, Twitter, Instagram, Linkedin, Youtube, ChevronRight, ChevronDown, Search, LayoutDashboard, LogOut, LogIn } from "lucide-react";
 import SearchModal from "@/components/SearchModal";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@workspace/replit-auth-web";
+import { useUser, useClerk, ClerkLoaded } from "@clerk/react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -134,9 +134,10 @@ const resourceMenu: MenuCategory[] = [
 ];
 
 function MobileAuthLinks() {
-  const { isAuthenticated, isLoading, user, login, logout } = useAuth();
-  if (isLoading) return null;
-  if (isAuthenticated) {
+  const { isSignedIn, isLoaded, user } = useUser();
+  const { signOut } = useClerk();
+  if (!isLoaded) return null;
+  if (isSignedIn) {
     return (
       <div className="pt-2 pb-1 space-y-1">
         <Link href="/dashboard"
@@ -144,42 +145,42 @@ function MobileAuthLinks() {
           data-testid="link-mobile-nav-dashboard">
           <LayoutDashboard className="w-4 h-4" /> Dashboard
         </Link>
-        <button onClick={logout}
+        <button onClick={() => signOut()}
           className="flex items-center gap-2 py-2.5 text-base font-medium text-muted-foreground w-full text-left">
-          <LogOut className="w-4 h-4" /> Sign out ({user?.firstName ?? user?.email})
+          <LogOut className="w-4 h-4" /> Sign out ({user?.firstName ?? user?.primaryEmailAddress?.emailAddress})
         </button>
       </div>
     );
   }
   return (
     <div className="pt-3 pb-1">
-      <button onClick={login}
+      <Link href="/sign-in"
         className="flex items-center gap-2 py-2.5 text-base font-semibold text-primary"
         data-testid="link-mobile-nav-signin">
         <LogIn className="w-4 h-4" /> Sign in / Create account
-      </button>
+      </Link>
     </div>
   );
 }
 
 function AuthNavButtons() {
-  const { isAuthenticated, isLoading } = useAuth();
-  if (isLoading) return null;
-  if (isAuthenticated) return <NavUserMenu />;
+  const { isSignedIn, isLoaded } = useUser();
+  if (!isLoaded) return null;
+  if (isSignedIn) return <NavUserMenu />;
   return (
     <div className="hidden md:flex items-center gap-2 ml-2">
-      <Button size="sm" variant="outline"
+      <Button asChild size="sm" variant="outline"
         className="rounded-full px-4 font-medium border-primary/40 text-primary hover:bg-primary/8"
-        data-testid="button-nav-signin"
-        onClick={() => { window.location.href = "/api/login"; }}>
-        <LogIn className="w-3.5 h-3.5 mr-1.5" />Sign in
+        data-testid="button-nav-signin">
+        <Link href="/sign-in"><LogIn className="w-3.5 h-3.5 mr-1.5" />Sign in</Link>
       </Button>
     </div>
   );
 }
 
 function NavUserMenu() {
-  const { user, logout } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -197,9 +198,9 @@ function NavUserMenu() {
         className="flex items-center gap-2 pl-1 pr-3 py-1.5 rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 transition-all"
         data-testid="button-nav-user-menu">
         <div className="w-7 h-7 rounded-full bg-primary/15 flex items-center justify-center overflow-hidden shrink-0">
-          {user?.profileImageUrl
-            ? <img src={user.profileImageUrl} alt="" className="w-full h-full object-cover" />
-            : <span className="text-xs font-bold text-primary">{(user?.firstName?.[0] ?? user?.email?.[0] ?? "?").toUpperCase()}</span>}
+          {user?.imageUrl
+            ? <img src={user.imageUrl} alt="" className="w-full h-full object-cover" />
+            : <span className="text-xs font-bold text-primary">{(user?.firstName?.[0] ?? user?.primaryEmailAddress?.emailAddress?.[0] ?? "?").toUpperCase()}</span>}
         </div>
         <span className="text-sm font-medium text-foreground max-w-[100px] truncate">{user?.firstName ?? "Account"}</span>
         <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
@@ -208,14 +209,14 @@ function NavUserMenu() {
         <div className="absolute right-0 top-full mt-2 w-52 bg-background border rounded-xl shadow-xl z-50 py-1.5 overflow-hidden">
           <div className="px-4 py-2.5 border-b">
             <p className="text-sm font-bold text-foreground truncate">{user?.firstName} {user?.lastName}</p>
-            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+            <p className="text-xs text-muted-foreground truncate">{user?.primaryEmailAddress?.emailAddress}</p>
           </div>
           <Link href="/dashboard" onClick={() => setOpen(false)}
             className="flex items-center gap-2.5 px-4 py-2.5 text-sm font-medium text-foreground hover:bg-primary/8 hover:text-primary transition-colors"
             data-testid="link-nav-dashboard">
             <LayoutDashboard className="w-4 h-4" /> Dashboard
           </Link>
-          <button onClick={logout}
+          <button onClick={() => signOut()}
             className="flex items-center gap-2.5 w-full text-left px-4 py-2.5 text-sm font-medium text-muted-foreground hover:bg-rose-50 hover:text-rose-600 transition-colors"
             data-testid="button-nav-signout">
             <LogOut className="w-4 h-4" /> Sign out

@@ -19,7 +19,6 @@
     "drizzle-orm": "catalog:",
     "express": "^5",
     "http-proxy-middleware": "^4.0.0",
-    "openid-client": "^6.8.4",
     "pino": "^9",
     "pino-http": "^10"
   },

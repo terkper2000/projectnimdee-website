@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "@workspace/replit-auth-web";
+import { useUser, useClerk, Show } from "@clerk/react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Layout } from "@/components/Layout";
 import { api } from "@/lib/api";
@@ -34,7 +34,8 @@ const CONFIDENCE_LEVELS = ["low","medium","high"] as const;
 type Tab = "overview" | "progress" | "saved" | "plan" | "reflect" | "mistakes" | "confidence" | "badges";
 
 export default function Dashboard() {
-  const { user, logout } = useAuth();
+  const { user } = useUser();
+  const { signOut } = useClerk();
   const qc = useQueryClient();
   const [tab, setTab] = useState<Tab>("overview");
 
@@ -81,14 +82,14 @@ export default function Dashboard() {
             <div>
               <p className="text-teal-300 text-sm font-medium mb-1">Your Learning Dashboard</p>
               <h1 className="font-serif text-3xl md:text-4xl font-bold">Welcome back, {firstName} 👋</h1>
-              <p className="text-teal-200 text-sm mt-2">{user?.email}</p>
+              <p className="text-teal-200 text-sm mt-2">{user?.primaryEmailAddress?.emailAddress}</p>
             </div>
             <div className="flex items-center gap-3">
               <div className="text-right text-sm">
                 <p className="text-teal-200">{completedCount} completed</p>
                 <p className="text-teal-300 text-xs">{(saved as any[]).length} saved • {(badges as any[]).length} badges</p>
               </div>
-              <button onClick={logout}
+              <button onClick={() => signOut()}
                 className="flex items-center gap-1.5 px-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg text-sm font-medium transition-colors">
                 <LogOut className="w-3.5 h-3.5" /> Sign out
               </button>
