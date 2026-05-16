@@ -34,6 +34,6 @@ externalPort = 3000
 [userenv]
 
 [userenv.shared]
-VITE_SUPABASE_URL = "https://uknfmlflfxvxvkodalpb.supabase.co/rest/v1/"
+VITE_SUPABASE_URL = "https://uknfmlflfxvxvkodalpb.supabase.co"
 SUPABASE_JWT_SECRET = "49f13c3b-0634-451b-92f1-afaf3485f798"
 VITE_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrbmZtbGZsZnh2eHZrb2RhbHBiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4ODk1NTMsImV4cCI6MjA5NDQ2NTU1M30.W_w4-qGMyS6Hpgb9KOm5dPKd2tJzEAcuwWpr57dyTSE"

@@ -44,6 +44,7 @@ import Dashboard from "@/pages/Dashboard";
 import SignIn from "@/pages/SignIn";
 import SignUp from "@/pages/SignUp";
 import ForgotPassword from "@/pages/ForgotPassword";
+import ResetPassword from "@/pages/ResetPassword";
 import Privacy from "@/pages/Privacy";
 
 const queryClient = new QueryClient();
@@ -64,6 +65,7 @@ function Router() {
       <Route path="/sign-in" component={SignIn} />
       <Route path="/sign-up" component={SignUp} />
       <Route path="/forgot-password" component={ForgotPassword} />
+      <Route path="/reset-password" component={ResetPassword} />
       <Route path="/dashboard" component={DashboardRoute} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/resources/science-10/unit-a" component={Science10UnitA} />

@@ -51,7 +51,7 @@ export default function Privacy() {
               color: "text-violet-600",
               title: "How we protect your information",
               items: [
-                "Authentication is handled by Clerk — a secure, industry-standard service. We never store your password.",
+                "Authentication is handled by Supabase — a secure, industry-standard service. We never store your password.",
                 "Your learning data is stored in a private database — only you can access your own data",
                 "No payment information is ever collected or stored",
                 "We do not sell, share, or trade your personal information with any third party",
