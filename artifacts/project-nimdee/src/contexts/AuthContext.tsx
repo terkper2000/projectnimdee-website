@@ -26,6 +26,36 @@ function toAuthUser(supabaseUser: User | null): AuthUser | null {
   };
 }
 
+// Upsert user profile in our DB whenever someone signs in.
+// Runs in the background — auth state is not blocked by this.
+async function syncUserProfile(session: Session) {
+  const meta = session.user.user_metadata ?? {};
+  const fullName: string = meta.full_name ?? meta.name ?? "";
+  const nameParts = fullName.split(" ").filter(Boolean);
+  const firstName = meta.first_name ?? meta.given_name ?? nameParts[0] ?? "User";
+  const lastName = meta.last_name ?? meta.family_name ?? nameParts.slice(1).join(" ") ?? "";
+  const role = meta.role ?? "student";
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+  try {
+    await fetch(`${base}/api/users/me`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({
+        email: session.user.email ?? "",
+        firstName,
+        lastName,
+        role,
+      }),
+    });
+  } catch {
+    // Non-fatal — learning data still works, profile sync will retry next sign-in
+  }
+}
+
 interface AuthContextType {
   user: AuthUser | null;
   session: Session | null;
@@ -52,9 +82,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       setIsLoading(false);
+      // Sync profile to DB on every fresh sign-in (not on token refresh)
+      if (event === "SIGNED_IN" && session) {
+        syncUserProfile(session);
+      }
     });
 
     return () => subscription.unsubscribe();

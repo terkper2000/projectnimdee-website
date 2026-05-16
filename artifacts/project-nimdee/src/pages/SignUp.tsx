@@ -1,12 +1,47 @@
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import { supabase } from "@/lib/supabase";
 import { Layout } from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Mail, Lock, Eye, EyeOff, User } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, User, GraduationCap, Users, BookOpen, Briefcase, HelpCircle } from "lucide-react";
+
+type Role = "student" | "parent" | "educator" | "supporter" | "other";
+
+const ROLES: { value: Role; label: string; description: string; icon: React.ReactNode }[] = [
+  {
+    value: "student",
+    label: "Student",
+    description: "I'm here to learn",
+    icon: <GraduationCap className="w-5 h-5" />,
+  },
+  {
+    value: "parent",
+    label: "Parent",
+    description: "Supporting my child",
+    icon: <Users className="w-5 h-5" />,
+  },
+  {
+    value: "educator",
+    label: "Teacher / Tutor",
+    description: "I teach or tutor",
+    icon: <BookOpen className="w-5 h-5" />,
+  },
+  {
+    value: "supporter",
+    label: "Exploring services",
+    description: "Looking for tutoring or consulting",
+    icon: <Briefcase className="w-5 h-5" />,
+  },
+  {
+    value: "other",
+    label: "Other",
+    description: "Something else",
+    icon: <HelpCircle className="w-5 h-5" />,
+  },
+];
 
 export default function SignUp() {
-  const [, setLocation] = useLocation();
+  const [role, setRole] = useState<Role | null>(null);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,6 +53,10 @@ export default function SignUp() {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!role) {
+      setError("Please select how you'll be using Project Nimdeɛ.");
+      return;
+    }
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
@@ -32,6 +71,7 @@ export default function SignUp() {
           first_name: firstName,
           last_name: lastName,
           full_name: `${firstName} ${lastName}`.trim(),
+          role,
         },
       },
     });
@@ -85,9 +125,59 @@ export default function SignUp() {
               <h1 className="font-serif text-2xl font-bold text-foreground mb-1">
                 Create your account
               </h1>
-              <p className="text-sm text-muted-foreground mb-6">
+              <p className="text-sm text-muted-foreground mb-5">
                 Free forever. Personalized for you.
               </p>
+
+              {/* Role selector */}
+              <div className="mb-5">
+                <p className="text-sm font-medium text-foreground mb-2.5">
+                  I'm joining as a…
+                </p>
+                <div className="grid grid-cols-1 gap-2">
+                  {ROLES.map((r) => (
+                    <button
+                      key={r.value}
+                      type="button"
+                      onClick={() => setRole(r.value)}
+                      className={[
+                        "flex items-center gap-3 px-4 py-3 rounded-xl border text-left transition-all",
+                        role === r.value
+                          ? "border-primary bg-primary/8 text-primary"
+                          : "border-[hsl(40,20%,88%)] hover:border-primary/40 hover:bg-[hsl(40,33%,97%)] text-foreground",
+                      ].join(" ")}
+                    >
+                      <span className={role === r.value ? "text-primary" : "text-muted-foreground"}>
+                        {r.icon}
+                      </span>
+                      <span>
+                        <span className="block text-sm font-semibold leading-tight">{r.label}</span>
+                        <span className="block text-xs text-muted-foreground leading-tight mt-0.5">{r.description}</span>
+                      </span>
+                      <span className="ml-auto">
+                        <span
+                          className={[
+                            "w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 transition-all",
+                            role === r.value
+                              ? "border-primary bg-primary"
+                              : "border-[hsl(40,20%,75%)]",
+                          ].join(" ")}
+                        >
+                          {role === r.value && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-white block" />
+                          )}
+                        </span>
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px flex-1 bg-[hsl(40,20%,90%)]" />
+                <span className="text-xs text-muted-foreground">then create your account</span>
+                <div className="h-px flex-1 bg-[hsl(40,20%,90%)]" />
+              </div>
 
               {error && (
                 <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
@@ -118,9 +208,7 @@ export default function SignUp() {
               <form onSubmit={handleSignUp} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
-                      First name
-                    </label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">First name</label>
                     <div className="relative">
                       <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                       <input
@@ -133,9 +221,7 @@ export default function SignUp() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">
-                      Last name
-                    </label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Last name</label>
                     <input
                       type="text"
                       value={lastName}
@@ -147,9 +233,7 @@ export default function SignUp() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">
-                    Email address
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Email address</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     <input
@@ -164,9 +248,7 @@ export default function SignUp() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">
-                    Password
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Password</label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
                     <input
