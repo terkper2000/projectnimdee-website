@@ -1,7 +1,8 @@
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
-import { BookOpen, Brain, Clock, Target, Zap, AlertTriangle, CheckCircle, ArrowLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { BookOpen, Brain, Clock, Target, Zap, AlertTriangle, CheckCircle, ArrowLeft, ChevronRight, ExternalLink, Plus, Trash2, RotateCcw, Printer } from "lucide-react";
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } } };
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
@@ -281,12 +282,160 @@ function StudyCycleSVG() {
   );
 }
 
-const weekSchedule = [
-  { time: "7:00–8:00", mon: "Wake + review Anki", tue: "Wake + review Anki", wed: "Wake + review Anki", thu: "Wake + review Anki", fri: "Wake + review Anki", sat: "Rest / slow morning", sun: "Weekly planning" },
-  { time: "8:30–3:30", mon: "School", tue: "School", wed: "School", thu: "School", fri: "School", sat: "Longer project work", sun: "Anki + review week" },
-  { time: "4:00–5:30", mon: "Subject 1 (45 min) + Subject 2 (45 min)", tue: "Subject 3 (45 min) + Subject 4 (45 min)", wed: "Subject 1 (45 min) + Subject 2 (45 min)", thu: "Subject 3 (45 min) + weak spots", fri: "Light review only", sat: "Subject deep-dive (2 hrs)", sun: "Identify weakest topics" },
-  { time: "7:30–9:00", mon: "Cornell notes review + new flashcards", tue: "Cornell notes review + new flashcards", wed: "Cornell notes review + new flashcards", thu: "Cornell notes review + new flashcards", fri: "Free time — protect it", sat: "Free time", sun: "Early sleep — protect it" },
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const STORAGE_KEY = "nimdee-study-schedule-v1";
+
+type ScheduleRow = { time: string; cells: string[] };
+
+const DEFAULT_ROWS: ScheduleRow[] = [
+  { time: "7:00–8:00",  cells: ["Wake + review Anki", "Wake + review Anki", "Wake + review Anki", "Wake + review Anki", "Wake + review Anki", "Rest / slow morning", "Weekly planning"] },
+  { time: "8:30–3:30",  cells: ["School", "School", "School", "School", "School", "Longer project work", "Anki + review week"] },
+  { time: "4:00–5:30",  cells: ["Subject 1 (45 min)\n+ Subject 2 (45 min)", "Subject 3 (45 min)\n+ Subject 4 (45 min)", "Subject 1 (45 min)\n+ Subject 2 (45 min)", "Subject 3 (45 min)\n+ weak spots", "Light review only", "Subject deep-dive (2 hrs)", "Identify weakest topics"] },
+  { time: "7:30–9:00",  cells: ["Cornell notes review\n+ new flashcards", "Cornell notes review\n+ new flashcards", "Cornell notes review\n+ new flashcards", "Cornell notes review\n+ new flashcards", "Free time — protect it", "Free time", "Early sleep — protect it"] },
 ];
+
+function AutoTextarea({ value, onChange, placeholder }: { value: string; onChange: (v: string) => void; placeholder?: string }) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.style.height = "auto";
+      ref.current.style.height = ref.current.scrollHeight + "px";
+    }
+  }, [value]);
+  return (
+    <textarea
+      ref={ref}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      rows={1}
+      className="w-full resize-none bg-transparent text-xs leading-relaxed focus:outline-none focus:ring-1 focus:ring-primary/40 rounded px-1 py-0.5 placeholder:text-muted-foreground/40 min-w-0"
+    />
+  );
+}
+
+function EditableWeeklySchedule() {
+  const [rows, setRows] = useState<ScheduleRow[]>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : DEFAULT_ROWS;
+    } catch {
+      return DEFAULT_ROWS;
+    }
+  });
+  const [saved, setSaved] = useState(false);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const persist = useCallback((next: ScheduleRow[]) => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    setSaved(true);
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => setSaved(false), 1500);
+  }, []);
+
+  const updateTime = (i: number, val: string) => {
+    const next = rows.map((r, idx) => idx === i ? { ...r, time: val } : r);
+    setRows(next); persist(next);
+  };
+  const updateCell = (ri: number, ci: number, val: string) => {
+    const next = rows.map((r, idx) => idx === ri ? { ...r, cells: r.cells.map((c, ci2) => ci2 === ci ? val : c) } : r);
+    setRows(next); persist(next);
+  };
+  const addRow = () => {
+    const next = [...rows, { time: "", cells: Array(7).fill("") }];
+    setRows(next); persist(next);
+  };
+  const deleteRow = (i: number) => {
+    if (rows.length <= 1) return;
+    const next = rows.filter((_, idx) => idx !== i);
+    setRows(next); persist(next);
+  };
+  const reset = () => {
+    if (!confirm("Reset to the original template? Your changes will be lost.")) return;
+    setRows(DEFAULT_ROWS); persist(DEFAULT_ROWS);
+  };
+  const print = () => window.print();
+
+  return (
+    <div>
+      {/* Toolbar */}
+      <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
+        <p className="text-xs text-muted-foreground italic">
+          Click any cell to edit. Changes are saved automatically.
+          {saved && <span className="ml-2 text-teal-600 font-medium">✓ Saved</span>}
+        </p>
+        <div className="flex items-center gap-2">
+          <button onClick={reset}
+            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground border rounded-lg px-2.5 py-1.5 transition-colors hover:border-foreground/30">
+            <RotateCcw className="w-3 h-3" /> Reset
+          </button>
+          <button onClick={print}
+            className="flex items-center gap-1.5 text-xs text-primary border border-primary/30 rounded-lg px-2.5 py-1.5 hover:bg-primary/8 transition-colors">
+            <Printer className="w-3 h-3" /> Print
+          </button>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="overflow-x-auto border rounded-2xl print:border-none">
+        <table className="w-full text-xs min-w-[700px] border-collapse">
+          <thead>
+            <tr className="bg-teal-700 text-white print:bg-teal-700">
+              <th className="text-left px-3 py-3 font-bold w-24">Time</th>
+              {DAYS.map(d => (
+                <th key={d} className="text-left px-3 py-3 font-bold">{d}</th>
+              ))}
+              <th className="w-8 print:hidden" />
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => (
+              <tr key={ri} className={`group border-b last:border-0 ${ri % 2 === 0 ? "bg-background" : "bg-muted/30"}`}>
+                {/* Time cell */}
+                <td className="px-2 py-2 font-bold text-foreground align-top">
+                  <AutoTextarea
+                    value={row.time}
+                    onChange={(v) => updateTime(ri, v)}
+                    placeholder="Time"
+                  />
+                </td>
+                {/* Day cells */}
+                {row.cells.map((cell, ci) => (
+                  <td key={ci} className="px-2 py-2 text-muted-foreground align-top">
+                    <AutoTextarea
+                      value={cell}
+                      onChange={(v) => updateCell(ri, ci, v)}
+                      placeholder="Add activity…"
+                    />
+                  </td>
+                ))}
+                {/* Delete row */}
+                <td className="px-1 py-2 align-top print:hidden">
+                  {rows.length > 1 && (
+                    <button onClick={() => deleteRow(ri)}
+                      className="opacity-0 group-hover:opacity-100 transition-opacity p-1 text-muted-foreground hover:text-rose-500 rounded">
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Add row */}
+      <button onClick={addRow}
+        className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary border border-dashed rounded-xl px-4 py-2 w-full justify-center transition-colors hover:border-primary/40 print:hidden">
+        <Plus className="w-3.5 h-3.5" /> Add time block
+      </button>
+
+      <p className="text-xs text-muted-foreground mt-3 text-center print:block">
+        This is a template — adapt it. What matters is having a consistent rhythm, not following it perfectly.
+      </p>
+    </div>
+  );
+}
 
 export default function StudySkills() {
   return (
@@ -519,38 +668,12 @@ export default function StudySkills() {
         {/* Weekly Schedule */}
         <section>
           <div className="flex items-center gap-4 mb-2">
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground whitespace-nowrap">Printable Weekly Study Schedule</h2>
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground whitespace-nowrap">Weekly Study Schedule</h2>
             <div className="flex-1 h-px bg-border" />
           </div>
-          <p className="text-muted-foreground mb-6 text-sm">A realistic template for a student with 4–5 courses. Adjust times to match your own school day and activities.</p>
+          <p className="text-muted-foreground mb-4 text-sm">A realistic template for a student with 4–5 courses. Edit any cell to make it your own — your changes are saved automatically.</p>
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="overflow-x-auto border rounded-2xl">
-              <table className="w-full text-xs min-w-[680px]">
-                <thead>
-                  <tr className="bg-teal-700 text-white">
-                    <th className="text-left px-3 py-3 font-bold">Time</th>
-                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(d => (
-                      <th key={d} className="text-left px-3 py-3 font-bold">{d}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {weekSchedule.map((row, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-background" : "bg-muted/30"}>
-                      <td className="px-3 py-3 font-bold text-foreground whitespace-nowrap">{row.time}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.mon}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.tue}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.wed}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.thu}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.fri}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.sat}</td>
-                      <td className="px-3 py-3 text-muted-foreground">{row.sun}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="text-xs text-muted-foreground mt-3 text-center">This is a template — adapt it. What matters is having a consistent rhythm, not following it perfectly.</p>
+            <EditableWeeklySchedule />
           </motion.div>
         </section>
 
