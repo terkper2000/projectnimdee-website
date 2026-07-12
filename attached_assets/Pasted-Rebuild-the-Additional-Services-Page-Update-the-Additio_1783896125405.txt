@@ -1,0 +1,890 @@
+Rebuild the Additional Services Page
+
+Update the Additional Services page of my Project Nimdeɛ website.
+
+The page already exists and has a polished visual identity with:
+
+Project Nimdeɛ branding
+Dark green, gold, turquoise, purple, and pink accent colours
+Serif headings
+Rounded service cards
+Icons
+Service tags
+“What’s Included” and “Topics Covered” sections
+A “How It Works” section
+Contact buttons
+An existing navigation bar and footer
+
+Keep the existing website branding, logo, fonts, colours, responsive layout, navigation, footer, privacy notice, and overall design style.
+
+Do not redesign the entire website. Rebuild and expand the content of the Additional Services page using the following information.
+
+The current page content and structure can be used as the visual reference.
+
+Primary Goal
+
+The page should clearly communicate that although I am primarily an educator, my education, professional experience, and skills span several areas.
+
+Use the familiar phrase “jack of all trades” once in a confident and professional way. The phrase should not make me sound unfocused or unqualified.
+
+The message should explain that my broad experience is grounded in education, technology, creativity, and personalized service.
+
+My areas of experience include:
+
+Mathematics
+Science
+Biology
+Computer science
+Curriculum development
+Educational technology
+Artificial intelligence
+AI prompting and AI literacy
+Study coaching
+Piano
+Website design and development
+1. Hero Section
+
+Replace the current hero content with the following.
+
+Eyebrow text
+
+WORK WITH HANNAH
+
+Main heading
+
+Many skills. One thoughtful approach.
+
+Use a visually emphasized second line if appropriate:
+
+Personalized support for learning, technology, music, and digital projects.
+
+Hero paragraph
+
+You may have heard the phrase “jack of all trades.” While I am an educator first, my experience spans mathematics, science, computer science, curriculum development, educational technology, artificial intelligence, music, and website development.
+
+This breadth allows me to support learners, educators, individuals, and small organizations across several areas while bringing the same patience, creativity, professionalism, and attention to every service.
+
+Supporting sentence
+
+Whether you need academic tutoring, guidance using AI, beginner computer science support, piano instruction, educational consulting, or an affordable website, every service is tailored to your goals.
+
+Hero buttons
+
+Keep two buttons:
+
+Get in Touch
+Explore Services
+
+The “Get in Touch” button should link to the existing Contact page.
+
+The “Explore Services” button should scroll smoothly to the services section.
+
+2. Quick Summary Row
+
+Create a responsive summary row beneath the hero.
+
+Use these five summary items:
+
+Grades 7–12
+
+Academic tutoring
+
+Online or In Person
+
+Flexible delivery
+
+Multiple Curricula
+
+Alberta and international
+
+All Ages
+
+Piano and technology support
+
+Personalized
+
+One-on-one service
+
+Use the same visual style as the current summary row.
+
+3. Pricing and Delivery Section
+
+Add a section immediately after the summary row.
+
+Eyebrow text
+
+FLEXIBLE OPTIONS
+
+Heading
+
+Choose online or in-person support
+
+Introductory paragraph
+
+Tutoring, coaching, beginner computer science, AI guidance, and piano lessons are available online or in person, depending on location and availability. Every session is personalized to the learner’s goals, experience, and preferred pace.
+
+Create two attractive pricing cards.
+
+Online Sessions
+Price
+
+$40 CAD per session
+
+Do not describe this as an hourly rate unless a session duration is added elsewhere later.
+
+Include
+One-on-one instruction
+Conducted through video call
+Available regardless of location
+Screen sharing for computer science and AI sessions
+Digital resources can be shared during or after the session
+Flexible scheduling based on availability
+Button
+
+Book an Online Session
+
+Link to the Contact page.
+
+Where possible, pass “Online Session” as the selected service or URL parameter.
+
+In-Person Sessions
+Price
+
+$50 CAD per session
+
+Include
+One-on-one, face-to-face instruction
+Available within the local service area
+Location arranged before booking
+May take place at an agreed-upon public location or another suitable location
+Additional travel fees may apply when travel exceeds 15 kilometres
+Any travel fee will be discussed and approved before the booking is confirmed
+Button
+
+Ask About In-Person Availability
+
+Link to the Contact page.
+
+Where possible, pass “In-Person Session” as the selected service or URL parameter.
+
+Important pricing note
+
+Display the following beneath both pricing cards:
+
+Please note: Availability, location, scheduling, and any applicable travel fees will be confirmed before booking. Additional travel charges may apply when I need to travel more than 15 kilometres to reach the session location. Group sessions, extended sessions, or specialized requests may be priced separately.
+
+Do not display my home address or exact starting location publicly.
+
+4. Services Section
+Eyebrow text
+
+SERVICES
+
+Heading
+
+Support designed around your goals
+
+Introductory paragraph
+
+Each service is personalized rather than one-size-fits-all. Sessions and projects begin by identifying your current needs, goals, timeline, and preferred approach.
+
+Use consistent service cards with:
+
+An icon
+Service title
+Subtitle
+Tags
+Description
+“What’s Included”
+“Topics Covered” or an equivalent second column
+A relevant call-to-action button
+
+Use the existing rounded-card design and varied accent colours.
+
+Service 1: Mathematics Tutoring
+Subtitle
+
+Build understanding, confidence, and stronger problem-solving skills.
+
+Tags
+Grades 7–12
+Online
+In Person
+One-on-One
+Description
+
+Personalized mathematics tutoring for students in Grades 7–12. Sessions focus on genuine understanding rather than memorizing procedures or relying only on shortcuts.
+
+I have taught and supported students working with the Alberta curriculum as well as Singaporean and Chinese mathematics curricula. This experience allows me to adapt instruction to different curriculum structures, levels of challenge, and problem-solving expectations.
+
+What’s Included
+Lessons tailored to the student’s learning style and pace
+Homework and assignment support
+Test and exam preparation
+Identification of foundational learning gaps
+Step-by-step explanations
+Multiple problem-solving approaches
+Enrichment for advanced learners
+Honest feedback and progress updates
+Topics Covered
+Mathematics Grades 7–9
+Math 10C
+Math 20-1
+Math 30-1
+Numeracy and algebra
+Functions and relations
+Trigonometry
+Geometry
+Sequences and series
+Problem solving
+Alberta curriculum
+Singaporean curriculum support
+Chinese curriculum support
+Button
+
+Ask About Math Tutoring
+
+Service 2: Science and Biology Tutoring
+Subtitle
+
+Make complex scientific ideas easier to understand.
+
+Tags
+Grades 7–10
+Biology 20
+Biology 30
+Online
+In Person
+Description
+
+One-on-one science tutoring that helps students understand scientific concepts, apply their learning to unfamiliar questions, interpret evidence, and communicate scientific reasoning clearly.
+
+Sessions can support current coursework, assignments, laboratory concepts, test preparation, exam preparation, and gaps from previous grades.
+
+What’s Included
+Curriculum-aligned explanations and practice
+Support with scientific vocabulary
+Help writing complete scientific responses
+Test and exam preparation
+Assistance interpreting graphs, data, and experiments
+Connections between concepts and real-world applications
+Support identifying and correcting misconceptions
+Topics Covered
+Science Grades 7–10
+Biology 20
+Biology 30
+Scientific inquiry
+Experimental design
+Data interpretation
+Scientific models
+Laboratory concepts
+Scientific communication
+Button
+
+Ask About Science Tutoring
+
+Service 3: Introductory Computer Science
+Subtitle
+
+A welcoming introduction to coding and computational thinking.
+
+Tags
+Beginners
+Coding
+Technology
+Online
+In Person
+Description
+
+Introductory computer science tutoring for learners who are new to coding or need additional support with foundational concepts.
+
+Lessons focus on building logical thinking, understanding programming fundamentals, solving problems, debugging code, and gaining confidence through practical exercises and small projects.
+
+Online sessions work particularly well because learners can share their screens and receive support while working directly with their code and digital tools.
+
+What’s Included
+Beginner-friendly instruction
+Step-by-step coding support
+Practical exercises and small projects
+Help with school computer science assignments
+Debugging strategies
+Problem-solving guidance
+Lessons adapted to the learner’s age and experience
+Responsible and ethical technology use
+Topics Covered
+Programming fundamentals
+Variables
+Conditions
+Loops
+Functions
+Computational thinking
+Introductory Python
+Block-based coding
+Basic game development
+Introductory application development
+Debugging
+Digital citizenship
+Button
+
+Explore Computer Science Support
+
+Service 4: AI Prompting and AI Literacy
+Subtitle
+
+Learn how to use artificial intelligence thoughtfully and effectively.
+
+Tags
+Students
+Educators
+Beginners
+Online
+In Person
+Description
+
+Practical guidance for students, educators, professionals, and individuals who want to better understand artificial intelligence and use generative AI tools effectively.
+
+Sessions go beyond simply writing prompts. They focus on asking stronger questions, refining AI-generated responses, evaluating accuracy, protecting privacy, recognizing limitations, and using AI responsibly.
+
+Online sessions are especially useful because the learner can share their screen and practise directly with AI tools.
+
+What’s Included
+Introduction to generative AI
+Explanation of what AI can and cannot do
+Prompt-writing strategies
+Prompt refinement
+Guidance for evaluating AI responses
+Responsible and transparent AI use
+Privacy and safety considerations
+Support using AI for learning and productivity
+Strategies for recognizing inaccurate information
+Topics Covered
+Prompt design
+Prompt refinement
+AI-supported studying
+Brainstorming with AI
+Lesson and resource creation
+Evaluating AI-generated information
+AI hallucinations
+Bias
+Privacy
+Academic integrity
+Responsible AI use in education
+Button
+
+Book an AI Guidance Session
+
+Service 5: Study Skills and Academic Coaching
+Subtitle
+
+Learn how to learn—not only what to learn.
+
+Tags
+All Grades
+Organization
+Study Skills
+Online
+In Person
+Description
+
+Academic coaching for students who need support with planning, organization, studying, task completion, test preparation, or building effective routines.
+
+The goal is to create practical systems students can understand, maintain, and eventually use independently.
+
+What’s Included
+Personalized study plans
+Organization systems
+Time-management strategies
+Active recall
+Spaced practice
+Test and exam preparation
+Breaking large tasks into manageable steps
+Accountability and progress check-ins
+Strategies for building independence
+Topics Covered
+Study routines
+Time management
+Assignment planning
+Note-taking
+Test preparation
+Exam preparation
+Organization
+Academic confidence
+Button
+
+Ask About Academic Coaching
+
+Service 6: Beginner Piano Lessons
+Subtitle
+
+Patient and structured music instruction for absolute beginners.
+
+Tags
+Beginners
+All Ages
+Online
+In Person
+Description
+
+Introductory piano lessons for children, teenagers, and adults with little or no previous experience.
+
+Lessons are patient, structured, encouraging, and adapted to each learner’s pace, interests, and goals.
+
+For online piano lessons, the learner must have access to a piano or keyboard. Their device should be positioned so the keyboard and their hands can be seen during the lesson.
+
+What’s Included
+No previous experience required
+Individualized lesson pacing
+Patient and supportive instruction
+Foundational music theory
+Guided practice strategies
+Opportunities to learn beginner songs
+Help building confidence and consistency
+Topics Covered
+Reading notes
+Rhythm and timing
+Proper posture
+Hand position
+Basic scales
+Basic chords
+Music theory fundamentals
+Beginner repertoire
+Button
+
+Ask About Piano Lessons
+
+Service 7: Website Design and Development
+Subtitle
+
+Professional, approachable websites at an affordable starting price.
+
+Tags
+Small Businesses
+Educators
+Personal Projects
+Organizations
+Description
+
+Affordable website design and development for individuals, educators, small businesses, community organizations, and personal projects.
+
+I can help transform an idea into a clean, functional, mobile-friendly website with clear navigation, purposeful content, and a professional online presence.
+
+Every website project begins with a consultation and a clear written scope.
+
+Website Starter Package
+
+Display a prominent pricing panel inside this service card.
+
+Starting at $150 CAD
+Supporting text
+
+The starter package is intended for a simple informational website. Final pricing depends on the number of pages, requested features, content requirements, third-party services, and overall project complexity.
+
+Starter Package Includes
+Initial consultation
+Project planning
+One standard domain name, subject to availability and cost
+Basic hosting or platform licensing for up to two years
+A professionally designed responsive website
+Mobile, tablet, and desktop optimization
+Up to three standard pages
+Clear navigation
+Calls to action
+Contact form setup
+Social media links
+External-link integration
+Basic search-engine optimization
+Page titles and meta descriptions
+Basic accessibility considerations
+One round of reasonable revisions
+Website launch and publishing support
+Basic instructions for managing the website
+Thirty days of minor post-launch support
+Example Standard Pages
+Home
+About
+Services
+Contact
+Portfolio
+Frequently Asked Questions
+
+Clarify that the starter package includes up to three standard pages, not all of the examples listed above.
+
+Suitable Website Types
+Small-business websites
+Tutoring websites
+Consulting websites
+Educational websites
+Portfolios
+Personal brands
+Community projects
+Resource hubs
+Informational websites
+Simple landing pages
+Optional Add-Ons
+
+Display these in a separate area labelled Optional Add-Ons.
+
+Additional pages
+Online stores
+Payment processing
+Appointment-booking systems
+Membership areas
+User accounts
+Blogs
+Resource libraries
+Advanced contact forms
+Databases
+Professional copywriting
+Logo design
+Brand identity development
+Custom illustrations
+Professional photography
+Advanced search-engine optimization
+Ongoing maintenance
+Business email setup
+Premium templates
+Premium plugins
+Specialized software integrations
+Custom functionality
+Important Website Pricing Information
+
+Display this information in a visually distinct note box.
+
+Starting price:
+The $150 CAD price is the starting cost for a simple informational website with a limited scope. A custom written quote will be provided before development begins.
+
+Domain and licensing:
+The starter package may include one standard domain name and basic hosting or platform licensing for up to two years. This applies only when the selected domain, hosting, and platform costs can reasonably be included within the approved package.
+
+Third-party costs:
+Premium domain names, paid plugins, e-commerce tools, payment-processing fees, business email services, specialized integrations, premium applications, and other third-party subscriptions are not included unless they are specifically listed in the written project agreement.
+
+Renewals:
+Domain registration, hosting, platform licensing, and other subscriptions may require renewal after the included two-year period. Renewal costs and ownership details will be explained before the project begins.
+
+Client content:
+The client is responsible for providing accurate text, images, business information, policies, branding materials, and other required content unless content creation is included in the written quote.
+
+Project approval:
+Development begins only after the client approves the project scope, total price, included pages, features, expected timeline, revision terms, and third-party costs.
+
+Website buttons
+Request a Website Quote
+See What’s Included
+
+The “Request a Website Quote” button should link to the Contact page.
+
+Where possible, preselect “Website Design and Development” as the requested service.
+
+The “See What’s Included” button should expand the package details or scroll to the included-features section.
+
+Service 8: Educational and Curriculum Consulting
+Subtitle
+
+Practical support for curriculum, instruction, technology, and AI integration.
+
+Tags
+Educators
+Schools
+Organizations
+Online
+Custom Projects
+Description
+
+Consulting for educators, schools, and organizations seeking support with curriculum development, instructional planning, educational technology, artificial intelligence, accessibility, assessment, or STEM programming.
+
+Recommendations should be practical, student-centred, collaborative, and realistic for classroom or organizational implementation.
+
+What’s Included
+Curriculum planning and review
+Resource development
+Assessment development
+AI and educational technology integration
+STEM program planning
+Accessibility considerations
+Differentiation strategies
+Professional-learning support
+Collaborative recommendations
+Practical implementation planning
+Topics Covered
+Mathematics education
+Science education
+Computer science
+Curriculum development
+Assessment design
+AI literacy
+AI in education
+Instructional technology
+STEM programming
+Inclusive learning design
+Button
+
+Discuss a Consulting Project
+
+5. Breadth of Experience Section
+
+Add a section after the service cards and before the “How It Works” section.
+
+Eyebrow text
+
+A BROAD SKILL SET
+
+Heading
+
+Many areas of experience. One consistent standard.
+
+Paragraph
+
+The phrase “jack of all trades” is often used to describe someone with experience across many areas. For me, that breadth is grounded in education.
+
+My work in mathematics, science, computer science, curriculum development, artificial intelligence, educational technology, music, and website design allows me to understand different learners, projects, goals, and challenges.
+
+Regardless of the service, my approach remains consistent: listen carefully, explain clearly, create thoughtfully, and provide work that is practical, personalized, and purposeful.
+
+Display the following as attractive badges, icons, or small cards:
+
+Mathematics
+Science
+Biology
+Computer Science
+Curriculum Development
+Artificial Intelligence
+Educational Technology
+Study Coaching
+Piano
+Website Development
+
+Use the website’s existing colours and visual language.
+
+6. How It Works Section
+
+Keep the existing four-step layout but replace the wording.
+
+Eyebrow text
+
+PROCESS
+
+Heading
+
+How it works
+
+Introductory text
+
+Getting started is simple. The process depends on whether you are booking a session or requesting a project, but expectations and pricing will always be discussed before work begins.
+
+01 — Reach Out
+
+Send a message describing the service you need, your goals, preferred delivery format, location if requesting in-person support, and any relevant timeline.
+
+02 — Initial Conversation
+
+We will briefly discuss your needs, answer questions, confirm availability, and determine whether the service is a good fit.
+
+For in-person services, we will also discuss location and any possible travel fee.
+
+03 — Confirm the Plan
+
+For tutoring and lessons, we will confirm the subject, session format, schedule, pricing, and location.
+
+For website or consulting projects, you will receive a written scope and quote outlining the work, timeline, included features, revision terms, and any third-party costs.
+
+04 — Get Started
+
+Sessions will be booked once the details are confirmed.
+
+Website or consulting work will begin after the client approves the written scope and provides the required information, content, and materials.
+
+7. Founder Quote
+
+Replace the current quotation with:
+
+“My work spans several disciplines, but the purpose remains consistent: helping people understand, create, grow, and move forward with confidence.”
+
+— Hannah Terkper, Founder of Project Nimdeɛ
+
+Keep the existing elegant quotation styling.
+
+8. Final Call-to-Action Section
+Heading
+
+Ready to learn, create, or bring your idea online?
+
+Paragraph
+
+Tutoring, academic coaching, computer science support, AI guidance, and piano lessons are available online for $40 CAD per session or in person for $50 CAD per session.
+
+Additional travel fees may apply when I need to travel more than 15 kilometres.
+
+Simple website projects begin at $150 CAD, with a personalized written quote provided before development begins.
+
+Supporting line
+
+Not sure which service is right for you? Send a message with your goals or project idea, and we can determine the best next step.
+
+Buttons
+Book a Session
+Request a Website Quote
+
+Both buttons should link to the Contact page.
+
+Where possible:
+
+“Book a Session” should pass “Tutoring or Lesson”
+“Request a Website Quote” should pass “Website Design and Development”
+9. Contact Form Updates
+
+If the Contact page already has a service-selection field, update it with these options:
+
+Mathematics Tutoring
+Science Tutoring
+Biology 20 or 30 Tutoring
+Introductory Computer Science
+AI Prompting and AI Literacy
+Study Skills and Academic Coaching
+Beginner Piano Lessons
+Website Design and Development
+Educational or Curriculum Consulting
+Other
+
+Add a preferred-format field:
+
+Online
+In Person
+Not Applicable
+Not Sure
+
+For in-person requests, add an optional field:
+
+General area or neighbourhood
+
+Do not ask users to publish sensitive location information publicly.
+
+For website requests, add optional fields for:
+
+Type of website
+Estimated number of pages
+Desired features
+Target launch date
+Existing domain, if applicable
+Approximate budget
+Additional information
+
+Do not require every optional field.
+
+10. Design Requirements
+
+Maintain the existing Project Nimdeɛ visual identity.
+
+Use:
+
+Existing logo
+Existing navigation
+Existing footer
+Existing fonts
+Existing brand colours
+Existing rounded-card style
+Existing button style
+Existing spacing conventions
+
+Improve the current page where needed.
+
+Required design improvements
+Keep all service cards consistent in structure.
+Use a unique but brand-appropriate accent colour for each service.
+Add a suitable icon to every service.
+Make pricing easy to locate and understand.
+Ensure pricing cards are visually prominent but not aggressive.
+Keep paragraphs readable and avoid oversized blocks of text.
+Use short bullet points within cards.
+Use responsive two-column layouts where appropriate.
+Stack columns cleanly on mobile.
+Prevent text from overlapping the header or logo.
+Add enough top padding below the fixed navigation.
+Avoid large, unnecessary blank spaces.
+Ensure buttons have strong contrast.
+Ensure the page works on desktop, tablet, and mobile.
+Add hover and keyboard-focus states.
+Use semantic HTML.
+Maintain a logical heading hierarchy.
+Add descriptive accessibility labels to icons.
+Mark decorative icons appropriately so screen readers ignore them.
+Ensure colour is not the only way information is communicated.
+Preserve the footer, privacy notice, contact links, and copyright information.
+Do not display my personal address.
+Do not state that website development is available in person.
+Do not state that all services are delivered only by video call.
+Do not describe the $40 or $50 price as hourly unless a session length is explicitly added later.
+Format all prices as CAD.
+11. Functionality Requirements
+The “Explore Services” button should smoothly scroll to the services section.
+All “Get in Touch” and service inquiry buttons should link to the existing Contact page.
+Where possible, prepopulate the contact form based on the button selected.
+The page should load quickly.
+Do not create duplicate navigation or footer components.
+Reuse existing components where possible.
+Use the site’s existing routing structure.
+Check for console errors.
+Check that every button works.
+Check the mobile navigation.
+Check that the fixed header does not hide anchored sections.
+Ensure no content is clipped on smaller screens.
+Ensure text does not overflow service cards.
+Preserve SEO-friendly URLs.
+12. SEO Requirements
+
+Update the page title to:
+
+Tutoring, AI Support, Piano Lessons & Website Design | Project Nimdeɛ
+
+Use this meta description:
+
+Explore personalized mathematics and science tutoring, computer science support, AI literacy, piano lessons, educational consulting, and affordable website design from Project Nimdeɛ. Available online or in person.
+
+Add appropriate keywords naturally throughout the page, without keyword stuffing:
+
+Math tutoring
+Science tutoring
+Biology tutoring
+Alberta curriculum tutoring
+Online tutoring
+In-person tutoring
+Computer science tutoring
+AI prompting
+AI literacy
+AI for education
+Beginner piano lessons
+Curriculum consulting
+Website design
+Affordable website development
+Small-business websites
+Edmonton tutoring
+
+Add structured data where appropriate for:
+
+Educational services
+Local services
+Professional services
+
+Do not add false ratings, reviews, credentials, locations, or business information.
+
+13. Final Review Before Completion
+
+Before presenting the completed page:
+
+Review the existing Additional Services page and reuse its strongest components.
+Check all spelling, grammar, punctuation, and capitalization.
+Verify that all prices are displayed correctly.
+Verify that the 15-kilometre travel-fee notice appears.
+Verify that the website price says starting at $150 CAD.
+Verify that the website starter package mentions a standard domain and basic hosting or licensing for up to two years, with appropriate conditions.
+Verify that premium third-party costs are not presented as included.
+Verify that online and in-person options are clearly shown.
+Verify that online pricing is $40 CAD per session.
+Verify that in-person pricing is $50 CAD per session.
+Test every call-to-action button.
+Test the page on desktop, tablet, and mobile.
+Do not remove or break any other pages.
+Show me a summary of the files changed after implementing the page.
+Do not publish or deploy the changes until I review the completed page.
+
+Begin by inspecting the existing components and page structure, then implement the revised page using reusable components rather than hard-coding repetitive card layouts.
