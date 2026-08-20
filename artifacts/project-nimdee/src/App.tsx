@@ -46,6 +46,9 @@ import SignUp from "@/pages/SignUp";
 import ForgotPassword from "@/pages/ForgotPassword";
 import ResetPassword from "@/pages/ResetPassword";
 import Privacy from "@/pages/Privacy";
+import LearningSupport from "@/pages/services/LearningSupport";
+import WebsiteDesign from "@/pages/services/WebsiteDesign";
+import Consulting from "@/pages/services/Consulting";
 
 const queryClient = new QueryClient();
 const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
@@ -99,6 +102,9 @@ function Router() {
       <Route path="/resources/life-skills/stem-careers" component={STEMCareers} />
       <Route path="/resources" component={Resources} />
       <Route path="/support" component={Support} />
+      <Route path="/services/learning-support" component={LearningSupport} />
+      <Route path="/services/website-design" component={WebsiteDesign} />
+      <Route path="/services/consulting" component={Consulting} />
       <Route path="/services" component={Services} />
       <Route path="/contact" component={Contact} />
       <Route component={NotFound} />

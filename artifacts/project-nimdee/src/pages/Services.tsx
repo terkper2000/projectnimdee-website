@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/Layout";
+import { ServiceNav } from "@/components/ServiceNav";
 import { Button } from "@/components/ui/button";
 import {
   Calculator, FlaskConical, Code2, Sparkles, Target, Music, Globe, Lightbulb,
@@ -487,6 +488,17 @@ export default function Services() {
     servicesRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
+  useEffect(() => {
+    document.title = "Additional Services | Project Nimdeɛ";
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        "Explore tutoring, learning support, affordable website design, and educational consulting from Project Nimdeɛ.",
+      );
+    }
+  }, []);
+
   return (
     <Layout>
       {/* ── Hero ───────────────────────────────────────────────── */}
@@ -530,6 +542,8 @@ export default function Services() {
           </motion.div>
         </div>
       </section>
+
+      <ServiceNav />
 
       {/* ── Summary Row ─────────────────────────────────────────── */}
       <div className="border-y bg-background py-6">
